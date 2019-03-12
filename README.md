@@ -2,9 +2,9 @@
 
 ### Prof Coord: Dr. CZIBULA Istvan, Profesor Universitar
 
-### tema aleasa: Aplicatii mobile - securitatea datelor si a aplicatiei
+### Tema aleasa: Aplicatii mobile - Securitatea datelor si a aplicatiei
 
-#### referinte: 
+#### Referinte: 
 
 1. Privacy and data protection in mobile applications (ENISA 29.01.2019) 
 https://www.enisa.europa.eu/publications/privacy-and-data-protection-in-mobile-applications
