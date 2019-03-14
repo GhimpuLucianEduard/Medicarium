@@ -17,15 +17,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/loginButton"
+        <ImageView
+            android:id="@+id/fingerPrintView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Go to main page"
+            android:hapticFeedbackEnabled="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/fingerprint2"/>
+
+        <TextView
+            android:id="@+id/fingerPrintLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/fingerprintLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fingerPrintView" />
+
+        <TextView
+            android:id="@+id/pinLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/authPinLink"
+            android:textColor="@color/accentBlue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fingerPrintLabel" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
