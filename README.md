@@ -1,5 +1,24 @@
 # Medicarium
 
+### Prof Coord: Dr. CZIBULA Istvan, Profesor Universitar
+
+### Tema aleasa: Aplicatii mobile - Securitatea datelor si a aplicatiei
+
+#### Referinte: 
+
+1. Privacy and data protection in mobile applications (ENISA 29.01.2019) 
+https://www.enisa.europa.eu/publications/privacy-and-data-protection-in-mobile-applications
+
+2. Smartphone Secure Development Guidelines (ENISA 27.02.2017) 
+https://www.enisa.europa.eu/publications/smartphone-secure-development-guidelines-2016
+
+3. OWASP Mobile Application Security Verification Standard  
+https://github.com/OWASP/owasp-masvs
+
+4. Android Documentation 
+https://developer.android.com/topic/security/best-practices
+
+
 # Use Cases
 
 1. Open app
