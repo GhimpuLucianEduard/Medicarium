@@ -1,6 +1,7 @@
 package com.medicorum.Presentation
 
 import androidx.fragment.app.Fragment
+import com.medicorum.MedicorumApp
 import io.reactivex.disposables.CompositeDisposable
 
 abstract class BaseFragment : Fragment() {
@@ -14,4 +15,5 @@ abstract class BaseFragment : Fragment() {
     protected fun showToast(msg: String, length: Int = 0) {
         (activity as? MainActivity)!!.showToast(msg, length)
     }
+
 }

@@ -1,18 +1,17 @@
 package com.medicorum.Presentation.Login
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.content.DialogInterface
-import android.content.pm.PackageManager
-import android.hardware.biometrics.BiometricPrompt
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityCompat
-import androidx.core.os.CancellationSignal
 import androidx.lifecycle.ViewModelProviders
 import com.github.pwittchen.rxbiometric.library.RxBiometric
 import com.github.pwittchen.rxbiometric.library.throwable.AuthenticationError
@@ -22,22 +21,27 @@ import com.github.pwittchen.rxbiometric.library.throwable.BiometricNotSupported
 import com.github.pwittchen.rxbiometric.library.validation.Preconditions
 import com.github.pwittchen.rxbiometric.library.validation.RxPreconditions
 import com.medicorum.Presentation.BaseFragment
-import com.medicorum.databinding.FragmentLoginBinding
+import com.medicorum.R
+import com.medicorum.databinding.FragmentFingerprintAuthBinding
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.fragment_fingerprint_auth.*
+import org.jetbrains.anko.Android
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
+import java.util.concurrent.Executor
 
-class LoginFragment : BaseFragment(), KodeinAware {
+
+class FingerprintAuthFragment : BaseFragment(), KodeinAware {
 
     override val kodein by closestKodein()
     private val viewModelFactory: LoginFragmentViewModelFactory by instance()
     private lateinit var viewModel: LoginFragmentViewModel
-    private lateinit var binding : FragmentLoginBinding
+    private lateinit var binding : FragmentFingerprintAuthBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +49,7 @@ class LoginFragment : BaseFragment(), KodeinAware {
     ): View? {
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginFragmentViewModel::class.java)
-        binding = FragmentLoginBinding.inflate(inflater, container, false).apply {
+        binding = FragmentFingerprintAuthBinding.inflate(inflater, container, false).apply {
             loginViewModel = viewModel
         }
 
@@ -59,35 +63,9 @@ class LoginFragment : BaseFragment(), KodeinAware {
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         if (Preconditions.hasBiometricSupport(context!!)) {
             authenticateUser()
-        } else {
-            showToast("no fingerprint support")
         }
-    }
-
-    private fun checkBiometricSupport(): Boolean {
-
-        if (ActivityCompat.checkSelfPermission(context!!, Manifest.permission.USE_BIOMETRIC) != PackageManager.PERMISSION_GRANTED) {
-
-            showToast("Fingerprint authentication permission not enabled")
-            return false
-        }
-
-        if (ActivityCompat.checkSelfPermission(context!!, Manifest.permission.USE_BIOMETRIC) !=
-            PackageManager.PERMISSION_GRANTED) {
-
-            showToast("Fingerprint authentication permission not enabled");
-            return false
-        }
-
-        if (activity!!.packageManager.hasSystemFeature(PackageManager.FEATURE_FINGERPRINT))
-        {
-            return true
-        }
-
-        return true
     }
 
     @SuppressLint("NewApi")
@@ -104,23 +82,38 @@ class LoginFragment : BaseFragment(), KodeinAware {
                         .negativeButtonListener(DialogInterface.OnClickListener { _, _ ->
                             showToast("cancel")
                         })
-                        .executor(ActivityCompat.getMainExecutor(context!!))
+                        .executor(MainThreadExecutor())
                         .build()
                         .authenticate(activity!!)
             }
-            .subscribeOn(Schedulers.io())
+            .subscribeOn(AndroidSchedulers.mainThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
-                onComplete = { showToast("authenticated!") },
+                onComplete = { fingerPrintLabel.text = getString(R.string.success_msg) },
                 onError = {
                     when (it) {
-                        is AuthenticationError -> showToast("error")
-                        is AuthenticationFail -> showToast("fail")
-                        is AuthenticationHelp -> showToast("help")
-                        is BiometricNotSupported -> showToast("biometric not supported")
-                        else -> showToast("other error")
+                        is AuthenticationError -> {
+                            fingerPrintLabel.text = getString(R.string.fingerprint_too_many_attempts_error)
+                            fingerPrintLabel.setTextColor(resources.getColor(R.color.accentRed))
+                        }
+                        is AuthenticationFail -> {
+                            fingerPrintLabel.text = getString(R.string.failed_try_again)
+                            fingerPrintLabel.startAnimation(AnimationUtils.loadAnimation(context!!, R.anim.wooble))
+                            authenticateUser()
+                        }
+                        is AuthenticationHelp -> fingerPrintLabel.text = "Auth Help??"
+                        is BiometricNotSupported -> fingerPrintLabel.text = getString(R.string.biometric_not_supported)
+                        else -> Log.e("ERROR", "Some other error in fingerprint auth.")
                     }
                 }
             ).addTo(compositeDisposable)
+    }
+
+    inner class MainThreadExecutor : Executor {
+        private val handler = Handler(Looper.getMainLooper())
+
+        override fun execute(r: Runnable) {
+            handler.post(r)
+        }
     }
 }

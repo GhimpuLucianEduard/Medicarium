@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.medicorum.Presentation.Login.LoginFragment"
+        android:name="com.medicorum.Presentation.Login.FingerprintAuthFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login">
+        tools:layout="@layout/fragment_fingerprint_auth">
         <action
             android:id="@+id/action_loginFragment_to_genericInfoFragment"
             app:destination="@id/genericInfoFragment"

@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Presentation.Login.LoginFragment">
+    tools:context=".Presentation.Login.FingerprintAuthFragment">
 
 
     <data>
@@ -26,14 +26,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/fingerprint2"/>
+            app:layout_constraintVertical_bias="0.450"
+            app:srcCompat="@drawable/fingerprint" />
 
         <TextView
             android:id="@+id/fingerPrintLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:text="@string/fingerprintLabel"
+            android:textColor="@color/primaryDarkGrey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fingerPrintView" />
