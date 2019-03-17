@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Presentation.Login.PinAuthFragment">
+
+    <data>
+
+        <variable
+            name="loginViewModel"
+            type="com.medicorum.Presentation.Login.LoginFragmentViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/pureWhite">
+
+        <GridLayout
+            android:id="@+id/gridLayout"
+            android:layout_width="160dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="128dp"
+            android:background="@color/pureWhite"
+            android:columnCount="4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <View
+                style="@style/PinDot" />
+            <View
+                style="@style/PinDot" />
+            <View
+                style="@style/PinDot" />
+            <View
+                style="@style/PinDot" />
+
+        </GridLayout>
+
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/DefaultTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:text="@string/forgot_pin"
+            android:textColor="@color/accentBlue"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
+
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            android:columnCount="3"
+            android:rowCount="4">
+
+            <Button
+                android:layout_row="0"
+                android:layout_column="0"
+                style="@style/PinButton"
+                android:text="1" />
+            <Button
+                android:layout_row="0"
+                android:layout_column="1"
+                style="@style/PinButton"
+                android:text="2" />
+            <Button
+                android:layout_row="0"
+                android:layout_column="2"
+                style="@style/PinButton"
+                android:text="3" />
+            <Button
+                android:layout_row="1"
+                android:layout_column="0"
+                style="@style/PinButton"
+                android:text="4" />
+
+            <Button
+                android:layout_row="1"
+                android:layout_column="1"
+                style="@style/PinButton"
+                android:text="5" />
+
+            <Button
+                android:layout_row="1"
+                android:layout_column="2"
+                style="@style/PinButton"
+                android:text="6" />
+
+            <Button
+                android:layout_row="2"
+                android:layout_column="0"
+                style="@style/PinButton"
+                android:text="7" />
+
+            <Button
+                android:layout_row="2"
+                android:layout_column="1"
+                style="@style/PinButton"
+                android:text="8" />
+
+            <Button
+                android:layout_row="2"
+                android:layout_column="2"
+                style="@style/PinButton"
+                android:text="9" />
+
+            <ImageButton
+                android:layout_row="3"
+                android:layout_column="0"
+                style="@style/PinButton"
+                android:layout_width="30dp"
+                android:layout_height="36dp"
+                android:background="@drawable/fingerprint" />
+
+            <Button
+                android:layout_row="3"
+                android:layout_column="1"
+                style="@style/PinButton"
+                android:text="0" />
+
+            <ImageButton
+                android:layout_row="3"
+                android:layout_column="2"
+                style="@style/PinButton"
+                android:layout_width="28dp"
+                android:layout_height="20dp"
+                android:background="@drawable/delete" />
+
+        </GridLayout>
+
+        <!--<com.andrognito.pinlockview.IndicatorDots-->
+            <!--android:id="@+id/indicatorDots"-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="24dp"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintHorizontal_bias="0.498"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--app:layout_constraintVertical_bias="0.145" />-->
+
+        <!--<com.andrognito.pinlockview.PinLockView-->
+            <!--android:id="@+id/pinLockView"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:layout_marginEnd="8dp"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/indicatorDots"-->
+            <!--app:pinLength="4"-->
+            <!--app:keypadTextSize="30sp"-->
+            <!--app:keypadTextColor="@color/primaryBlack"-->
+            <!--app:keypadButtonSize="72dp"-->
+            <!--app:keypadDeleteButtonSize="24dp"-->
+            <!--app:keypadDeleteButtonPressedColor="@color/accentRed"-->
+            <!--app:indicatorType="fillWithAnimation"-->
+            <!--app:dotDiameter="20dp"-->
+            <!--app:dotFilledBackground="@color/accentRed"-->
+            <!--app:dotEmptyBackground="@color/accentBlue">-->
+
+        <!--</com.andrognito.pinlockview.PinLockView>-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

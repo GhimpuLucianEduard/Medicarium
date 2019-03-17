@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
 
         val navInflater = navController.navInflater
         val graph = navInflater.inflate(R.navigation.navigation_graph)
-        graph.startDestination = R.id.loginFragment
+        graph.startDestination = R.id.fingerPrintFragment
         navController.graph = graph
     }
 

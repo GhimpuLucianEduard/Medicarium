@@ -104,4 +104,7 @@ dependencies {
 
     // RxBiometric
     implementation 'com.github.pwittchen:rxbiometric:0.1.0'
+
+    // pin
+    implementation 'com.andrognito.pinlockview:pinlockview:2.1.0'
 }

@@ -3,16 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/fingerPrintFragment">
 
     <fragment
-        android:id="@+id/loginFragment"
+        android:id="@+id/fingerPrintFragment"
         android:name="com.medicorum.Presentation.Login.FingerprintAuthFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_fingerprint_auth">
         <action
-            android:id="@+id/action_loginFragment_to_genericInfoFragment"
+            android:id="@+id/action_fingerPrintFragment_to_genericInfoFragment"
             app:destination="@id/genericInfoFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_fingerPrintFragment_to_pinAuthFragment"
+            app:destination="@id/pinAuthFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -29,4 +36,9 @@
         android:name="com.medicorum.Presentation.General.GenericInfoFragment"
         android:label="fragment_generic_info"
         tools:layout="@layout/fragment_generic_info" />
+    <fragment
+        android:id="@+id/pinAuthFragment"
+        android:name="com.medicorum.Presentation.Login.PinAuthFragment"
+        android:label="fragment_pin_auth"
+        tools:layout="@layout/fragment_pin_auth" />
 </navigation>

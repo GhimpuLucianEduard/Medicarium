@@ -10,5 +10,6 @@
     <color name="primaryBlack">#333333</color>
     <color name="primaryDarkGrey">#999999</color>
     <color name="primaryLightGrey">#D3D1D3</color>
+    <color name="pureWhite">#FFFFFF</color>
 
 </resources>
