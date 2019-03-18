@@ -19,7 +19,7 @@
         android:background="@color/pureWhite">
 
         <GridLayout
-            android:id="@+id/gridLayout"
+            android:id="@+id/gridLayoutDots"
             android:layout_width="160dp"
             android:layout_height="24dp"
             android:layout_marginTop="128dp"
@@ -30,12 +30,16 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <View
+                android:id="@+id/dotView1"
                 style="@style/PinDot" />
             <View
+                android:id="@+id/dotView2"
                 style="@style/PinDot" />
             <View
+                android:id="@+id/dotView3"
                 style="@style/PinDot" />
             <View
+                android:id="@+id/dotView4"
                 style="@style/PinDot" />
 
         </GridLayout>
@@ -52,134 +56,124 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/gridLayoutDots" />
 
 
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="156dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="32dp"
+            android:columnCount="3"
+            android:rowCount="4"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            android:columnCount="3"
-            android:rowCount="4">
+            app:layout_constraintTop_toBottomOf="@+id/textView">
 
             <Button
+                android:id="@+id/btnOne"
+                style="@style/PinButton"
                 android:layout_row="0"
                 android:layout_column="0"
-                style="@style/PinButton"
                 android:text="1" />
+
             <Button
+                android:id="@+id/btnTwo"
+                style="@style/PinButton"
                 android:layout_row="0"
                 android:layout_column="1"
-                style="@style/PinButton"
                 android:text="2" />
+
             <Button
+                android:id="@+id/btnThree"
+                style="@style/PinButton"
                 android:layout_row="0"
                 android:layout_column="2"
-                style="@style/PinButton"
                 android:text="3" />
+
             <Button
+                android:id="@+id/btnFour"
+                style="@style/PinButton"
                 android:layout_row="1"
                 android:layout_column="0"
-                style="@style/PinButton"
                 android:text="4" />
 
             <Button
+                android:id="@+id/btnFive"
+                style="@style/PinButton"
                 android:layout_row="1"
                 android:layout_column="1"
-                style="@style/PinButton"
                 android:text="5" />
 
             <Button
+                android:id="@+id/btnSix"
+                style="@style/PinButton"
                 android:layout_row="1"
                 android:layout_column="2"
-                style="@style/PinButton"
                 android:text="6" />
 
             <Button
+                android:id="@+id/btnSeven"
+                style="@style/PinButton"
                 android:layout_row="2"
                 android:layout_column="0"
-                style="@style/PinButton"
                 android:text="7" />
 
             <Button
+                android:id="@+id/btnEight"
+                style="@style/PinButton"
                 android:layout_row="2"
                 android:layout_column="1"
-                style="@style/PinButton"
                 android:text="8" />
 
             <Button
+                android:id="@+id/btnNine"
+                style="@style/PinButton"
                 android:layout_row="2"
                 android:layout_column="2"
-                style="@style/PinButton"
                 android:text="9" />
 
             <ImageButton
-                android:layout_row="3"
-                android:layout_column="0"
+                android:id="@+id/btnFingerprint"
                 style="@style/PinButton"
                 android:layout_width="30dp"
                 android:layout_height="36dp"
+                android:layout_row="3"
+                android:layout_column="0"
                 android:background="@drawable/fingerprint" />
 
             <Button
+                android:id="@+id/btnZero"
+                style="@style/PinButton"
                 android:layout_row="3"
                 android:layout_column="1"
-                style="@style/PinButton"
                 android:text="0" />
 
-            <ImageButton
+            <FrameLayout
+                android:id="@+id/deleteFrame"
+                android:background="@android:color/transparent"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center"
+                android:layout_rowWeight="1"
                 android:layout_row="3"
-                android:layout_column="2"
-                style="@style/PinButton"
-                android:layout_width="28dp"
-                android:layout_height="20dp"
-                android:background="@drawable/delete" />
+                android:layout_column="2">
+
+                <ImageButton
+                    android:id="@+id/btnDelete"
+                    android:duplicateParentState="true"
+                    android:layout_gravity="center"
+                    android:layout_width="28dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/selector_delete" />
+
+            </FrameLayout>
 
         </GridLayout>
 
-        <!--<com.andrognito.pinlockview.IndicatorDots-->
-            <!--android:id="@+id/indicatorDots"-->
-            <!--android:layout_width="100dp"-->
-            <!--android:layout_height="24dp"-->
-            <!--android:layout_marginTop="8dp"-->
-            <!--app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--app:layout_constraintEnd_toEndOf="parent"-->
-            <!--app:layout_constraintHorizontal_bias="0.498"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--app:layout_constraintTop_toTopOf="parent"-->
-            <!--app:layout_constraintVertical_bias="0.145" />-->
-
-        <!--<com.andrognito.pinlockview.PinLockView-->
-            <!--android:id="@+id/pinLockView"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="0dp"-->
-            <!--android:layout_marginStart="8dp"-->
-            <!--android:layout_marginTop="8dp"-->
-            <!--android:layout_marginEnd="8dp"-->
-            <!--android:layout_marginBottom="8dp"-->
-            <!--app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--app:layout_constraintEnd_toEndOf="parent"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--app:layout_constraintTop_toBottomOf="@+id/indicatorDots"-->
-            <!--app:pinLength="4"-->
-            <!--app:keypadTextSize="30sp"-->
-            <!--app:keypadTextColor="@color/primaryBlack"-->
-            <!--app:keypadButtonSize="72dp"-->
-            <!--app:keypadDeleteButtonSize="24dp"-->
-            <!--app:keypadDeleteButtonPressedColor="@color/accentRed"-->
-            <!--app:indicatorType="fillWithAnimation"-->
-            <!--app:dotDiameter="20dp"-->
-            <!--app:dotFilledBackground="@color/accentRed"-->
-            <!--app:dotEmptyBackground="@color/accentBlue">-->
-
-        <!--</com.andrognito.pinlockview.PinLockView>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

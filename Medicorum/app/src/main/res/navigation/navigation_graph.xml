@@ -40,5 +40,13 @@
         android:id="@+id/pinAuthFragment"
         android:name="com.medicorum.Presentation.Login.PinAuthFragment"
         android:label="fragment_pin_auth"
-        tools:layout="@layout/fragment_pin_auth" />
+        tools:layout="@layout/fragment_pin_auth" >
+        <action
+            android:id="@+id/action_pinAuthFragment_toFingerprintAuthFragment"
+            app:destination="@+id/fingerPrintFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
 </navigation>

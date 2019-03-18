@@ -16,6 +16,7 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.medicorum.Presentation.BaseFragment
+import com.medicorum.Presentation.Services.VibrationService
 import com.medicorum.R
 import com.medicorum.Utilities.Fingerprint.FingerprintUtility
 import com.medicorum.Utilities.LoggerConstants.Companion.ERROR_TAG
@@ -36,6 +37,7 @@ class FingerprintAuthFragment : BaseFragment(), KodeinAware {
     private lateinit var viewModel: LoginFragmentViewModel
     private lateinit var binding : FragmentFingerprintAuthBinding
     private lateinit var fingerPrintHandler: FingerprintHandler
+    private lateinit var cancellationSignal: CancellationSignal;
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +50,7 @@ class FingerprintAuthFragment : BaseFragment(), KodeinAware {
         }
 
         binding.pinLabel.setOnClickListener {
+            cancellationSignal?.cancel()
             Navigation.findNavController(activity!!, R.id.nav_host_fragment).navigate(R.id.action_fingerPrintFragment_to_pinAuthFragment)
         }
 
@@ -66,7 +69,7 @@ class FingerprintAuthFragment : BaseFragment(), KodeinAware {
 
                 fingerPrintHandler = FingerprintHandler(context!!)
                 val fingerPrintManager = context!!.getSystemService(FINGERPRINT_SERVICE) as? FingerprintManager
-                val cancellationSignal = CancellationSignal()
+                cancellationSignal = CancellationSignal()
                 fingerPrintManager!!.authenticate(null, cancellationSignal, 0, fingerPrintHandler, null)
 
             }
@@ -77,9 +80,14 @@ class FingerprintAuthFragment : BaseFragment(), KodeinAware {
     inner class FingerprintHandler(context: Context) : FingerprintManager.AuthenticationCallback() {
 
         override fun onAuthenticationError(errorCode: Int, errString: CharSequence?) {
-            fingerPrintLabel.text = getString(R.string.fingerprint_too_many_attempts_error)
-            fingerPrintLabel.setTextColor(resources.getColor(R.color.accentRed))
-            Log.e(ERROR_TAG, "AuthenticationError: ${errString.toString()}")
+            // errorCode = 5 => cancellation signal (switched to pin auth)
+            if (errorCode != 5) {
+                val vibrator: VibrationService by instance()
+                vibrator.vibrate(context!!, 300)
+                fingerPrintLabel?.text = getString(R.string.fingerprint_too_many_attempts_error)
+                fingerPrintLabel?.setTextColor(resources.getColor(R.color.accentRed))
+                Log.e(ERROR_TAG, "AuthenticationError: ${errString.toString()}")
+            }
         }
 
         override fun onAuthenticationSucceeded(result: FingerprintManager.AuthenticationResult?) {
@@ -96,7 +104,7 @@ class FingerprintAuthFragment : BaseFragment(), KodeinAware {
         override fun onAuthenticationFailed() {
             super.onAuthenticationFailed()
             fingerPrintLabel.text = getString(R.string.failed_try_again)
-            fingerPrintLabel.startAnimation(AnimationUtils.loadAnimation(context!!, R.anim.wooble))
+            fingerPrintLabel.startAnimation(AnimationUtils.loadAnimation(context!!, R.anim.shake))
             Log.e(FAIL_TAG, "AuthenticationFailed")
         }
     }
