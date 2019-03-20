@@ -2,11 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/genericInfoFragment"
-        android:title="Info" />
+        android:title="Info"
+        android:icon="@drawable/generic_info_form"/>
     <item
         android:id="@+id/historyFragment"
-        android:title="History" />
+        android:title="History"
+        android:icon="@drawable/history_clock"/>
     <item
         android:id="@+id/settingsFragment"
-        android:title="Settings" />
+        android:title="Settings"
+        android:icon="@drawable/settings_gear"/>
 </menu>

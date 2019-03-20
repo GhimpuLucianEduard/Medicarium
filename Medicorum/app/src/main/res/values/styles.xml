@@ -9,22 +9,20 @@
         <item name="colorControlHighlight">@color/primaryLightGrey</item>
         <item name="android:fontFamily">@font/nunito_regular</item>
     </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="DefaultTextViewStyle" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/nunito_regular</item>
         <item name="android:textSize">16sp</item>
     </style>
-
-    <style name="SelectableItemTheme">
-
-    </style>
-
 
     <style name="PinDot">
         <item name="android:layout_width">14dp</item>
@@ -47,6 +45,16 @@
         <item name="android:background">?android:selectableItemBackgroundBorderless</item>
         <item name="android:textColor">@color/primaryBlack</item>
         <item name="android:fontFamily">@font/nunito_regular</item>
+    </style>
+
+    <style name="ActiveTextBottomNavBar">
+        <item name="android:fontFamily">@font/nunito_regular</item>
+        <item name="android:textColor">@color/accentRed</item>
+    </style>
+
+    <style name="InactiveTextBottomNavBar">
+        <item name="android:fontFamily">@font/nunito_regular</item>
+        <item name="android:textColor">@color/primaryBlack</item>
     </style>
 
 </resources>

@@ -13,6 +13,8 @@
         <action
             android:id="@+id/action_fingerPrintFragment_to_genericInfoFragment"
             app:destination="@id/genericInfoFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/navigation_graph"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -44,6 +46,15 @@
         <action
             android:id="@+id/action_pinAuthFragment_toFingerprintAuthFragment"
             app:destination="@+id/fingerPrintFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_pinAuthFragment_to_genericInfoFragment"
+            app:destination="@id/genericInfoFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/navigation_graph"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"

@@ -70,7 +70,8 @@ class PinAuthFragment : BaseFragment(), KodeinAware, View.OnClickListener {
     }
 
     private fun navigateToFingerprintScreen() {
-        Navigation.findNavController(activity!!, R.id.nav_host_fragment).navigate(R.id.action_pinAuthFragment_toFingerprintAuthFragment)
+        Navigation.findNavController(activity!!, R.id.nav_host_fragment)
+            .navigate(PinAuthFragmentDirections.actionPinAuthFragmentToFingerprintAuthFragment())
     }
 
     fun onPinButtonClicked(pinButton: Button) {
@@ -84,7 +85,9 @@ class PinAuthFragment : BaseFragment(), KodeinAware, View.OnClickListener {
             4 -> {
                 (dotView4.background as TransitionDrawable).startTransition(300)
                 if (viewModel.isPinValid()) {
-                    showToast("Pin valid!")
+                    val action = PinAuthFragmentDirections.actionPinAuthFragmentToGenericInfoFragment()
+                    Navigation.findNavController(activity!!, R.id.nav_host_fragment)
+                        .navigate(action)
                 } else {
                     val vibrator: VibrationService by instance()
                     vibrator.vibrate(context!!, 300)
@@ -94,7 +97,6 @@ class PinAuthFragment : BaseFragment(), KodeinAware, View.OnClickListener {
             }
         }
     }
-
 
     // TODO: not proud of this code
     fun clearDots() {

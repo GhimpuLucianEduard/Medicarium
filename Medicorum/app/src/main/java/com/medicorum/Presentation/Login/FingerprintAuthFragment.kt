@@ -7,6 +7,7 @@ import android.hardware.fingerprint.FingerprintManager
 import android.os.Build
 import android.os.Bundle
 import android.os.CancellationSignal
+import android.text.Layout
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -22,7 +23,6 @@ import com.medicorum.Utilities.Fingerprint.FingerprintUtility
 import com.medicorum.Utilities.LoggerConstants.Companion.ERROR_TAG
 import com.medicorum.Utilities.LoggerConstants.Companion.FAIL_TAG
 import com.medicorum.Utilities.LoggerConstants.Companion.INFO_TAG
-import com.medicorum.Utilities.LoggerConstants.Companion.SUCCESS_TAS
 import com.medicorum.databinding.FragmentFingerprintAuthBinding
 import kotlinx.android.synthetic.main.fragment_fingerprint_auth.*
 import org.kodein.di.KodeinAware
@@ -51,7 +51,8 @@ class FingerprintAuthFragment : BaseFragment(), KodeinAware {
 
         binding.pinLabel.setOnClickListener {
             cancellationSignal?.cancel()
-            Navigation.findNavController(activity!!, R.id.nav_host_fragment).navigate(R.id.action_fingerPrintFragment_to_pinAuthFragment)
+            Navigation.findNavController(activity!!, R.id.nav_host_fragment)
+                .navigate(FingerprintAuthFragmentDirections.actionFingerPrintFragmentToPinAuthFragment())
         }
 
         setBottomBarVisibility(false)
@@ -93,7 +94,8 @@ class FingerprintAuthFragment : BaseFragment(), KodeinAware {
         override fun onAuthenticationSucceeded(result: FingerprintManager.AuthenticationResult?) {
             super.onAuthenticationSucceeded(result)
             fingerPrintLabel.text = getString(R.string.success_msg)
-            Log.e(SUCCESS_TAS, "AuthenticationSucceeded")
+            Navigation.findNavController(activity!!, R.id.nav_host_fragment)
+                .navigate(FingerprintAuthFragmentDirections.actionFingerPrintFragmentToGenericInfoFragment())
         }
 
         override fun onAuthenticationHelp(helpCode: Int, helpString: CharSequence?) {
