@@ -5,16 +5,18 @@ const bodyParser = require('body-parser')
 const authRoutes = require('./routes/auth.js')
 const mongoose = require('mongoose')
 
-try {
-    mongoose.connect('mongodb+srv://admin:chdsk329@glucose-b6a49.mongodb.net/test?retryWrites=true', {dbName: 'Glucose'}, { useNewUrlParser: true })
-    console.log("Connected to Atlas")
-} catch (e) {
-    console.log("Failed to connect to atlas: ")
-    console.log(e.message)
-}
+
+// const uri = "mongodb+srv://admin:e9VzoWwdEpaNE5MQ@glucose-b6a49.mongodb.net/test?retryWrites=true"
+// mongoose.connect(uri)
+// .then(()=>{
+//     console.log("Connected to atlas")
+// }).catch(err => {
+//     console.log("Failed to connect to atlas")
+//     console.log(err)
+// })
 
 
-// mongoose.connect('mongodb://localhost:27017/myapp', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost:27017/myapp', {useNewUrlParser: true});
 
 
 app.use(morgan('dev'))

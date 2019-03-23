@@ -33,10 +33,13 @@ const userSchema = mongoose.Schema({
         enum: ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"]
     },
     height: {
-        type: Number
+        type: String
     },
     weight: {
-        type: Number
+        type: String
+    },
+    healthIssues: {
+        type: [String]
     },
     onGoingTreatments: {
         type: [String]
@@ -50,6 +53,6 @@ const userSchema = mongoose.Schema({
     emergencyContactPhoneNumber: {
         type: String
     }
-})
+}, { versionKey: false })
 
 module.exports = mongoose.model('User', userSchema)
