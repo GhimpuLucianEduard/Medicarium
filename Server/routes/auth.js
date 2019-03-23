@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const { check, validationResult } = require('express-validator/check');
+const wsBroadcast = require('../server.js')
 
 router.post('/signup', [
     check('email').isEmail(),
@@ -57,6 +58,7 @@ router.post('/signup', [
             {
                 await user.save()
                 const savedUser = await User.findOne({_id: user._id}).select("-password")
+                wsBroadcast("merge")
                 return res.status(200).json({user: savedUser, token: token})
             } catch(e) {
                 res.status(500).json(e)
@@ -87,6 +89,7 @@ router.post('/login', [
     } catch(e) {
         return res.status(500).json(e)
     }
+
 })
 
 module.exports = router
