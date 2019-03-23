@@ -1,5 +1,7 @@
 # Medicarium
 
+(chestii vechi, documentatia e pusa acum in [doc.pdf](https://github.com/GhimpuLucianEduard/Medicarium/blob/master/Docs/doc.pdf)
+
 ### Prof Coord: Dr. CZIBULA Istvan, Profesor Universitar
 
 ### Tema aleasa: Aplicatii mobile - Securitatea datelor si a aplicatiei
