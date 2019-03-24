@@ -1,27 +1,44 @@
 package com.smsslave
 
+import android.Manifest
 import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.telephony.SmsManager
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import okhttp3.*
-import okio.ByteString
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.WebSocket
+import okhttp3.WebSocketListener
+import org.json.JSONException
+import org.json.JSONObject
 import java.io.IOException
-import java.lang.Exception
 import java.time.LocalDateTime
+import android.widget.Toast
+import android.content.pm.PackageManager
+import androidx.annotation.NonNull
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import android.Manifest.permission
+import android.Manifest.permission.READ_SMS
+
+
+
+
 
 @RequiresApi(Build.VERSION_CODES.O)
 class MainActivity : AppCompatActivity() {
 
-    private val URL_LISTENER = "wss://192.168.1.100:8080"
+    private val URL_LISTENER = "ws://medicarium-2fa.herokuapp.com"
     private lateinit var client : OkHttpClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        requestSmsPermission()
         startWS()
     }
 
@@ -29,7 +46,17 @@ class MainActivity : AppCompatActivity() {
         try {
             client = OkHttpClient()
             val request = Request.Builder().url(URL_LISTENER).build()
-            val listener = CustomWebSocketListener()
+            val listener = object: WebSocketListener() {
+                override fun onMessage(webSocket: WebSocket, text: String) {
+                    super.onMessage(webSocket, text)
+                    sendSMS(text)
+                }
+
+                override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
+                    super.onClosed(webSocket, code, reason)
+                    Log.e("WS CLOSE", "WS Close, reason: $reason")
+                }
+            }
             val ws = client.newWebSocket(request, listener)
             client.dispatcher().executorService().shutdown()
         } catch (e: Exception) {
@@ -47,67 +74,58 @@ class MainActivity : AppCompatActivity() {
             val editor = pref.edit()
             editor.putString("LOG", allLog)
             editor.apply()
-            logTextView.text = allLog
+            runOnUiThread {
+                logTextView.text = allLog
+            }
         } catch (e: IOException) {
             Log.i("LOG ERROR", e.message)
         }
     }
 
-//    @RequiresApi(Build.VERSION_CODES.O)
-//    open class WebSocketListener(activity: MainActivity) : WebSocketAdapter()
-//    {
-//        private val activity = activity
-//
-//        override fun onTextMessage(websocket: WebSocket?, text: String?) {
-//            super.onTextMessage(websocket, text)
-//            try {
-//                val jsonRequest = JSONObject(text)
-//                val smsManager = SmsManager.getDefault()
-//
-//                smsManager.sendTextMessage(
-//                    jsonRequest.getString("phoneNumber"),
-//                    null,
-//                    jsonRequest.getString("message") + jsonRequest.getString("code"),
-//                    null,
-//                    null
-//                )
-//                activity.logAction(jsonRequest.getString("phoneNumber"), jsonRequest.getString("message"), jsonRequest.getString("code"))
-//            } catch (e: JSONException) {
-//                e.printStackTrace()
-//                Log.e("ERROR", e.message)
-//                Log.e("ERROr", "Received: $text")
-//            }
-//
-//        }
-//
-//        override fun onConnectError(websocket: WebSocket?, exception: WebSocketException?) {
-//            super.onConnectError(websocket, exception)
-//            Log.e("ERROR", exception?.message)
-//        }
-//    }
+    fun sendSMS(json: String) {
+        try {
+            val jsonRequest = JSONObject(json)
+            val smsManager = SmsManager.getDefault()
 
-    class CustomWebSocketListener() : okhttp3.WebSocketListener() {
-
-        //private val activity = activity
-
-        override fun onOpen(webSocket: WebSocket, response: Response) {
-            super.onOpen(webSocket, response)
+            smsManager.sendTextMessage(
+                jsonRequest.getString("number"),
+                null,
+                jsonRequest.getString("text") + jsonRequest.getString("code"),
+                null,
+                null
+            )
+            logAction(jsonRequest.getString("number"), jsonRequest.getString("text"), jsonRequest.getString("code"))
+        } catch (e: JSONException) {
+            e.printStackTrace()
+            Log.e("ERROR", e.message)
+            Log.e("ERROr", "Received: $json")
         }
+    }
 
-        override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
-            super.onFailure(webSocket, t, response)
+    private fun requestSmsPermission() {
+        val permission = Manifest.permission.SEND_SMS
+        val grant = ContextCompat.checkSelfPermission(this, permission)
+        if (grant != PackageManager.PERMISSION_GRANTED) {
+            val permission_list = arrayOfNulls<String>(1)
+            permission_list[0] = permission
+            ActivityCompat.requestPermissions(this, permission_list, 1)
         }
+    }
 
-        override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
-            super.onClosing(webSocket, code, reason)
-        }
 
-        override fun onMessage(webSocket: WebSocket, text: String) {
-            super.onMessage(webSocket, text)
-        }
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 1) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this@MainActivity, "permission granted", Toast.LENGTH_SHORT).show()
 
-        override fun onMessage(webSocket: WebSocket, bytes: ByteString) {
-            super.onMessage(webSocket, bytes)
+
+            } else {
+                Toast.makeText(this@MainActivity, "permission not granted", Toast.LENGTH_SHORT).show()
+            }
         }
 
     }
