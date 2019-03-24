@@ -52,6 +52,10 @@ const userSchema = mongoose.Schema({
     },
     emergencyContactPhoneNumber: {
         type: String
+    },
+    status: {
+        type: Boolean,
+        required: true
     }
 }, { versionKey: false })
 

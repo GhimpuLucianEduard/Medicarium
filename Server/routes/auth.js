@@ -1,11 +1,14 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../Models/user.js')
+const TwoFactorsCheck = require('../Models/twoFactorsCheck.js')
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const { check, validationResult } = require('express-validator/check');
-const wsBroadcast = require('../server.js')
+const axios = require("axios");
+
+const smsURL = `https://medicarium-2fa.herokuapp.com/2fa`;
 
 router.post('/signup', [
     check('email').isEmail(),
@@ -43,27 +46,97 @@ router.post('/signup', [
                 onGoingTreatments: req.body.onGoingTreatments,
                 allergies: req.body.allergies,
                 emergencyContactName: req.body.emergencyContactName,
-                emergencyContactPhoneNumber: req.body.emergencyContactPhoneNumber
+                emergencyContactPhoneNumber: req.body.emergencyContactPhoneNumber,
+                status: false
             })
 
-            const token = jwt.sign({
-                email: user.email,
-                userId: user._id
-            }, process.env.JWT_KEY, 
-            {
-                expiresIn: "1000d"
-            })
+            // const token = jwt.sign({
+            //     email: user.email,
+            //     userId: user._id
+            // }, process.env.JWT_KEY, 
+            // {
+            //     expiresIn: "1000d"
+            // }
 
             try
             {
                 await user.save()
                 const savedUser = await User.findOne({_id: user._id}).select("-password")
-                wsBroadcast("merge")
-                return res.status(200).json({user: savedUser, token: token})
+
+                const code = Math.floor(1000 + Math.random() * 9000).toString();
+
+                const twoFactorsCheck = new TwoFactorsCheck({
+                    _id: new mongoose.Types.ObjectId(),
+                    userId: savedUser._id,
+                    code: code,
+                    timestamp: Date.now(),
+                    resolved: false
+                })
+
+                await twoFactorsCheck.save()
+
+                try {
+                    const response = await axios.post(smsURL, {
+                        text: `Codul pentru Medicarium valabil 5 minute: `,
+                        code: code,
+                        number: savedUser.phoneNumber
+                    })  
+                    
+                    if (response.status == 200) {
+                        return res.status(200).json(savedUser)
+                    } 
+                } catch(e) {
+                    return res.status(500).json(e.response.data)
+                }
+            
             } catch(e) {
-                res.status(500).json(e)
+                return res.status(500).json(e)
             }
-        
+        }
+    } catch(e) {
+        return res.status(500).json(e)
+    }
+
+    return res
+})
+
+router.post('/check2fa', async (req, res, next) => {
+
+    try {
+        const verification = await TwoFactorsCheck.findOne({userId: req.body.userId, code: req.body.code})
+        if (verification) {
+
+            if (verification.resolved) {
+                return res.status(401).json({error: "Verification failed!"})
+            }
+
+            const dateNow = Date.now()
+            const sentDate = verification.timestamp
+            const difference = dateNow - sentDate;
+            const minutesDifference = Math.floor(difference/1000/60);
+
+            if (minutesDifference > 5) {
+                return res.status(401).json({error: "Verification failed!"})
+            } 
+
+            const user = await User.findOne({_id: verification.userId})
+            user.status = true
+            const updatedUser = await user.save()
+
+            const token = jwt.sign({
+                email: updatedUser.email,
+                userId: updatedUser._id
+            }, process.env.JWT_KEY, 
+            {
+                expiresIn: "1000d"
+            })
+            
+            verification.resolved = true
+            await verification.save()
+
+            return res.status(200).json({user: updatedUser, token: token})
+        } else {
+            return res.status(401).json({error: "Verification failed!"})
         }
     } catch(e) {
         return res.status(500).json(e)
