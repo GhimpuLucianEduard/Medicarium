@@ -109,4 +109,7 @@ dependencies {
 
     // pin
     implementation 'com.andrognito.pinlockview:pinlockview:2.1.0'
+
+    // material edit text
+    implementation 'com.github.HITGIF:TextFieldBoxes:1.4.4'
 }

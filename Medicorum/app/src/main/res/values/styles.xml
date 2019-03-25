@@ -57,4 +57,23 @@
         <item name="android:textColor">@color/primaryBlack</item>
     </style>
 
+    <style name="BaseEditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:inputType">text</item>
+        <item name="android:textColorHint">@color/primaryLightGrey</item>
+        <item name="android:textColor">@color/primaryBlack</item>
+    </style>
+
+    <style name="BaseTextInputLayout">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">344dp</item>
+    </style>
+
+    <style name="SignUpTextInputLayout" parent="BaseTextInputLayout">
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+    </style>
+
 </resources>

@@ -1,33 +1,23 @@
 package com.smsslave
 
 import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.telephony.SmsManager
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.WebSocket
-import okhttp3.WebSocketListener
+import okhttp3.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
 import java.time.LocalDateTime
-import android.widget.Toast
-import android.content.pm.PackageManager
-import androidx.annotation.NonNull
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import android.Manifest.permission
-import android.Manifest.permission.READ_SMS
-
-
-
-
 
 @RequiresApi(Build.VERSION_CODES.O)
 class MainActivity : AppCompatActivity() {
@@ -50,6 +40,11 @@ class MainActivity : AppCompatActivity() {
                 override fun onMessage(webSocket: WebSocket, text: String) {
                     super.onMessage(webSocket, text)
                     sendSMS(text)
+                }
+
+                override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
+                    super.onFailure(webSocket, t, response)
+                    startWS()
                 }
 
                 override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
@@ -112,7 +107,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     override fun onRequestPermissionsResult(
         requestCode: Int, permissions: Array<String>,
         grantResults: IntArray
@@ -121,7 +115,6 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == 1) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this@MainActivity, "permission granted", Toast.LENGTH_SHORT).show()
-
 
             } else {
                 Toast.makeText(this@MainActivity, "permission not granted", Toast.LENGTH_SHORT).show()
