@@ -11,7 +11,6 @@ fun String.Companion.empty(): String {
     return ""
 }
 
-
 fun String.Companion.isEmailValid(email: String): Boolean {
     return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
 }
