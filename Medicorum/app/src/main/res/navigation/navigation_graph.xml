@@ -64,5 +64,5 @@
         android:id="@+id/firstSignupFragment"
         android:name="com.medicorum.Presentation.Signup.FirstSignupFragment"
         android:label="first_signup_fragment"
-        tools:layout="@layout/first_signup_fragment" />
+        tools:layout="@layout/fragment_first_signup" />
 </navigation>

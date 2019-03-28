@@ -16,5 +16,14 @@
     <string name="success_msg">Success!</string>
     <string name="failed_try_again">Failed. Please try again.</string>
     <string name="forgot_pin">Forgot pin?</string>
+    <string name="sign_up_welcome_logo_text">Welcome to Medicarium</string>
+    <string name="sign_up_welcome_desc_text">We need some basic information about yourself in order to improve your experience with the app</string>
+    <string name="first_name_hint">First Name</string>
+    <string name="last_name_hint">Last Name</string>
+    <string name="email_hint">Email</string>
+    <string name="phone_number_hint">Phone Number</string>
+    <string name="continue_text">Continue</string>
+    <string name="password_hint">Password</string>
+    <string name="confirm_password_hint">Confirm Password</string>
 
 </resources>

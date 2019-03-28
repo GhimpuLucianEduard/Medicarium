@@ -6,6 +6,7 @@ import com.jakewharton.threetenabp.AndroidThreeTen
 import com.medicorum.Presentation.Login.LoginFragmentViewModelFactory
 import com.medicorum.Presentation.Services.VibrationService
 import com.medicorum.Presentation.Services.VibrationServiceImpl
+import com.medicorum.Presentation.Signup.SignUpViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -19,6 +20,7 @@ class MedicorumApp : Application(), KodeinAware {
         import(androidXModule(this@MedicorumApp))
 
         bind() from provider { LoginFragmentViewModelFactory() }
+        bind() from provider { SignUpViewModelFactory() }
         bind<VibrationService>() with singleton { VibrationServiceImpl() }
     }
 

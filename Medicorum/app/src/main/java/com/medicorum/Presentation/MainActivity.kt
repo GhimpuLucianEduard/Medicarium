@@ -2,8 +2,10 @@ package com.medicorum.Presentation
 
 import android.os.Bundle
 import android.view.View
+import android.view.View.GONE
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
@@ -44,5 +46,9 @@ class MainActivity : AppCompatActivity(), KodeinAware {
     // 0 - short, 1 - long
     fun showToast(msg: String, length: Int) {
         Toast.makeText(this, msg, length).show()
+    }
+
+    fun setProgressIndicatorVisibility() {
+        progressIndicator.visibility = GONE
     }
 }

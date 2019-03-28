@@ -37,7 +37,7 @@ class FingerprintAuthFragment : BaseFragment(), KodeinAware {
     private lateinit var viewModel: LoginFragmentViewModel
     private lateinit var binding : FragmentFingerprintAuthBinding
     private lateinit var fingerPrintHandler: FingerprintHandler
-    private lateinit var cancellationSignal: CancellationSignal;
+    private lateinit var cancellationSignal: CancellationSignal
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

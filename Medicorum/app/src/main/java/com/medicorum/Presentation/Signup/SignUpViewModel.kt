@@ -4,5 +4,6 @@ import androidx.lifecycle.ViewModel
 
 class SignUpViewModel : ViewModel() {
 
-    privat
+    var firstSignUpViewModel: FirstSignupViewModel = FirstSignupViewModel()
+
 }

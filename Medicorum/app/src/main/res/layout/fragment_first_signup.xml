@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="@color/pureWhite"
     tools:context=".Presentation.Signup.FirstSignupFragment">
+
+    <data>
+
+        <variable
+            name="firstSignUpViewModel"
+            type="com.medicorum.Presentation.Signup.FirstSignupViewModel" />
+
+    </data>
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -37,7 +42,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/lobster_regular"
-                android:text="Welcome to Medicarium"
+                android:text="@string/sign_up_welcome_logo_text"
                 android:textColor="@color/primaryBlack"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +56,7 @@
                 android:layout_marginTop="36dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/nunito_regular"
-                android:text="We need some basic information about yourself in order to improve your experience with the app"
+                android:text="@string/sign_up_welcome_desc_text"
                 android:textColor="@color/primaryDarkGrey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -67,8 +72,9 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/BaseEditText"
-                    android:hint="First Name"
-                    android:nextFocusDown="@id/lastNameEditText" />
+                    android:hint="@string/first_name_hint"
+                    android:nextFocusDown="@id/lastNameEditText"
+                    android:text="@={firstSignUpViewModel.user.firstName}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,8 +89,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/lastNameEditText"
                     style="@style/BaseEditText"
-                    android:hint="Last Name"
-                    android:nextFocusDown="@id/emailEditText" />
+                    android:hint="@string/last_name_hint"
+                    android:nextFocusDown="@id/emailEditText"
+                    android:text="@={firstSignUpViewModel.user.lastName}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,9 +106,10 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/emailEditText"
                     style="@style/BaseEditText"
-                    android:hint="Email"
+                    android:hint="@string/email_hint"
                     android:inputType="textEmailAddress"
-                    android:nextFocusDown="@id/phoneNumberEditTest" />
+                    android:nextFocusDown="@id/phoneNumberEditText"
+                    android:text="@={firstSignUpViewModel.user.email}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -114,23 +122,62 @@
                 app:layout_constraintTop_toBottomOf="@id/emailTextInput">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/phoneNumberEditTest"
+                    android:id="@+id/phoneNumberEditText"
                     style="@style/BaseEditText"
-                    android:hint="Phone Number"
-                    android:inputType="phone" />
+                    android:hint="@string/phone_number_hint"
+                    android:inputType="phone"
+                    android:nextFocusDown="@id/passwordEditText"
+                    android:text="@={firstSignUpViewModel.user.phoneNumber}" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordTextInput"
+                style="@style/SignUpTextInputLayout"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/phoneNumberTextInput">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordEditText"
+                    style="@style/BaseEditText"
+                    android:hint="@string/password_hint"
+                    android:inputType="textPassword"
+                    android:nextFocusDown="@id/confirmPasswordEditText"
+                    android:text="@={firstSignUpViewModel.user.password}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/confirmPasswordTextInput"
+                style="@style/SignUpTextInputLayout"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/passwordTextInput">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/confirmPasswordEditText"
+                    style="@style/BaseEditText"
+                    android:hint="@string/confirm_password_hint"
+                    android:inputType="textPassword"
+                    android:text="@={firstSignUpViewModel.user.phoneNumber}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/continueButton"
+                style="@style/BaseButton"
+                android:layout_marginTop="56dp"
+                android:text="@string/continue_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/confirmPasswordTextInput" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
 
-    <Button
-        android:id="@+id/continueButton"
-        style="@style/BaseButton"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="32dp"
-        android:text="Continue" />
+</layout>
 
-</RelativeLayout>
