@@ -112,4 +112,6 @@ dependencies {
 
     // material edit text
     implementation 'com.github.HITGIF:TextFieldBoxes:1.4.4'
+
+    kapt 'com.android.databinding:compiler:3.1.4'
 }

@@ -1,11 +1,11 @@
-package com.medicorum.Data.Models
+package com.medicorum.Data.DataModels
 
 import com.medicorum.Data.Enums.BloodType
 import com.medicorum.Data.Enums.Gender
 import com.medicorum.Utilities.DateTimeUtility
 import empty
 
-data class User(
+data class UserDataModel(
     var id: String = String.empty(),
     var email: String = String.empty(),
     var password: String = String.empty(),

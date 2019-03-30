@@ -71,6 +71,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/infoTextView">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/firstNameEditText"
                     style="@style/BaseEditText"
                     android:hint="@string/first_name_hint"
                     android:nextFocusDown="@id/lastNameEditText"
@@ -134,6 +135,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/passwordTextInput"
                 style="@style/SignUpTextInputLayout"
+                app:passwordToggleEnabled="true"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -152,6 +154,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/confirmPasswordTextInput"
                 style="@style/SignUpTextInputLayout"
+                app:passwordToggleEnabled="true"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -162,14 +165,15 @@
                     style="@style/BaseEditText"
                     android:hint="@string/confirm_password_hint"
                     android:inputType="textPassword"
-                    android:text="@={firstSignUpViewModel.user.phoneNumber}" />
+                    android:text="@={firstSignUpViewModel.user.confirmPassword}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/continueButton"
                 style="@style/BaseButton"
-                android:layout_marginTop="56dp"
+                android:enabled="@{firstSignUpViewModel.isContinueEnabled}"
+                android:layout_marginTop="32dp"
                 android:text="@string/continue_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
