@@ -1,11 +1,13 @@
 package com.medicorum.Data.DataModels
 
+import com.google.gson.annotations.SerializedName
 import com.medicorum.Data.Enums.BloodType
 import com.medicorum.Data.Enums.Gender
 import com.medicorum.Utilities.DateTimeUtility
 import empty
 
 data class UserDataModel(
+    @SerializedName("_id")
     var id: String = String.empty(),
     var email: String = String.empty(),
     var password: String = String.empty(),

@@ -11,6 +11,6 @@ class LoggerConstants {
 
 class ApiConstants {
     companion object {
-        const val BASE_URL = "http://10.230.221.129:1972"
+        const val BASE_URL = "https://medicarium-api-server.herokuapp.com"
     }
 }

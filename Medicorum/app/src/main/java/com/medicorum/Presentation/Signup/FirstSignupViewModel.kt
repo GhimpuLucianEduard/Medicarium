@@ -9,6 +9,7 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.medicorum.Data.ApiServices.AuthService
 import com.medicorum.Data.DataModels.UserDataModel
+import com.medicorum.Data.Mappers.toUserDomainModel
 import com.medicorum.Data.Models.User
 import com.medicorum.Presentation.DataViewModels.PropertyAwareMutableLiveData
 import com.medicorum.Presentation.DataViewModels.UserObservable
@@ -24,7 +25,7 @@ class FirstSignupViewModel(private val authService: AuthService) : ViewModel() {
 
 
     fun signUp() {
-        authService.signUp(UserDataModel())
+        authService.signUp(user.value?.toUserDomainModel()!!)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({}, {

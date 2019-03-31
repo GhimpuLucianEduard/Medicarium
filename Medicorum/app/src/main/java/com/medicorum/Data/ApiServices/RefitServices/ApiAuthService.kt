@@ -8,5 +8,5 @@ import retrofit2.http.POST
 interface ApiAuthService {
 
     @POST("/auth/signup")
-    fun signUp(@Body userDataModel: UserDataModel) : Observable<Any>
+    fun signUp(@Body userDataModel: UserDataModel) : Observable<UserDataModel>
 }
