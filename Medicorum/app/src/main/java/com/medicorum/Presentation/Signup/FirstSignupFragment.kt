@@ -20,7 +20,7 @@ class FirstSignupFragment : BaseFragment(), KodeinAware {
 
     override val kodein by closestKodein()
     private val viewModelFactory: SignUpViewModelFactory by instance()
-    private lateinit var viewModel: FirstSignupViewModel
+    private lateinit var viewModel: SignUpViewModel
     private lateinit var binding : FragmentFirstSignupBinding
 
     companion object {
@@ -32,10 +32,10 @@ class FirstSignupFragment : BaseFragment(), KodeinAware {
         savedInstanceState: Bundle?
     ): View? {
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(SignUpViewModel::class.java).firstSignUpViewModel
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(SignUpViewModel::class.java)
 
         binding = FragmentFirstSignupBinding.inflate(inflater, container, false).apply {
-            firstSignUpViewModel = viewModel
+            signUpViewModel = viewModel
             lifecycleOwner = this@FirstSignupFragment
         }
         setBottomBarVisibility(false)

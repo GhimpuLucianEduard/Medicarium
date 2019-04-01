@@ -9,10 +9,7 @@ import com.medicorum.Data.ApiServices.RefitServices.ApiServiceFactory
 import com.medicorum.Data.ApiServices.RefitServices.ConnectivityInterceptor
 import com.medicorum.Data.ApiServices.RefitServices.ConnectivityInterceptorImpl
 import com.medicorum.Presentation.Login.LoginFragmentViewModelFactory
-import com.medicorum.Presentation.Services.ConnectivityService
-import com.medicorum.Presentation.Services.ConnectivityServiceImpl
-import com.medicorum.Presentation.Services.VibrationService
-import com.medicorum.Presentation.Services.VibrationServiceImpl
+import com.medicorum.Presentation.Services.*
 import com.medicorum.Presentation.Signup.SignUpViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -27,21 +24,21 @@ class MedicorumApp : Application(), KodeinAware {
     override val kodein = Kodein.lazy {
         import(androidXModule(this@MedicorumApp))
 
-        bind() from provider { LoginFragmentViewModelFactory() }
-
-
+        // ui/device related services
+        bind<ToastService>() with singleton { ToastServiceImpl() }
         bind<VibrationService>() with singleton { VibrationServiceImpl() }
         bind<ConnectivityService>() with singleton { ConnectivityServiceImpl() }
 
-        bind<ConnectivityInterceptor>() with singleton {
-            ConnectivityInterceptorImpl(
-                instance()
-            )
-        }
-
+        // api stuff
+        bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptorImpl(instance()) }
         bind() from singleton { ApiServiceFactory(instance()) }
+
+        // api services
         bind<AuthService>() with singleton { AuthServiceImpl(instance()) }
-        bind() from provider { SignUpViewModelFactory(instance()) }
+
+        // view models
+        bind() from provider { LoginFragmentViewModelFactory() }
+        bind() from provider { SignUpViewModelFactory(instance(), instance(), instance()) }
     }
 
     init {
@@ -51,7 +48,7 @@ class MedicorumApp : Application(), KodeinAware {
     companion object {
         private var instance: MedicorumApp? = null
 
-        fun applicationContext() : Context {
+        fun applicationContext(): Context {
             return instance!!.applicationContext
         }
     }
