@@ -1,7 +1,9 @@
 package com.medicorum.Data.Mappers
 
 import com.medicorum.Data.DataModels.UserDataModel
+import com.medicorum.Data.DataModels.UserWithTokenDataModel
 import com.medicorum.Data.Models.User
+import com.medicorum.Data.Models.UserWithToken
 import com.medicorum.Presentation.DataViewModels.UserObservable
 
 fun User.toUserDataModel() = UserDataModel(
@@ -51,4 +53,14 @@ fun UserObservable.toUserDomainModel() = User(
     firstName = firstName,
     lastName = lastName,
     phoneNumber = phoneNumber
+)
+
+fun UserWithToken.toUserWithTokenDataModel() = UserWithTokenDataModel(
+    user = user.toUserDataModel(),
+    token = token
+)
+
+fun UserWithTokenDataModel.toUserWithTokenDomainModel() = UserWithToken(
+    user = user.toUserDomainModel(),
+    token = token
 )

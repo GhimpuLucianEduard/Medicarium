@@ -5,7 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import com.medicorum.Presentation.BaseFragment
+import com.medicorum.Presentation.Login.PinAuthFragmentDirections
+import com.medicorum.R
+import com.medicorum.Utilities.EventObserver
 import com.medicorum.databinding.FragmentFirstSignupBinding
 import isEmailValid
 import isPasswordValid
@@ -36,6 +40,12 @@ class FirstSignupFragment : BaseFragment(), KodeinAware {
 
         binding = FragmentFirstSignupBinding.inflate(inflater, container, false).apply {
             signUpViewModel = viewModel
+
+            viewModel.navigateToSmsVerification.observe(this@FirstSignupFragment, EventObserver {
+                Navigation.findNavController(activity!!, R.id.nav_host_fragment)
+                    .navigate(FirstSignupFragmentDirections.actionFirstSignupFragmentToCheckSMSCodeFragment())
+            })
+
             lifecycleOwner = this@FirstSignupFragment
         }
         setBottomBarVisibility(false)

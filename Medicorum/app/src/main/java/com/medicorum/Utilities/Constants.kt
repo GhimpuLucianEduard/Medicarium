@@ -22,6 +22,6 @@ class SharedPreferences {
         const val SECRET_KEY = "+sW23Em{86QY20Z"
         const val USER = "user"
         const val TOKEN = "token"
-        const val USER_SMS_VERIFIED = "isUserSmsVerified"
+        const val USER_VERIFIED = "isUserSmsVerified"
     }
 }

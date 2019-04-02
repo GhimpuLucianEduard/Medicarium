@@ -121,4 +121,7 @@ dependencies {
 
     // preferences
     implementation 'com.github.AndreaCioccarelli:CryptoPrefs:1.3.2.2'
+
+    // safe room
+    implementation "com.commonsware.cwac:saferoom:1.0.2"
 }

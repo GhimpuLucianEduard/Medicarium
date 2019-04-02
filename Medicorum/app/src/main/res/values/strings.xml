@@ -25,5 +25,9 @@
     <string name="continue_text">Continue</string>
     <string name="password_hint">Password</string>
     <string name="confirm_password_hint">Confirm Password</string>
+    <string name="verify_identity_title">Verify Identity</string>
+    <string name="verify_identity_desc">We sent a SMS with   the verification code to the number:</string>
+    <string name="sms_verification_hint">Enter the code here</string>
+    <string name="sms_verification_button">Verify</string>
 
 </resources>
