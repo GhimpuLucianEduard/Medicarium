@@ -11,7 +11,7 @@
 
         <variable
             name="signUpViewModel"
-            type="com.medicorum.Presentation.Signup.SignUpViewModel" />
+            type="com.medicarium.Presentation.Signup.SignUpViewModel" />
 
     </data>
 

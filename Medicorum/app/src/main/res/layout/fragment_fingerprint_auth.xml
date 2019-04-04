@@ -9,13 +9,12 @@
 
         <variable
             name="loginViewModel"
-            type="com.medicorum.Presentation.Login.LoginFragmentViewModel" />
+            type="com.medicarium.Presentation.Login.LoginFragmentViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        style="@style/ConstraintLayoutContainer">
 
         <ImageView
             android:id="@+id/fingerPrintView"

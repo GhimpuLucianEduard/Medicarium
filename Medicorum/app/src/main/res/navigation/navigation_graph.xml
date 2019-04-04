@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/setupPinFragment">
 
     <fragment
         android:id="@+id/fingerPrintFragment"
-        android:name="com.medicorum.Presentation.Login.FingerprintAuthFragment"
+        android:name="com.medicarium.Presentation.Login.FingerprintAuthFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_fingerprint_auth">
         <action
@@ -30,17 +30,17 @@
 
     <fragment
         android:id="@+id/historyFragment"
-        android:name="com.medicorum.Presentation.History.HistoryFragment"
+        android:name="com.medicarium.Presentation.History.HistoryFragment"
         android:label="fragment_history"
         tools:layout="@layout/fragment_history" />
     <fragment
         android:id="@+id/genericInfoFragment"
-        android:name="com.medicorum.Presentation.General.GenericInfoFragment"
+        android:name="com.medicarium.Presentation.General.GenericInfoFragment"
         android:label="fragment_generic_info"
         tools:layout="@layout/fragment_generic_info" />
     <fragment
         android:id="@+id/pinAuthFragment"
-        android:name="com.medicorum.Presentation.Login.PinAuthFragment"
+        android:name="com.medicarium.Presentation.Login.PinAuthFragment"
         android:label="fragment_pin_auth"
         tools:layout="@layout/fragment_pin_auth" >
         <action
@@ -62,7 +62,7 @@
     </fragment>
     <fragment
         android:id="@+id/firstSignupFragment"
-        android:name="com.medicorum.Presentation.Signup.FirstSignupFragment"
+        android:name="com.medicarium.Presentation.Signup.FirstSignupFragment"
         android:label="first_signup_fragment"
         tools:layout="@layout/fragment_first_signup" >
         <action
@@ -80,7 +80,7 @@
     </fragment>
     <fragment
         android:id="@+id/checkSMSCodeFragment"
-        android:name="com.medicorum.Presentation.Signup.CheckSmsCodeFragment"
+        android:name="com.medicarium.Presentation.Signup.CheckSmsCodeFragment"
         android:label="check_smscode_fragment"
         tools:layout="@layout/check_smscode_fragment" >
         <action
@@ -93,7 +93,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.medicorum.Presentation.Login.LoginFragment"
+        android:name="com.medicarium.Presentation.Login.LoginFragment"
         android:label="login_fragment"
         tools:layout="@layout/login_fragment" >
         <action
@@ -106,4 +106,9 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
+    <fragment
+        android:id="@+id/setupPinFragment"
+        android:name="com.medicarium.Presentation.Pin.SetupPinFragment"
+        android:label="setup_pin_fragment"
+        tools:layout="@layout/setup_pin_fragment" />
 </navigation>
