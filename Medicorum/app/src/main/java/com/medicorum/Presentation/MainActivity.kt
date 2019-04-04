@@ -8,7 +8,11 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.andreacioccarelli.cryptoprefs.CryptoPrefs
 import com.medicorum.R
+import com.medicorum.Utilities.SharedPreferences
+import com.medicorum.Utilities.SharedPreferences.Companion.TOKEN
+import empty
 import kotlinx.android.synthetic.main.activity_main.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
@@ -28,12 +32,33 @@ class MainActivity : AppCompatActivity(), KodeinAware {
         bottom_nav.setupWithNavController(navController)
 
         val navHost = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment?
-        val navController = navHost!!.navController
+        navController = navHost!!.navController
 
         val navInflater = navController.navInflater
         val graph = navInflater.inflate(R.navigation.navigation_graph)
-        graph.startDestination = R.id.firstSignupFragment
         navController.graph = graph
+
+//        navController.addOnDestinationChangedListener() { controller, destination, arguments ->
+//            when(destination.id) {
+//                R.id.loginFragment -> {
+//
+//
+//
+//                }
+//            }
+//        }
+
+        val preferences = CryptoPrefs(this, SharedPreferences.FILE_NAME, SharedPreferences.SECRET_KEY)
+        if (preferences.get(TOKEN, String.empty()) == String.empty()) {
+            navController.graph.startDestination = R.id.loginFragment
+        } else {
+            navController.graph.startDestination = R.id.fingerPrintFragment
+        }
+    }
+
+    fun setStartDestination() {
+
+
     }
 
     fun setBottomBarVisibility(bool: Boolean) {

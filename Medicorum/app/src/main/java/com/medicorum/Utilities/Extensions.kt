@@ -21,7 +21,7 @@ fun String.isEmailValid(): Boolean {
 }
 
 fun String.isPasswordValid(): Boolean {
-    return this.isNotEmpty() && this.length > 8
+    return this.isNotEmpty() && this.length >= 8
 }
 
 fun String.isPhoneNumberValid(): Boolean {

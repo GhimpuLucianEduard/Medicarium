@@ -2,8 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Presentation.Signup.CheckSMSCodeFragment"
-    android:background="@color/pureWhite">
+    tools:context=".Presentation.Signup.CheckSmsCodeFragment">
 
 
     <data>
@@ -17,6 +16,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/pureWhite"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -62,6 +62,7 @@
             android:hint="@string/sms_verification_hint"
             android:inputType="number"
             android:text="@={signUpViewModel.smsCode}"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/phoneNumberTextView" />
@@ -71,6 +72,8 @@
             style="@style/BaseButton"
             android:layout_marginTop="64dp"
             android:text="@string/sms_verification_button"
+            android:elevation="16dp"
+            android:enabled="@{signUpViewModel.isVerifyEnabled}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/smsEditText" />

@@ -17,6 +17,8 @@ import com.medicorum.Utilities.LiveDataDoubleTrigger
 import com.medicorum.Utilities.LoggerConstants.Companion.API_REQ
 import com.medicorum.Utilities.SharedPreferences.Companion.FILE_NAME
 import com.medicorum.Utilities.SharedPreferences.Companion.SECRET_KEY
+import com.medicorum.Utilities.SharedPreferences.Companion.TOKEN
+import com.medicorum.Utilities.SharedPreferences.Companion.USER_ID
 import com.medicorum.Utilities.SharedPreferences.Companion.USER_VERIFIED
 import empty
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -39,6 +41,7 @@ class SignUpViewModel(
     val smsCode = MutableLiveData<String>()
 
     val navigateToSmsVerification = MutableLiveData<Event<Boolean>>()
+    val navigateToMainScreen = MutableLiveData<Event<Boolean>>()
 
     val isContinueEnabled: LiveData<Boolean> =
         Transformations.map(LiveDataDoubleTrigger(user, isBusy)) {
@@ -49,6 +52,11 @@ class SignUpViewModel(
                     && it.first!!.password.isPasswordValid()
                     && it.first!!.password == it.first!!.confirmPassword
                     && it.second!!.not()
+        }
+
+    val isVerifyEnabled: LiveData<Boolean> =
+        Transformations.map(LiveDataDoubleTrigger(smsCode, isBusy)) {
+            it.first!!.isNotEmpty() && it.second!!.not()
         }
 
     init {
@@ -75,20 +83,43 @@ class SignUpViewModel(
             .subscribe({
                 toastService.showToast(getApplication(), "success")
                 Log.i(API_REQ, "SignUp request succeeded, got usr: $it")
+                preferences.put(USER_ID, it.id)
                 preferences.put(USER_VERIFIED, false)
-                isBusy.value = false
                 navigateToSmsVerification.value = Event(true)
             }, {
                 toastService.showToast(getApplication(), "fail")
                 Log.e(API_REQ, "Auth request failed: ${it.message}")
                 isBusy.value = false
-            }, {})
+            }, {
+                isBusy.value = false
+            })
             .addTo(compositeDisposable)
     }
 
     fun smsCheck() {
         isBusy.value = true
-        Log.i("API_REQ", smsCode.value.toString())
+
+        val userId = preferences.get(USER_ID, String.empty())
+
+        if (userId != String.empty()) {
+            authService.smsCheck(smsCode.value!!, userId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    toastService.showToast(getApplication(), "success")
+                    Log.i(API_REQ, "Sms check request succeeded, got usr: $it")
+                    preferences.put(USER_VERIFIED, true)
+                    preferences.put(TOKEN, it.token)
+                    navigateToMainScreen.value = Event(true)
+                }, {
+                    toastService.showToast(getApplication(), "fail")
+                    Log.e(API_REQ, "Sms check request failed: ${it.message}")
+                    isBusy.value = false
+                }, {
+                    isBusy.value = false
+                })
+                .addTo(compositeDisposable)
+        }
     }
 
 }

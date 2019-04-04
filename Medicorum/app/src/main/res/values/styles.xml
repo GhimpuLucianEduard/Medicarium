@@ -103,4 +103,20 @@
         <item name="android:textSize">32sp</item>
     </style>
 
+    <style name="ConstraintLayoutContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/pureWhite</item>
+    </style>
+
+    <style name="LogoTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/anton_regular</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/primaryBlack</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:text">@string/logo_text</item>
+    </style>
+
 </resources>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Medicorum</string>
+    <string name="app_name">Medicarium</string>
     <string name="title_activity_main">MainActivity</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -16,8 +16,8 @@
     <string name="success_msg">Success!</string>
     <string name="failed_try_again">Failed. Please try again.</string>
     <string name="forgot_pin">Forgot pin?</string>
-    <string name="sign_up_welcome_logo_text">Welcome to Medicarium</string>
-    <string name="sign_up_welcome_desc_text">We need some basic information about yourself in order to improve your experience with the app</string>
+    <string name="logo_text">Medicarium</string>
+    <string name="sign_up_welcome_desc_text">Create an account</string>
     <string name="first_name_hint">First Name</string>
     <string name="last_name_hint">Last Name</string>
     <string name="email_hint">Email</string>
@@ -29,5 +29,8 @@
     <string name="verify_identity_desc">We sent a SMS with   the verification code to the number:</string>
     <string name="sms_verification_hint">Enter the code here</string>
     <string name="sms_verification_button">Verify</string>
+    <string name="login_text">Login</string>
+    <string name="dont_have_account">Don\'t have an account?</string>
+    <string name="register">REGISTER</string>
 
 </resources>

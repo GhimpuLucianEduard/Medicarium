@@ -20,8 +20,15 @@ class SharedPreferences {
     companion object {
         const val FILE_NAME = "medicariumSharedPreferences"
         const val SECRET_KEY = "+sW23Em{86QY20Z"
-        const val USER = "user"
+        const val USER_ID = "userId"
         const val TOKEN = "token"
         const val USER_VERIFIED = "isUserSmsVerified"
+    }
+}
+
+class ErrorMessages {
+    companion object {
+        const val INVALID_EMAIL = "A valid email is required"
+        const val INVALID_PASSWORD = "The password must have at least 8 characters"
     }
 }

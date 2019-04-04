@@ -11,9 +11,7 @@
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/navigation_graph" />
+        android:layout_height="match_parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
@@ -24,5 +22,12 @@
         app:itemIconTint="@color/selector_bottom_nav_icon_tint"
         android:layout_gravity="bottom"
         app:menu="@menu/bottom_navigation_bar" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/ProgressIndicator"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

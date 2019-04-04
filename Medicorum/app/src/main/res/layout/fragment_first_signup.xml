@@ -2,7 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/pureWhite"
     tools:context=".Presentation.Signup.FirstSignupFragment">
 
     <data>
@@ -16,6 +15,7 @@
     </data>
 
     <RelativeLayout
+        android:background="@color/pureWhite"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -33,9 +33,7 @@
                     android:id="@+id/imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="36dp"
-                    android:layout_marginEnd="8dp"
                     android:background="@drawable/logo"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -43,28 +41,21 @@
 
                 <TextView
                     android:id="@+id/logoTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    style="@style/LogoTextView"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="@font/lobster_regular"
-                    android:text="@string/sign_up_welcome_logo_text"
-                    android:textColor="@color/primaryBlack"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
                 <TextView
                     android:id="@+id/infoTextView"
-                    android:layout_width="352dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
                     android:layout_marginTop="36dp"
-                    android:layout_marginEnd="16dp"
                     android:fontFamily="@font/nunito_regular"
                     android:text="@string/sign_up_welcome_desc_text"
                     android:textColor="@color/primaryDarkGrey"
+                    android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/logoTextView" />
@@ -190,12 +181,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
-
-        <ProgressBar
-            style="@style/ProgressIndicator"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:visibility="@{signUpViewModel.isBusy ? View.VISIBLE : View.GONE}" />
 
     </RelativeLayout>
 
