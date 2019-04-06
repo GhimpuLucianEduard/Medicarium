@@ -12,6 +12,7 @@ import androidx.navigation.Navigation
 import com.medicarium.Presentation.BaseFragment
 import com.medicarium.Presentation.Services.VibrationService
 import com.medicarium.R
+import com.medicarium.Utilities.Fingerprint.FingerprintUtility
 import com.medicarium.databinding.FragmentPinAuthBinding
 import empty
 import kotlinx.android.synthetic.main.fragment_pin_auth.*
@@ -22,8 +23,8 @@ import org.kodein.di.generic.instance
 class PinAuthFragment : BaseFragment(), KodeinAware, View.OnClickListener {
 
     override val kodein by closestKodein()
-    private val viewModelFactory: LoginFragmentViewModelFactory by instance()
-    private lateinit var viewModel: LoginFragmentViewModel
+    private val viewModelFactory: PinAuthViewModelFactory by instance()
+    private lateinit var viewModel: PinAuthViewModel
     private lateinit var binding : FragmentPinAuthBinding
 
     override fun onCreateView(
@@ -31,9 +32,9 @@ class PinAuthFragment : BaseFragment(), KodeinAware, View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginFragmentViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(PinAuthViewModel::class.java)
         binding = FragmentPinAuthBinding.inflate(inflater, container, false).apply {
-            loginViewModel = viewModel
+            pinAuthViewModel = viewModel
         }
         binding.lifecycleOwner = this
 
@@ -43,7 +44,6 @@ class PinAuthFragment : BaseFragment(), KodeinAware, View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         // TODO: maybe refactor this (Recycler view?)
         btnOne.setOnClickListener(this)
@@ -58,6 +58,13 @@ class PinAuthFragment : BaseFragment(), KodeinAware, View.OnClickListener {
         btnZero.setOnClickListener(this)
         deleteFrame.setOnClickListener(this)
         btnFingerprint.setOnClickListener(this)
+
+        if (FingerprintUtility.hasFingerprintSupport(context!!)) {
+            btnFingerprint.visibility = View.VISIBLE
+        } else {
+            btnFingerprint.visibility = View.GONE
+        }
+
     }
 
     override fun onClick(view: View?) {
@@ -99,7 +106,6 @@ class PinAuthFragment : BaseFragment(), KodeinAware, View.OnClickListener {
 
     // TODO: not proud of this code
     fun clearDots() {
-
 
         when (viewModel.pin.length) {
             1 -> (dotView1.background as TransitionDrawable).reverseTransition(300)

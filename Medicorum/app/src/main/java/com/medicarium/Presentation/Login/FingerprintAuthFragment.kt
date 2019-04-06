@@ -32,8 +32,6 @@ import org.kodein.di.generic.instance
 class FingerprintAuthFragment : BaseFragment(), KodeinAware {
 
     override val kodein by closestKodein()
-    private val viewModelFactory: LoginFragmentViewModelFactory by instance()
-    private lateinit var viewModel: LoginFragmentViewModel
     private lateinit var binding : FragmentFingerprintAuthBinding
     private lateinit var fingerPrintHandler: FingerprintHandler
     private lateinit var cancellationSignal: CancellationSignal
@@ -42,20 +40,8 @@ class FingerprintAuthFragment : BaseFragment(), KodeinAware {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginFragmentViewModel::class.java)
-        binding = FragmentFingerprintAuthBinding.inflate(inflater, container, false).apply {
-            loginViewModel = viewModel
-        }
-
-        binding.pinLabel.setOnClickListener {
-            cancellationSignal?.cancel()
-            Navigation.findNavController(activity!!, R.id.nav_host_fragment)
-                .navigate(FingerprintAuthFragmentDirections.actionFingerPrintFragmentToPinAuthFragment())
-        }
-
         setBottomBarVisibility(false)
-        return binding.root
+        return inflater.inflate(R.layout.fragment_fingerprint_auth, container, false)
     }
 
     @RequiresApi(Build.VERSION_CODES.P)
@@ -73,6 +59,12 @@ class FingerprintAuthFragment : BaseFragment(), KodeinAware {
                 fingerPrintManager!!.authenticate(null, cancellationSignal, 0, fingerPrintHandler, null)
 
             }
+        }
+
+        pinLabel.setOnClickListener {
+            cancellationSignal?.cancel()
+            Navigation.findNavController(activity!!, R.id.nav_host_fragment)
+                .navigate(FingerprintAuthFragmentDirections.actionFingerPrintFragmentToPinAuthFragment())
         }
     }
 

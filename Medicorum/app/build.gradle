@@ -114,9 +114,6 @@ dependencies {
     // pin
     implementation 'com.andrognito.pinlockview:pinlockview:2.1.0'
 
-    // material edit text
-    implementation 'com.github.HITGIF:TextFieldBoxes:1.4.4'
-
     kapt 'com.android.databinding:compiler:3.1.4'
 
     // preferences
@@ -127,4 +124,6 @@ dependencies {
 
     // pin entry
     implementation 'com.poovam:pin-edittext-field:1.2.0'
+
+
 }

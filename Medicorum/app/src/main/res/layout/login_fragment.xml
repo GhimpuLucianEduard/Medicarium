@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".Presentation.Login.LoginFragment">
 
+    <data>
+        <variable
+            name="loginViewModel"
+            type="com.medicarium.Presentation.Login.LoginViewModel"/>
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout style="@style/ConstraintLayoutContainer">
 
@@ -41,6 +46,7 @@
                 android:drawableStart="@drawable/mail"
                 android:drawablePadding="16dp"
                 android:hint="@string/email_hint"
+                android:text="@={loginViewModel.email}"
                 android:nextFocusDown="@id/passwordEditText" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -61,6 +67,7 @@
                 android:drawableStart="@drawable/lock"
                 android:drawablePadding="16dp"
                 android:hint="@string/password_hint"
+                android:text="@={loginViewModel.password}"
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -72,6 +79,7 @@
             android:layout_marginTop="72dp"
             android:elevation="24dp"
             android:text="@string/login_text"
+            android:enabled="@{loginViewModel.isLoginEnabled}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/passwordTextInput" />
@@ -94,11 +102,11 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:background="?attr/selectableItemBackground"
             android:fontFamily="@font/nunito_semibold"
             android:text="@string/register"
             android:textColor="@color/accentBlue"
             android:textSize="14sp"
-            android:background="?attr/selectableItemBackground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />

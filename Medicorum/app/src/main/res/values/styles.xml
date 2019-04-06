@@ -100,7 +100,7 @@
         <item name="android:fontFamily">@font/nunito_bold</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textColor">@color/primaryBlack</item>
-        <item name="android:textSize">32sp</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="ConstraintLayoutContainer">
@@ -117,6 +117,18 @@
         <item name="android:textColor">@color/primaryBlack</item>
         <item name="android:textAlignment">center</item>
         <item name="android:text">@string/logo_text</item>
+    </style>
+
+    <style name="PinLineEntry">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">180dp</item>
+        <item name="noOfFields">4</item>
+        <item name="android:inputType">numberPassword</item>
+        <item name="android:textSize">18sp</item>
+        <item name="bottomTextPaddingDp">16dp</item>
+        <item name="highlightType">currentField</item>
+        <item name="android:textSelectHandle">@drawable/text_handle</item>
+        <item name="highlightColor">@color/accentRed</item>
     </style>
 
 </resources>

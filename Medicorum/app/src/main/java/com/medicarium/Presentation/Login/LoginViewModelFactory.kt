@@ -1,15 +1,18 @@
 package com.medicarium.Presentation.Login
 
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
 @Suppress("UNCHECKED_CAST")
-class LoginFragmentViewModelFactory: ViewModelProvider.NewInstanceFactory() {
-    var instance: LoginFragmentViewModel? = null
+class LoginViewModelFactory(
+    private val application: Application
+): ViewModelProvider.NewInstanceFactory() {
+    var instance: LoginViewModel? = null
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (instance == null) {
-            instance = LoginFragmentViewModel()
+            instance = LoginViewModel(application)
         }
         return instance as T
     }

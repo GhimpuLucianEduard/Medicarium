@@ -23,6 +23,8 @@ class SharedPreferences {
         const val USER_ID = "userId"
         const val TOKEN = "token"
         const val USER_VERIFIED = "isUserSmsVerified"
+        const val PIN = "pin"
+
     }
 }
 

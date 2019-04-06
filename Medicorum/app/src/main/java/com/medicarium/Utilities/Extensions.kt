@@ -20,6 +20,10 @@ fun String.isEmailValid(): Boolean {
     return this.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
 }
 
+fun String.isValidPin(): Boolean {
+    return this.length == 4
+}
+
 fun String.isPasswordValid(): Boolean {
     return this.isNotEmpty() && this.length >= 8
 }

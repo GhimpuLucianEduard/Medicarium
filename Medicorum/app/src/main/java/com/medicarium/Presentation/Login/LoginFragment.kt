@@ -7,33 +7,50 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.medicarium.Presentation.BaseFragment
+import com.medicarium.Presentation.Signup.SignupViewModel
+import com.medicarium.Presentation.Signup.SignupViewModelFactory
 import com.medicarium.R
 import com.medicarium.Utilities.ErrorMessages.Companion.INVALID_EMAIL
+import com.medicarium.Utilities.ErrorMessages.Companion.INVALID_PASSWORD
+import com.medicarium.Utilities.EventObserver
+import com.medicarium.databinding.LoginFragmentBinding
+import com.medicarium.databinding.SignupFragmentBinding
 import isEmailValid
 import isPasswordValid
 import kotlinx.android.synthetic.main.login_fragment.*
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.closestKodein
+import org.kodein.di.generic.instance
 import validate
 
-class LoginFragment : BaseFragment() {
+class LoginFragment : BaseFragment(), KodeinAware {
 
-    companion object {
-        fun newInstance() = LoginFragment()
-    }
-
+    override val kodein by closestKodein()
+    private val viewModelFactory: LoginViewModelFactory by instance()
     private lateinit var viewModel: LoginViewModel
+    private lateinit var binding : LoginFragmentBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.login_fragment, container, false)
-    }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
+
+        binding = LoginFragmentBinding.inflate(inflater, container, false).apply {
+            loginViewModel = viewModel
+
+            viewModel.navigateToPinSetup.observe(this@LoginFragment, EventObserver {
+                Navigation.findNavController(activity!!, R.id.nav_host_fragment)
+                    .navigate(LoginFragmentDirections.actionLoginFragmentToSetupPinFragment())
+            })
+
+            lifecycleOwner = this@LoginFragment
+        }
+
         setBottomBarVisibility(false)
-        // TODO: Use the ViewModel
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,11 +59,17 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun setupView() {
+
         emailTextInput.validate(emailEditText, {s -> s.isEmailValid()}, INVALID_EMAIL)
-        passwordTextInput.validate(passwordEditText, {s -> s.isPasswordValid()}, INVALID_EMAIL)
+        passwordTextInput.validate(passwordEditText, {s -> s.isPasswordValid()}, INVALID_PASSWORD)
+
         registerTextView.setOnClickListener {
             Navigation.findNavController(activity!!, R.id.nav_host_fragment)
                 .navigate(LoginFragmentDirections.actionLoginFragmentToFirstSignupFragment())
+        }
+
+        loginButton.setOnClickListener {
+            viewModel.handleLoginClicked()
         }
     }
 

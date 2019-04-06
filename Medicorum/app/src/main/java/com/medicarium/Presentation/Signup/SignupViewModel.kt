@@ -28,20 +28,18 @@ import isEmailValid
 import isPasswordValid
 import isPhoneNumberValid
 
-class SignUpViewModel(
+class SignupViewModel(
     application: Application,
     private val authService: AuthService,
     private val toastService: ToastService
 ) : BaseAndroidViewModel(application) {
-
-    private val preferences = CryptoPrefs(getApplication(), FILE_NAME, SECRET_KEY)
 
     val isBusy = MutableLiveData<Boolean>()
     val user = PropertyAwareMutableLiveData<UserObservable>()
     val smsCode = MutableLiveData<String>()
 
     val navigateToSmsVerification = MutableLiveData<Event<Boolean>>()
-    val navigateToMainScreen = MutableLiveData<Event<Boolean>>()
+    val navigateToPinSetup = MutableLiveData<Event<Boolean>>()
 
     val isContinueEnabled: LiveData<Boolean> =
         Transformations.map(LiveDataDoubleTrigger(user, isBusy)) {
@@ -111,7 +109,7 @@ class SignUpViewModel(
                     preferences.put(USER_VERIFIED, true)
                     preferences.put(TOKEN, it.token)
                     Log.i("REQ_API", preferences.get(TOKEN, "afSDFSD"))
-                    navigateToMainScreen.value = Event(true)
+                    navigateToPinSetup.value = Event(true)
                 }, {
                     toastService.showToast(getApplication(), "fail")
                     Log.e(API_REQ, "Sms check request failed: ${it.message}")

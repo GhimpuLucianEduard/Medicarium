@@ -8,9 +8,11 @@ import com.medicarium.Data.ApiServices.AuthServiceImpl
 import com.medicarium.Data.ApiServices.RefitServices.ApiServiceFactory
 import com.medicarium.Data.ApiServices.RefitServices.ConnectivityInterceptor
 import com.medicarium.Data.ApiServices.RefitServices.ConnectivityInterceptorImpl
-import com.medicarium.Presentation.Login.LoginFragmentViewModelFactory
+import com.medicarium.Presentation.Login.LoginViewModelFactory
+import com.medicarium.Presentation.Login.PinAuthViewModelFactory
+import com.medicarium.Presentation.Pin.SetupPinViewModelFactory
 import com.medicarium.Presentation.Services.*
-import com.medicarium.Presentation.Signup.SignUpViewModelFactory
+import com.medicarium.Presentation.Signup.SignupViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -28,6 +30,7 @@ class MedicorumApp : Application(), KodeinAware {
         bind<ToastService>() with singleton { ToastServiceImpl() }
         bind<VibrationService>() with singleton { VibrationServiceImpl() }
         bind<ConnectivityService>() with singleton { ConnectivityServiceImpl() }
+        bind<DialogService>() with singleton { DialogServiceImpl() }
 
         // api stuff
         bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptorImpl(instance()) }
@@ -37,8 +40,10 @@ class MedicorumApp : Application(), KodeinAware {
         bind<AuthService>() with singleton { AuthServiceImpl(instance()) }
 
         // view models
-        bind() from provider { LoginFragmentViewModelFactory() }
-        bind() from provider { SignUpViewModelFactory(instance(), instance(), instance()) }
+        bind() from provider { LoginViewModelFactory(instance()) }
+        bind() from provider { SignupViewModelFactory(instance(), instance(), instance()) }
+        bind() from provider { SetupPinViewModelFactory(instance()) }
+        bind() from provider { PinAuthViewModelFactory(instance()) }
     }
 
     init {

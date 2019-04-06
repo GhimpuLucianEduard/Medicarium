@@ -19,6 +19,7 @@ import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
 
+// TODO create FingerprintService
 // N.B. using FingerprintManager instead of BiometricDialog to create own UI
 @TargetApi(Build.VERSION_CODES.M)
 class FingerprintUtility {

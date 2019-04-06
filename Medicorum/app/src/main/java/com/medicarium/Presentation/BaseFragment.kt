@@ -1,6 +1,8 @@
 package com.medicarium.Presentation
 
 import androidx.fragment.app.Fragment
+import com.andreacioccarelli.cryptoprefs.CryptoPrefs
+import com.medicarium.Utilities.SharedPreferences
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
 

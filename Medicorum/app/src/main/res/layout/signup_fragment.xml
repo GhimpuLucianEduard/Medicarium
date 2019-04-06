@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Presentation.Signup.FirstSignupFragment">
+    tools:context=".Presentation.Signup.SignupFragment">
 
     <data>
 
@@ -10,14 +10,21 @@
 
         <variable
             name="signUpViewModel"
-            type="com.medicarium.Presentation.Signup.SignUpViewModel" />
+            type="com.medicarium.Presentation.Signup.SignupViewModel" />
 
     </data>
 
-    <RelativeLayout
-        android:background="@color/pureWhite"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/pureWhite">
+
+        <com.medicarium.Presentation.CustomControls.CustomNavigationBar
+            android:id="@+id/navigationBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navbarTitle="@string/create_account"/>
 
         <ScrollView
             android:id="@+id/scrollView"
@@ -29,44 +36,12 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="32dp">
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="36dp"
-                    android:background="@drawable/logo"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/logoTextView"
-                    style="@style/LogoTextView"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-                <TextView
-                    android:id="@+id/infoTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="36dp"
-                    android:fontFamily="@font/nunito_regular"
-                    android:text="@string/sign_up_welcome_desc_text"
-                    android:textColor="@color/primaryDarkGrey"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/logoTextView" />
-
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/firstNameTextInput"
                     style="@style/SignUpTextInputLayout"
-                    android:layout_marginTop="36dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/infoTextView">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/firstNameEditText"
@@ -133,11 +108,11 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/passwordTextInput"
                     style="@style/SignUpTextInputLayout"
-                    app:passwordToggleEnabled="true"
                     android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/phoneNumberTextInput">
+                    app:layout_constraintTop_toBottomOf="@id/phoneNumberTextInput"
+                    app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/passwordEditText"
@@ -152,11 +127,11 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/confirmPasswordTextInput"
                     style="@style/SignUpTextInputLayout"
-                    app:passwordToggleEnabled="true"
                     android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/passwordTextInput">
+                    app:layout_constraintTop_toBottomOf="@id/passwordTextInput"
+                    app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/confirmPasswordEditText"
@@ -182,7 +157,7 @@
 
         </ScrollView>
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </layout>
 

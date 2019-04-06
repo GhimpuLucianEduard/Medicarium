@@ -6,8 +6,14 @@
     android:layout_height="match_parent"
     tools:context="com.medicarium.Presentation.Pin.SetupPinFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/ConstraintLayoutContainer">
+    <data>
+
+        <variable
+            name="setupPinViewModel"
+            type="com.medicarium.Presentation.Pin.SetupPinViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/ConstraintLayoutContainer">
 
         <TextView
             android:id="@+id/titleTextView"
@@ -17,7 +23,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/nunito_semibold"
-            android:text="Choose a PIN code"
+            android:text="@string/choose_a_pin_code_title"
             android:textColor="@color/primaryBlack"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +46,7 @@
             android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="In order to improve the privacy of your data you should use 4 digits PIN code"
+            android:text="@string/setup_pin_description"
             android:textAlignment="center"
             android:textColor="@color/primaryDarkGrey"
             android:textSize="16sp"
@@ -48,59 +54,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-        <!--<com.google.android.material.textfield.TextInputLayout-->
-            <!--android:id="@+id/pinTextInput"-->
-            <!--style="@style/SignUpTextInputLayout"-->
-            <!--android:layout_width="120dp"-->
-            <!--android:layout_marginTop="32dp"-->
-            <!--android:maxLength="4"-->
-            <!--app:counterEnabled="true"-->
-            <!--app:layout_constraintEnd_toEndOf="parent"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--app:layout_constraintTop_toBottomOf="@+id/descriptionTextView">-->
-
-            <!--<EditText-->
-                <!--android:id="@+id/pinEditText"-->
-                <!--style="@style/SignUpTextInputLayout"-->
-                <!--android:hint="PIN" />-->
-
-        <!--</com.google.android.material.textfield.TextInputLayout>-->
-
-        <!--<com.google.android.material.textfield.TextInputLayout-->
-            <!--android:id="@+id/confirmPinTextInput"-->
-            <!--style="@style/SignUpTextInputLayout"-->
-            <!--android:layout_width="120dp"-->
-            <!--android:layout_marginTop="32dp"-->
-            <!--android:maxLength="4"-->
-            <!--app:counterEnabled="true"-->
-            <!--app:layout_constraintEnd_toEndOf="parent"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--app:layout_constraintTop_toBottomOf="@+id/pinTextInput">-->
-
-            <!--<EditText-->
-                <!--android:id="@+id/confirmPinEditText"-->
-                <!--style="@style/SignUpTextInputLayout"-->
-                <!--android:hint="Confirm PIN" />-->
-
-        <!--</com.google.android.material.textfield.TextInputLayout>-->
-
         <com.poovam.pinedittextfield.LinePinField
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:inputType="number"
-            android:textSize="16sp"
+            android:id="@+id/pinEntry"
+            style="@style/PinLineEntry"
+            android:layout_marginTop="48dp"
+            android:hint="@string/pin"
+            android:text="@={setupPinViewModel.pinCode}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descriptionTextView"
-            app:noOfFields="4" />
+            app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
+
+        <com.poovam.pinedittextfield.LinePinField
+            android:id="@+id/confirmPinEntry"
+            style="@style/PinLineEntry"
+            android:layout_marginTop="48dp"
+            android:hint="@string/confirm_pin"
+            android:text="@={setupPinViewModel.confirmPinCode}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pinEntry" />
 
         <Button
+            android:id="@+id/continueButton"
             style="@style/BaseButton"
             android:layout_marginBottom="64dp"
-            android:text="Continue"
+            android:text="@string/continue_text"
+            android:enabled="@{setupPinViewModel.isContinueEnabled}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

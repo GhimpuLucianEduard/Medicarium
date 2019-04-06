@@ -19,8 +19,8 @@ import org.kodein.di.generic.instance
 class CheckSmsCodeFragment : BaseFragment(), KodeinAware {
 
     override val kodein by closestKodein()
-    private val viewModelFactory: SignUpViewModelFactory by instance()
-    private lateinit var viewModel: SignUpViewModel
+    private val viewModelFactory: SignupViewModelFactory by instance()
+    private lateinit var viewModel: SignupViewModel
     private lateinit var binding : CheckSmscodeFragmentBinding
 
     companion object {
@@ -32,7 +32,7 @@ class CheckSmsCodeFragment : BaseFragment(), KodeinAware {
         savedInstanceState: Bundle?
     ): View? {
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(SignUpViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(SignupViewModel::class.java)
 
         binding = CheckSmscodeFragmentBinding.inflate(inflater, container, false).apply {
             signUpViewModel = viewModel
@@ -58,9 +58,9 @@ class CheckSmsCodeFragment : BaseFragment(), KodeinAware {
                 setProgressBarVisibility(View.GONE)
         })
 
-        viewModel.navigateToMainScreen.observe(this@CheckSmsCodeFragment, EventObserver {
+        viewModel.navigateToPinSetup.observe(this@CheckSmsCodeFragment, EventObserver {
             Navigation.findNavController(activity!!, R.id.nav_host_fragment)
-                .navigate(CheckSmsCodeFragmentDirections.actionCheckSMSCodeFragmentToGenericInfoFragment())
+                .navigate(CheckSmsCodeFragmentDirections.actionCheckSMSCodeFragmentToSetupPinFragment())
         })
     }
 }

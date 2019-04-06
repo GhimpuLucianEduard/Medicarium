@@ -12,25 +12,25 @@ import com.medicarium.R
 import com.medicarium.Utilities.ErrorMessages.Companion.INVALID_EMAIL
 import com.medicarium.Utilities.ErrorMessages.Companion.INVALID_PASSWORD
 import com.medicarium.Utilities.EventObserver
-import com.medicarium.databinding.FragmentFirstSignupBinding
+import com.medicarium.databinding.SignupFragmentBinding
 import isEmailValid
 import isPasswordValid
 import isPhoneNumberValid
-import kotlinx.android.synthetic.main.fragment_first_signup.*
+import kotlinx.android.synthetic.main.signup_fragment.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 import validate
 
-class FirstSignupFragment : BaseFragment(), KodeinAware {
+class SignupFragment : BaseFragment(), KodeinAware {
 
     override val kodein by closestKodein()
-    private val viewModelFactory: SignUpViewModelFactory by instance()
-    private lateinit var viewModel: SignUpViewModel
-    private lateinit var binding : FragmentFirstSignupBinding
+    private val viewModelFactory: SignupViewModelFactory by instance()
+    private lateinit var viewModel: SignupViewModel
+    private lateinit var binding : SignupFragmentBinding
 
     companion object {
-        fun newInstance() = FirstSignupFragment()
+        fun newInstance() = SignupFragment()
     }
 
     override fun onCreateView(
@@ -38,17 +38,17 @@ class FirstSignupFragment : BaseFragment(), KodeinAware {
         savedInstanceState: Bundle?
     ): View? {
 
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(SignUpViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(SignupViewModel::class.java)
 
-        binding = FragmentFirstSignupBinding.inflate(inflater, container, false).apply {
+        binding = SignupFragmentBinding.inflate(inflater, container, false).apply {
             signUpViewModel = viewModel
 
-            viewModel.navigateToSmsVerification.observe(this@FirstSignupFragment, EventObserver {
+            viewModel.navigateToSmsVerification.observe(this@SignupFragment, EventObserver {
                 Navigation.findNavController(activity!!, R.id.nav_host_fragment)
-                    .navigate(FirstSignupFragmentDirections.actionFirstSignupFragmentToCheckSMSCodeFragment())
+                    .navigate(SignupFragmentDirections.actionSignupFragmentToCheckSMSCodeFragment())
             })
 
-            lifecycleOwner = this@FirstSignupFragment
+            lifecycleOwner = this@SignupFragment
         }
         setBottomBarVisibility(false)
         return binding.root
@@ -64,7 +64,12 @@ class FirstSignupFragment : BaseFragment(), KodeinAware {
             viewModel.signUp()
         }
 
-        viewModel.isBusy.observe(this@FirstSignupFragment, Observer {
+        navigationBar.setOnClickListener {
+            Navigation.findNavController(activity!!, R.id.nav_host_fragment)
+                .navigateUp()
+        }
+
+        viewModel.isBusy.observe(this@SignupFragment, Observer {
             if (it)
                 setProgressBarVisibility(View.VISIBLE)
             else

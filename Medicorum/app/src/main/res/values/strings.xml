@@ -20,7 +20,7 @@
     <string name="sign_up_welcome_desc_text">Create an account</string>
     <string name="first_name_hint">First Name</string>
     <string name="last_name_hint">Last Name</string>
-    <string name="email_hint">Email</string>
+    <string name="email_hint">Email</string>`
     <string name="phone_number_hint">Phone Number</string>
     <string name="continue_text">Continue</string>
     <string name="password_hint">Password</string>
@@ -32,5 +32,10 @@
     <string name="login_text">Login</string>
     <string name="dont_have_account">Don\'t have an account?</string>
     <string name="register">REGISTER</string>
+    <string name="confirm_pin">Confirm PIN</string>
+    <string name="pin">PIN</string>
+    <string name="setup_pin_description">In order to improve the privacy of your data, please setup a 4 digits PIN code</string>
+    <string name="choose_a_pin_code_title">Choose a PIN code</string>
+    <string name="create_account">Create Account</string>
 
 </resources>
