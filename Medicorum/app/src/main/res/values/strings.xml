@@ -26,7 +26,7 @@
     <string name="password_hint">Password</string>
     <string name="confirm_password_hint">Confirm Password</string>
     <string name="verify_identity_title">Verify Identity</string>
-    <string name="verify_identity_desc">We sent a SMS with   the verification code to the number:</string>
+    <string name="verify_identity_desc">We sent a SMS with  \n the verification code to the number:</string>
     <string name="sms_verification_hint">Enter the code here</string>
     <string name="sms_verification_button">Verify</string>
     <string name="login_text">Login</string>
@@ -37,5 +37,6 @@
     <string name="setup_pin_description">In order to improve the privacy of your data, please setup a 4 digits PIN code</string>
     <string name="choose_a_pin_code_title">Choose a PIN code</string>
     <string name="create_account">Create Account</string>
+    <string name="resend_code">Resend code</string>
 
 </resources>

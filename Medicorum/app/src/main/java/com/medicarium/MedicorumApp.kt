@@ -40,7 +40,7 @@ class MedicorumApp : Application(), KodeinAware {
         bind<AuthService>() with singleton { AuthServiceImpl(instance()) }
 
         // view models
-        bind() from provider { LoginViewModelFactory(instance()) }
+        bind() from provider { LoginViewModelFactory(instance(), instance()) }
         bind() from provider { SignupViewModelFactory(instance(), instance(), instance()) }
         bind() from provider { SetupPinViewModelFactory(instance()) }
         bind() from provider { PinAuthViewModelFactory(instance()) }

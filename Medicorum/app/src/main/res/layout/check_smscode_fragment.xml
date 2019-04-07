@@ -20,26 +20,35 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-        <TextView
-            android:id="@+id/titleTextView"
-            style="@style/TitleTextView"
-            android:layout_marginTop="8dp"
-            android:text="@string/verify_identity_title"
+        <ImageView
+            android:id="@+id/iconImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:background="@drawable/sms_sent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/navigationBar" />
+
+        <com.medicarium.Presentation.CustomControls.CustomNavigationBar
+            android:id="@+id/navigationBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navbarTitle="@string/verify_identity_title" />
 
         <TextView
             android:id="@+id/descriptionTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="36dp"
             android:text="@string/verify_identity_desc"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/titleTextView" />
+            app:layout_constraintTop_toBottomOf="@id/iconImageView" />
 
         <TextView
             android:id="@+id/phoneNumberTextView"
@@ -67,17 +76,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/phoneNumberTextView" />
 
+        <TextView
+            android:id="@+id/resendTextView"
+            style="@style/ClickableTextView"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/resend_code"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/verifyButton" />
+
         <Button
             android:id="@+id/verifyButton"
             style="@style/BaseButton"
             android:layout_marginTop="64dp"
-            android:text="@string/sms_verification_button"
+            android:layout_marginBottom="8dp"
             android:elevation="16dp"
             android:enabled="@{signUpViewModel.isVerifyEnabled}"
+            android:text="@string/sms_verification_button"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/smsEditText" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

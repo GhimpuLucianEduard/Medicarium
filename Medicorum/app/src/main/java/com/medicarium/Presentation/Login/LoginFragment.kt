@@ -1,12 +1,15 @@
 package com.medicarium.Presentation.Login
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.medicarium.Presentation.BaseFragment
+import com.medicarium.Presentation.Services.DialogService
 import com.medicarium.Presentation.Signup.SignupViewModel
 import com.medicarium.Presentation.Signup.SignupViewModelFactory
 import com.medicarium.R
@@ -27,6 +30,7 @@ class LoginFragment : BaseFragment(), KodeinAware {
 
     override val kodein by closestKodein()
     private val viewModelFactory: LoginViewModelFactory by instance()
+    private val dialogService: DialogService by instance()
     private lateinit var viewModel: LoginViewModel
     private lateinit var binding : LoginFragmentBinding
 
@@ -40,12 +44,6 @@ class LoginFragment : BaseFragment(), KodeinAware {
 
         binding = LoginFragmentBinding.inflate(inflater, container, false).apply {
             loginViewModel = viewModel
-
-            viewModel.navigateToPinSetup.observe(this@LoginFragment, EventObserver {
-                Navigation.findNavController(activity!!, R.id.nav_host_fragment)
-                    .navigate(LoginFragmentDirections.actionLoginFragmentToSetupPinFragment())
-            })
-
             lifecycleOwner = this@LoginFragment
         }
 
@@ -68,9 +66,37 @@ class LoginFragment : BaseFragment(), KodeinAware {
                 .navigate(LoginFragmentDirections.actionLoginFragmentToFirstSignupFragment())
         }
 
+        viewModel.navigateToPinSetup.observe(this@LoginFragment, EventObserver {
+            Navigation.findNavController(activity!!, R.id.nav_host_fragment)
+                .navigate(LoginFragmentDirections.actionLoginFragmentToSetupPinFragment())
+        })
+
+        viewModel.navigateToSmsCheck.observe(this@LoginFragment, EventObserver {
+            Navigation.findNavController(activity!!, R.id.nav_host_fragment)
+                .navigate(LoginFragmentDirections.actionLoginFragmentToSetupPinFragment())
+        })
+
         loginButton.setOnClickListener {
             viewModel.handleLoginClicked()
         }
+
+        viewModel.isBusy.observe(this@LoginFragment, Observer {
+            if (it)
+                setProgressBarVisibility(View.VISIBLE)
+            else
+                setProgressBarVisibility(View.GONE)
+        })
+
+        viewModel.showDialog.observe(this@LoginFragment, Observer {
+            dialogService.showNeutralDialogWithIcon(
+                activity!!,
+                "Error",
+                it,
+                R.drawable.error_dialog,
+                "Ok",
+                DialogInterface.OnClickListener {_,_->}
+            )
+        })
     }
 
 }

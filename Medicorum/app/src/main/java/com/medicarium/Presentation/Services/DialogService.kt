@@ -10,4 +10,12 @@ interface DialogService {
         message: String,
         buttonText: String,
         clickListener: DialogInterface.OnClickListener)
+
+    fun showNeutralDialogWithIcon(
+        context: Context,
+        title: String,
+        message: String,
+        icon: Int,
+        buttonText: String,
+        clickListener: DialogInterface.OnClickListener)
 }

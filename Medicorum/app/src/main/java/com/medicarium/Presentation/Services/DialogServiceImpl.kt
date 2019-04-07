@@ -21,4 +21,22 @@ class DialogServiceImpl : DialogService {
 
         dialog.show()
     }
+
+    override fun showNeutralDialogWithIcon(
+        context: Context,
+        title: String,
+        message: String,
+        icon: Int,
+        buttonText: String,
+        clickListener: DialogInterface.OnClickListener
+    ) {
+        val dialog = AlertDialog.Builder(context)
+            .setTitle(title)
+            .setMessage(message)
+            .setIcon(icon)
+            .setNeutralButton(buttonText, clickListener)
+            .create()
+
+        dialog.show()
+    }
 }

@@ -131,4 +131,14 @@
         <item name="highlightColor">@color/accentRed</item>
     </style>
 
+    <style name="ClickableTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:fontFamily">@font/nunito_semibold</item>
+        <item name="android:textColor">@color/accentBlue</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+
 </resources>

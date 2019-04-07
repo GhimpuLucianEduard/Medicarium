@@ -51,6 +51,11 @@ class CheckSmsCodeFragment : BaseFragment(), KodeinAware {
             viewModel.smsCheck()
         }
 
+        navigationBar.setOnClickListener {
+            Navigation.findNavController(activity!!, R.id.nav_host_fragment)
+                .navigateUp()
+        }
+
         viewModel.isBusy.observe(this@CheckSmsCodeFragment, Observer {
             if (it)
                 setProgressBarVisibility(View.VISIBLE)
