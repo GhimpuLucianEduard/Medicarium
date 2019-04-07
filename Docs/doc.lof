@@ -1,0 +1,5 @@
+\contentsline {figure}{\numberline {1}{\ignorespaces Metode de autentificare \cite {3ways-auth}}}{4}
+\contentsline {figure}{\numberline {2}{\ignorespaces Antetul unui JWT, alcatuit din tipul de algoritm de inregistrare (HS256) si tipul de token (JWT).}}{5}
+\contentsline {figure}{\numberline {3}{\ignorespaces Partea utila al unui JWT contine date sau permisiuni pe care clientul le are.}}{5}
+\contentsline {figure}{\numberline {4}{\ignorespaces Semnatura unui JWT este alcatuita din antetul encodat, datele encodate, algoritmul folosit in antet si un secret. Semnatura are rolul de a oferi o metoda de verificare pentru a asigura ca continutul nu a fost modificat }}{6}
+\contentsline {figure}{\numberline {5}{\ignorespaces JWT va fi format in final de 3 siruri de caractere de tip Base64-URL separate prin punct. }}{6}
