@@ -34,48 +34,48 @@
 \newpage
 \subsubsection{Ceva introducere *}
 
-Indiferent ca vorbim de aplicatii web, desktop sau mobile, majoritatea folosesc 
-o metoda de autentificare. Auntentificarea șî înregistrarea stau la baza
-problematicii securitatii datelor. In clasamentul OWASP Top 10 din 2017 \cite{owasp-top10-2017}, 
-problemele legate de autentificare si gestiunea sesiunii, sunt clasate pe locul 2. Iar in
-clasamentul OWASP top 10 Mobile din 2016 \cite{owasp-top10-mobile}, autentificare nesigura
-si autorizarea necurespunzatoare sunt clasate pe locul 4, respectiv 6.
+Indiferent că vorbim de aplicații web, desktop sau mobile, majoritatea folosesc 
+o metodă de autentificare. Auntentificarea șî înregistrarea stau la baza
+problematicii securității datelor. În clasamentul OWASP Top 10 din 2017 \cite{owasp-top10-2017}, 
+problemele legate de autentificare și gestiunea sesiunii, sunt clasate pe locul 2. Iar în
+clasamentul OWASP top 10 Mobile din 2016 \cite{owasp-top10-mobile}, autentificare nesigură
+și autorizarea necurespunzatoare sunt clasate pe locul 4, respectiv 6.
 
-Unicitatea aplicatilor mobile este data de faptul ca un dispozitiv mobil
-poate devenii accesibil oricarui persoane datorita portabilitatii lor. Un dispozitiv mobil
-poate fi furat, pierdut sau accesat temporal de o persoana necunoscuta fara permisiunea
+Unicitatea aplicaților mobile este dată de faptul că un dispozitiv mobil
+poate devenii accesibil oricărui persoane datorită portabilitatii lor. Un dispozitiv mobil
+poate fi furat, pierdut sau accesat temporal de o persoană necunoscută fără permisiunea
 posesorului. Prin urmare nevoia de un sistem de autentificare robust este mandatorie 
-atunci cand vorbim de aplicatii care gestioneaza date sensibile (aplicatii financiare, sociale,
-medicale, etc...).
+atunci când vorbim de aplicații care gestionează date sensibile (aplicații financiare, sociale,
+medicale, etc\dots).
 
 \bigskip
 
-In cadrul aplicatiilor mobile, autentificarea se poate face prin mai multe metode. De la
-simpla autentificare prin utilizator si parola, pana la utilizarea de sezori biometrici.
-Mitigari clasice precum impunerea unei parole sigure raman valabile si in 
-contextul aplicatiilor mobile.
+În cadrul aplicațiilor mobile, autentificarea se poate face prin mai multe metode. De la
+simpla autentificare prin utilizator și parolă, până la utilizarea de sezori biometrici.
+Mitigari clasice precum impunerea unei parole sigure rămân valabile și în 
+contextul aplicațiilor mobile.
 
 
-Pentru alegerea metodei de autentificare trebuie sa ne punem in prima instanta urmatoarele doua
-intrebari:
+Pentru alegerea metodei de autentificare trebuie să ne punem în primă instanța următoarele două
+întrebări:
 
 \begin{itemize}
-    \item Care este scopul aplicatiei? O aplicatie care notifica utilizatorul despre starea meteo poate 
-    ca nu ar avea nevoie de autentificare prin senzori biometrici. 
-    \item Aplicatia gestioneaza date confidentiale? Un exemplu potrivit ar fi o aplicatie precum BT pay, care gestioneaza 
-    contul curent al unui utilizatorul
-    se foloseste de mai multe metode de autentificare, o data prin datele de logare, iar apoi
+    \item Care este scopul aplicației? O aplicație care notifica utilizatorul despre starea meteo poate 
+    că nu ar avea nevoie de autentificare prin senzori biometrici. 
+    \item Aplicația gestionează date confidențiale? Un exemplu potrivit ar fi o aplicație precum BT pay, care gestionează 
+    contul curent al unui utilizatorul,
+    se folosește de mai multe metode de autentificare, o dată prin datele de logare, iar apoi
     prin senzori biometrici.
 \end{itemize}
 
-Dupa ce ne este clar care este scopul aplicatiei si cu ce fel de date lucreaza, 
-putem include una sau mai multe metode de autentificare bazate dupa urmatorii
+După ce ne este clar care este scopul aplicației și cu ce fel de date lucrează, 
+putem include una sau mai multe metode de autentificare bazate după următorii
 factori:
 
 \begin{enumerate}
-    \item Ceva ce utilizatorul stie (parola, pin etc\dots)
-    \item Ceva ce il defineste pe utilizator (amprenta, retina)
-    \item Ceva ce utilizatorul detine (parole generate temporal)
+    \item Ceva ce utilizatorul știe (parolă, pin etc\dots)
+    \item Ceva ce il definește pe utilizator (amprenta, retina)
+    \item Ceva ce utilizatorul deține (parole generate temporal)
 \end{enumerate}
 
 \begin{figure}[H]
@@ -84,99 +84,188 @@ factori:
 \caption{Metode de autentificare \cite{3ways-auth}}
 \end{figure}
 
-\subsubsection{JWT si OAuth2}
+\subsubsection{JWT}
 
-Majoritatea aplicatiilor de azi se folosesc de cea mai simpla forma de autentificare,
-prin folosirea de credentiale (ceva ce utilizatorul stie) si unui token de acces (ceva
-ce utilizatorul detine). Utilizatorul isi creeza cont pentru o anumita aplicatie, foloseste
-credentialele pentru a se loga, cererea de autentificare ajunge la server unde se verifica
-credentialele iar apoi se genereaza un token care va fi folosit de utilizator pentru a accesa
-diferite resurse in aplicatie.
+Majoritatea aplicațiilor de azi se folosesc de cea mai simplă formă de autentificare,
+prin folosirea de credentiale (ceva ce utilizatorul știe) și unui token de acces (ceva
+ce utilizatorul deține). Utilizatorul își creeza cont pentru o anumită aplicație, folosește
+credeințalele pentru a se loga, cererea de autentificare ajunge la server unde se verifică
+credențialele iar apoi se generează un token care va fi folosit de utilizator pentru a accesa
+diferite resurse în aplicație.
 
-Scenariu descris anterior se refera la folosirea de JWT (JSON Web Token), un standard (RFC 7519) \cite{rfc-7519} 
-adoptat de multe aplicatii mobile in zilele noastre. 
-JSON Web Token este o metoda sigura de autorizare a trasferului
-de informatii intre doua parti \cite{jwt}, deobicei 
-clientul mobil si serverul la care se face cererea. Clientul revendica de la server
-o dovada, un token, care apoi este folosit de client pentru a accesa diferite 
+Scenariu descris anterior se referă la folosirea de JWT (JSON Web Token), un standard (RFC 7519) \cite{rfc-7519} 
+adoptat de multe aplicații mobile în zilele noastre. 
+JSON Web Token este o metodă sigură de autorizare a trasferului
+de informații între două părți \cite{jwt}, deobicei 
+clientul mobil și serverul la care se face cererea. Clientul revendică de la server
+o dovadă, un token, care apoi este folosit de client pentru a accesa diferite 
 resurse.
 
-Din punct de vedere tehnic, un JWT are urmatoarea forma 11111.22222.33333 si este
-alcauit din 3 parti:
+Din punct de vedere tehnic, un JWT are urmatoarea forma 11111.22222.33333 și este
+alcătuit din 3 parți:
 
 \begin{enumerate}
     \item Antetul (Header)
     \item Datele utile (Payload)
-    \item Semnatura (Signature)
+    \item Semnătura (Signature)
 \end{enumerate}
 
 
 \begin{figure}[H]
-    \begin{minipage}[c]{0.67\textwidth}
+    \begin{minipage}[c]{0.5\textwidth}
         \includegraphics[width=\textwidth]{jwt-header.png}
     \end{minipage}\hfill
-    \begin{minipage}[c]{0.3\textwidth}
+    \begin{minipage}[c]{0.5\textwidth}
         \caption{Antetul unui JWT, alcatuit din tipul de algoritm 
-        de inregistrare (HS256) si tipul de token (JWT).}
+        de înregistrare (HS256) și tipul de token (JWT).}
     \end{minipage}
 \end{figure}
 
 \begin{figure}[H]
-    \begin{minipage}[c]{0.67\textwidth}
+    \begin{minipage}[c]{0.5\textwidth}
         \includegraphics[width=\textwidth]{jwt-payload.png}
     \end{minipage}\hfill
-    \begin{minipage}[c]{0.3\textwidth}
-        \caption{Partea utila al unui JWT contine date sau permisiuni
+    \begin{minipage}[c]{0.5\textwidth}
+        \caption{Partea utilă al unui JWT conține date sau permisiuni
         pe care clientul le are.}
     \end{minipage}
 \end{figure}
 
 \begin{figure}[H]
-    \begin{minipage}[c]{0.67\textwidth}
+    \begin{minipage}[c]{0.5\textwidth}
         \includegraphics[width=\textwidth]{jwt-sign.png}
     \end{minipage}\hfill
-    \begin{minipage}[c]{0.3\textwidth}
-        \caption{Semnatura unui JWT este alcatuita din antetul encodat, 
-        datele encodate, algoritmul folosit in antet si un secret. Semnatura are rolul
-        de a oferi o metoda de verificare pentru a asigura ca continutul nu a fost 
+    \begin{minipage}[c]{0.5\textwidth}
+        \caption{Semnătura unui JWT este alcătuită din antetul encodat, 
+        datele encodate, algoritmul folosit în antet și un secret. Semnătura are rolul
+        de a oferi o metodă de verificare pentru a asigura ca conținutul nu a fost 
         modificat }
     \end{minipage}
 \end{figure}
 
 \begin{figure}[H]
-    \begin{minipage}[c]{0.67\textwidth}
+    \begin{minipage}[c]{0.5\textwidth}
         \includegraphics[width=\textwidth]{jwt-all.png}
     \end{minipage}\hfill
-    \begin{minipage}[c]{0.3\textwidth}
+    \begin{minipage}[c]{0.5\textwidth}
         \caption{
-            JWT va fi format in final 
+            JWT va fi format în final 
             de 3 siruri de caractere de tip Base64-URL separate prin punct. }
     \end{minipage}
 \end{figure}
 
-
-O data ce clientul detine un token, acesta trebuie tratat cu multa grija 
-in cadrul unei aplicatii. Acesta poate fi folosit mai apoi in antetul tuturor 
-cererilor de tip HTTP sub forma Authorization: Bearer <token>. Din acest motiv 
-cel mai probabil se doreste salvarea token-ului in memoria locala a dispozitivului
-mobil pentru a putea fi apoi folosit in viitor. Acesta poate fi criptat iar la randul 
-lui la nivelul clientului, desi in mod nativ atat pe android cat si pe ios exista metode
-sigura de stocare a date de tip token (SharedPreferences in mod private pe Android si
+O dată ce clientul deține un token, acesta trebuie tratat cu multă grijă 
+în cadrul unei aplicații. Acesta poate fi folosit mai apoi în antetul tuturor 
+cererilor de tip HTTP sub formă "Authorization: Bearer <token>", din acest motiv 
+cel mai probabil se dorește salvarea token-ului în memoria locală a dispozitivului
+pentru a putea fi apoi folosit în viitor. Acesta poate fi criptat iar la rândul 
+lui la nivelul clientului, deși în mod nativ atât pe android cât și pe ios există metode
+sigure de stocare a datelor de tip primitiv (SharedPreferences în mod private pe Android și
 keychain pe iOS).
 
-Pentru un nivel si mai mare de siguranta, se poate limita durata de timp
-pe care este valabil un token. Spre exemplu aplicatia BT Pay foloseste un token
-care este valid tip de 10-15 minute. Dupa ce token-ul expira, utilizatorul este nevoit
-sa se autentifice din nou.
+Pentru un nivel și mai mare de siguranță, se poate limita durata de timp
+pe care este valabil un token. Spre exemplu aplicația BT Pay folosește un token
+care este valid tip de 10-15 minute. După ce token-ul expiră, utilizatorul este nevoit
+să se autentifice din nou.
 
-Avantajul principal pe care il ofera JWT este facilitatea prin care se demareaza tot procesul
-prin care un client isi revendica datele sau drepturile de la un server. 
-Un alt aspect important il reprezinta faptul ca in spate, totul se produce folosit obiecte
-de tipul JSON, obiecte care sunt extrem de raspandite in orice limbaj de programare
-si in tot internetul.
+Avantajul principal pe care îl oferă JWT este facilitatea prin care se demarează tot procesul
+de revendicare a datelor sau drepturile de la un server de catre client.  
+Un alt aspect important îl reprezintă faptul că în spate, totul se produce folosit obiecte
+de tipul JSON, fapt ce il face extrem de ușor de implementat și folosit in orice limbaj
+de programare.
 
 \subsubsection{Autentificare prin senzori biometrici}
+
+Biometria este termenul tehnic folosit pentru măsurătorile și calculele făcute legate
+de corpul uman. Se folosește de metrici legate de caracteristicile umane. În cazul
+dezvoltării de software, biometria este folosită pentru autentificare.
+
+Autentificarea prin senzori biometrici se folosește de un factor moștenit, ceva ce îl definește pe
+utilizator și prin urmare este una dintre cele mai comode și rapide metode de autentificare.
+Mai mult decât atât, datele biometrice precum aprentă sunt greu de furat sau compromis.
+
+Din ce în ce mai multe aplicații încep să folosească autentificare prin senzori 
+biometrici, un factor major îl joacă faptul că în ultimi ani, capabilitățile hardware ale
+dispozitivelor mobile a crescut exponențial, telefoanele vin încorporate cu diferinti
+senzori biometrici precum: senzori de amprenta și recunoaștere facială (iris și rețină).
+
+Metricile biometrice pot varia de la caracteristici fizice pânâ la aspecte ale 
+comportamentului unei persoane. În cea ce privește dispozitivele mobile putem idetifica
+trei tipuri de autentificari biometrice:
+
+\begin{enumerate}
+    \item Senzor de amprentă, extrem de sigur deoarece fiecare individ are
+    o amprentă unică.
+    \item Recunoașterea vocii, avantajoasă deoarece nu necesitâ hardware in plus dar
+    nepotrivit pentru situații unde utilizatorul trebuie să păstreze liniștea.
+    \item Recunoaștere facială, la fel ca cea a vocii, nu necesită hardware adițional dar 
+    nepotrivit pentru locuri în care luminozitatea este scăzută. 
+\end{enumerate}
+
+
+Utilizarea senzorilor biometrici implică anumite aspecte de care un dezvoltator de
+aplicații mobile trebuie să țină cont:
+
+\begin{itemize}
+    \item Verificarea ca dispozitivul mobil este încorporat cu senzorii folosiți,
+    în cazul în care un dispozitiv nu are senzorii biometrici, dezvoltator trebuie 
+    să ofere o metodă alternativă de autentificare. \cite{enisa-2017}
+    \item Cererea de permisiunea petru folosirea senzorilor.
+    \item Verificarea datele biometrice asociate dispozitivului să nu se modifică
+    de la prima autentificare. Această măsură trebuie luată pentru a împiedică cazuri
+    în care se adaugă noi date biometrice (amprenta nouă).
+\end{itemize}
+
+Deși autentificare prin senzori biometrici este mai rapidă și comodă, această nu ar trebuii
+să înlocuiască în mod complet autentificare făcută la nivel de server. 
+Ambele metode pot coexista în funcție de context.
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=4cm]{fingerprint-smartphone_0.jpg}
+\caption{Autentificare prin senzor de amprentă}
+\end{figure}
+
 \subsubsection{Autentificare prin factori multiplii}
+
+Autentificare prin factori multiplii (MFA) este un sistem de securizare a autentificării
+prin impunerea a mai multor metode de verificare a identității unui utilizator.
+
+Autentificare prin factori multiplii combină mai multe metode independente de autentificare.
+Așa cum am văzut în capitolul anterior, autentificarea prin senzori biometrici și autentificarea
+prin credentiale lucrează cel mai bine împreună. Pe această idee, rolul autentificării prin factori
+multiplii este acela de a creea un sistem greu de compromis în vederea asigurării siguranței și
+confidentialitații datelor utilizatorului. Astfel dacă unu din componentele sistemului este compromis,
+atacatorul este oprit de restul barierelor. În cazul în care cineva are acces la credentialele unui 
+utilizator și la dispozitivul sau mobil, atacatorul poate fi oprit prin folosirea senzorului de amprenta.
+
+Un alt caz de utilizare al autentificarii prin factori multiplii îl reprezintă autentificarea în doi pași
+sau OTP (one time password). Rolul autentificarii în doi pași este acela de a crea o barieră în plus
+în sistemul de securizare al autentificarii prin creeare de coduri/parole temporare unice.
+
+După ce un utilizator se loghează folosind credențialele valide, un cod unic și temporar este generat
+și trimis utilizatorului prin diferite canale, deobicei prin SMS, email sau aplicații special făcute
+pentru generarea de coduri unice. Utilizatorul este apoi nevoit să introducă codul primit pentru
+a își confirmă identitatea. Utilizarea sa nu se limitează doar la autentificare, ci poate fi folosită în
+mod general pentru a confirmă identitatea persoanei. Un exemplu îl reprezintă aplicațiile financiare care
+atunci când se încearcă o plata, vor trimite un cod unic pentru a verifică identitatea persoanei care 
+a inițiat acțiunea.
+
+Deși folosirea autentificarii prin doi pași este destul de comună în cadrul aplicațiilor mobile, această metodă
+prezintă și anumite vulnerabilități, mai ales când canalul de comunicare a parolei este prin SMS sau prin 
+apel telefonic.
+SMS-urile pot fi interceptate și redirecționate, la fel și apelurile telefonice. În astfel de cazuri
+se poate limita valabilitatea codului primit la un iterval scurt de timp (5-10 minute). 
+
+Utilizarea unui sistem de autentificare multiplu precum autentificare în doi pași este de altfel recomandată
+și de ENISA \cite{enisa-security-data-processing} într-un studiu făcut în vederea 
+siguranței procesării datelor personale de către companii mari.
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=4cm]{wordpress-two-factor-authentication.png}
+\caption{Autentificare în doi pași}
+\end{figure}
 
 \subsection{Comunicarea cu serverul si servicii (networking) *}
 \subsubsection{HTTP și HTTPS}
@@ -226,9 +315,6 @@ si in tot internetul.
 
 \section{Concluzii}
 
-
-
-
 \newpage
 
 \listoffigures
@@ -265,11 +351,22 @@ si in tot internetul.
     Smartphone Secure Development Guidelines, 27.02.2017,
     \\\texttt{https://www.enisa.europa.eu/publications/smartphone-secure-development-guidelines-2016}
 
+    \bibitem{enisa-security-data-processing}
+    ENISA,
+    Guidelines for SMEs on the security of personal data processing, 27.01.2017
+    \\\texttt{https://www.enisa.europa.eu/publications/guidelines-for-smes-on-the-security-of-personal-data-processing}
+
     \bibitem{enisa-2017}
     OWASP Mobile Application Security Verification Standard,
     \\\texttt{https://github.com/OWASP/owasp-masvs}
 
+    \bibitem{amprenta}
+    amprenta
+    \\\texttt{https://engineering.nyu.edu/news/so-you-think-you-can-secure-your-mobile-phone-fingerprint}
 
+    \bibitem{2fa-pic}
+    What is Two-Factor Authentication?
+    \\\texttt{https://blog.templatetoaster.com/wordpress-two-factor-authentication/}
 \end{thebibliography}   
 
 \end{document}
