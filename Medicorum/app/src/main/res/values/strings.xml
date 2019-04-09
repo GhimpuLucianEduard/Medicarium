@@ -38,5 +38,7 @@
     <string name="choose_a_pin_code_title">Choose a PIN code</string>
     <string name="create_account">Create Account</string>
     <string name="resend_code">Resend code</string>
+    <string name="medical_tests">Medical tests</string>
+    <string name="pulmonology">Pulmonology</string>
 
 </resources>

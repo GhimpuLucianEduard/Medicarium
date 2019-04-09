@@ -125,5 +125,11 @@ dependencies {
     // pin entry
     implementation 'com.poovam:pin-edittext-field:1.2.0'
 
+    // dragDropSwipeRecycler
+    implementation 'com.ernestoyaquello.dragdropswiperecyclerview:drag-drop-swipe-recyclerview:0.2.0'
+
+    // glide
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
 }

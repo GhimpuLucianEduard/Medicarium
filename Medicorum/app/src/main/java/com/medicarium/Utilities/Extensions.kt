@@ -2,7 +2,9 @@ import android.annotation.SuppressLint
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
+import android.view.MotionEvent
 import android.widget.EditText
+import android.widget.ImageButton
 import com.google.android.material.textfield.TextInputLayout
 
 @SuppressLint("SimpleDateFormat")
@@ -50,3 +52,15 @@ fun TextInputLayout.validate(editText: EditText, validator: (String) -> Boolean,
     }
 }
 
+fun ImageButton.addScaleAnimation() {
+    this.setOnTouchListener { v, event ->
+        if (event.action == MotionEvent.ACTION_DOWN) {
+            v.animate().scaleX(0.9f).scaleY(0.9f).duration = 100
+            true
+        } else if (event.action == MotionEvent.ACTION_UP) {
+            v.animate().scaleX(1f).scaleY(1f).duration = 100
+            true
+        }
+        false
+    }
+}

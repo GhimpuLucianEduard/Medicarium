@@ -32,7 +32,15 @@
         android:id="@+id/historyFragment"
         android:name="com.medicarium.Presentation.History.HistoryFragment"
         android:label="fragment_history"
-        tools:layout="@layout/fragment_history" />
+        tools:layout="@layout/fragment_history" >
+        <action
+            android:id="@+id/action_historyFragment_to_medicalTestsFragment"
+            app:destination="@id/medicalTestsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/genericInfoFragment"
         android:name="com.medicarium.Presentation.General.GenericInfoFragment"
@@ -138,4 +146,9 @@
             android:id="@+id/action_setupPinFragment_to_pinAuthFragment"
             app:destination="@id/pinAuthFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/medicalTestsFragment"
+        android:name="com.medicarium.Presentation.History.MedicalTestsFragment"
+        android:label="medical_tests_fragment"
+        tools:layout="@layout/medical_tests_fragment" />
 </navigation>

@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
 //            graph.startDestination = R.id.fingerPrintFragment
 //        }
 
-        graph.startDestination = R.id.loginFragment
+        graph.startDestination = R.id.historyFragment
 
         navController.graph = graph
     }
