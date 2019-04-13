@@ -6,6 +6,8 @@ import android.view.MotionEvent
 import android.widget.EditText
 import android.widget.ImageButton
 import com.google.android.material.textfield.TextInputLayout
+import java.util.*
+import java.util.stream.Collectors
 
 @SuppressLint("SimpleDateFormat")
 fun String.Companion.timeStampToDateString(date: Long): String {

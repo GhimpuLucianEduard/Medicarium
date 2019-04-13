@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.andreacioccarelli.cryptoprefs.CryptoPrefs
 import com.medicarium.R
@@ -58,5 +59,9 @@ class MainActivity : AppCompatActivity(), KodeinAware {
     // 0 - short, 1 - long
     fun showToast(msg: String, length: Int) {
         Toast.makeText(this, msg, length).show()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(navController, null)
     }
 }

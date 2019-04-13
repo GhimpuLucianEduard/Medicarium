@@ -39,4 +39,25 @@ class DialogServiceImpl : DialogService {
 
         dialog.show()
     }
+
+    override fun showConfirmationAlertWithIcon(
+        context: Context,
+        title: String,
+        message: String,
+        icon: Int,
+        positiveButtonText: String,
+        negativeButtonText: String,
+        positiveClickListener: DialogInterface.OnClickListener,
+        negativeClickListener: DialogInterface.OnClickListener
+    ) {
+        val dialog = AlertDialog.Builder(context)
+            .setTitle(title)
+            .setMessage(message)
+            .setIcon(icon)
+            .setPositiveButton(positiveButtonText, positiveClickListener)
+            .setNegativeButton(negativeButtonText, negativeClickListener)
+            .create()
+
+        dialog.show()
+    }
 }

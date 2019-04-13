@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.medicarium.Presentation.History.AddMedicalTestFragment">
+
+    <com.medicarium.Presentation.CustomControls.CustomNavigationBar
+        android:id="@+id/customNavigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navbarTitle="@string/add_new_record" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/new_medical_record"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customNavigationBar" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nameTextInput"
+        style="@style/SignUpTextInputLayout"
+        android:layout_marginTop="32dp"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nameEditText"
+            style="@style/BaseEditText"
+            android:layout_marginTop="128dp"
+            android:hint="@string/name"
+            android:inputType="text"
+            android:nextFocusDown="@id/passwordEditText" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/dateTextInput"
+        style="@style/SignUpTextInputLayout"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameTextInput">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/dateEditText"
+            style="@style/BaseEditText"
+            android:drawableEnd="@drawable/arrow_right"
+            android:enabled="true"
+            android:focusable="false"
+            android:hint="@string/date"
+            android:inputType="none"
+            android:nextFocusDown="@id/passwordEditText" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/categoryTextInput"
+        style="@style/SignUpTextInputLayout"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateTextInput">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/categoryEditText"
+            style="@style/BaseEditText"
+            android:drawableEnd="@drawable/arrow_right"
+            android:enabled="true"
+            android:focusable="false"
+            android:hint="@string/category"
+            android:inputType="none"
+            android:nextFocusDown="@id/passwordEditText" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        style="@style/BaseButton"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/add_record"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categoryTextInput" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
