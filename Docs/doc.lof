@@ -1,7 +1,0 @@
-\contentsline {figure}{\numberline {1}{\ignorespaces Metode de autentificare \cite {3ways-auth}}}{4}
-\contentsline {figure}{\numberline {2}{\ignorespaces Antetul unui JWT, alcatuit din tipul de algoritm de \IeC {\^\i }nregistrare (HS256) \IeC {\textcommabelow s}i tipul de token (JWT).}}{5}
-\contentsline {figure}{\numberline {3}{\ignorespaces Partea util\IeC {\u a} al unui JWT con\IeC {\textcommabelow t}ine date sau permisiuni pe care clientul le are.}}{5}
-\contentsline {figure}{\numberline {4}{\ignorespaces Semn\IeC {\u a}tura unui JWT este alc\IeC {\u a}tuit\IeC {\u a} din antetul encodat, datele encodate, algoritmul folosit \IeC {\^\i }n antet \IeC {\textcommabelow s}i un secret. Semn\IeC {\u a}tura are rolul de a oferi o metod\IeC {\u a} de verificare pentru a asigura ca con\IeC {\textcommabelow t}inutul nu a fost modificat }}{6}
-\contentsline {figure}{\numberline {5}{\ignorespaces JWT va fi format \IeC {\^\i }n final de 3 siruri de caractere de tip Base64-URL separate prin punct. }}{6}
-\contentsline {figure}{\numberline {6}{\ignorespaces Autentificare prin senzor de amprent\IeC {\u a}}}{7}
-\contentsline {figure}{\numberline {7}{\ignorespaces Autentificare \IeC {\^\i }n doi pa\IeC {\textcommabelow s}i}}{8}

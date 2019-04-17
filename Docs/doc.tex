@@ -1,7 +1,9 @@
-\documentclass[a4paper]{article}
+\documentclass[12pt]{article}
 \usepackage[nottoc]{tocbibind}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage[sorting=none]{biblatex}
+\addbibresource{ref.bib}
 \graphicspath{ {./images/} }
 
 \begin{document}
@@ -266,6 +268,33 @@ siguranței procesării datelor personale de către companii mari.
 
 \subsection{Comunicarea cu serverul si servicii (networking) *}
 \subsubsection{HTTP și HTTPS}
+
+Majoritatea aplicatiilor mobile se folosesc de unul sau mai multe servere pentru a isi aduce date
+sau a prelucra date preluate de la utilizator. Aceasta practica este folosita pentru a evita de a stoca
+date pe dispozitivele utilizatorului avand in vedere memoria limitata pe care o au. Din acest motiv 
+este necesar folosire unor protocoale de comunicare. Cele mai folosite protocoale de comunicare in ecosistemul
+mobil sunt HTTP si HTTPS.
+
+Aceste protocoale de comunicare sunt un set de reguli care descriu modalitatea prin care datele sun trimise si 
+primite. In mediul mobil, HTTP si HTTPS sunt folosite pentru a trimite text imagini si sunete.
+
+HTTPS este varianta sigura a lui HTTP, pe tot parcursul comunicarii, datele sunt criptate de la un capat la altul.
+Desi HTTP este mai frecvent folosit, este recomandată folosirea protocolului HTTPS mai ales pentru aplicatii 
+care gestioneaza date sensibile.
+
+Dezavantul folosirii protocolului HTTPS il reprezinta performanta. Criptare si decriptarea datelor trasmise sunt
+operatii costisitoare. Desi exista o pierdere de performanta, exista studii \cite{goldberg1998comparison} care demonstreaza
+ca diferenta de performanta este modesta, si incurajeaza folosirea protocolului mai sigur. Un alt studiu \cite{felt2017measuring}
+arata ca pe anumite sisteme de operare precum Android, data de adoptie pentru HTTPS este in urma fata de rata de adoptie
+pe desktop. 
+
+\begin{figure}[H]
+\centering
+\includegraphics{http.png}
+\caption{Procentul de utilizare HTTPS pe diferite sisteme de operare la sfarsitul unei saptamani din
+Febraruie 2017 \cite{felt2017measuring}}
+\end{figure}
+
 \subsubsection{Alte canale de comunicare (SMS)}
 \subsubsection{Web sockets}
 
@@ -279,7 +308,6 @@ siguranței procesării datelor personale de către companii mari.
 \subsubsection{Webviews}
 \subsubsection{Distribuirea aplicației}
 \subsubsection{Probleme specifice pe anumite platforme}
-
 
 \section{Medicarium}
 \subsection{Analiza aplicației}
@@ -314,56 +342,16 @@ siguranței procesării datelor personale de către companii mari.
 
 \newpage
 
-\listoffigures
-
-\begin{thebibliography}{9}
-
-    \bibitem{owasp-top10-2017}
-    OWASP Top 10 2017
-    \\\texttt{https://www.owasp.org/images/7/72/OWASP\_Top\_10-2017\_\%28en\%29.pdf.pdf}
-
-    \bibitem{owasp-top10-mobile}
-    OWASP Top 10 Mobile 2016 
-    \\\texttt{https://www.owasp.org/index.php/Mobile\_Top\_10\_2016-Top\_10}
-
-    \bibitem{3ways-auth}
-    3 types of Authentication
-    \\\texttt{https://www.slideshare.net/awesomeadmin/secure-your-salesforce-org-with-twofactor-authentication}
-    
-    \bibitem{rfc-7519}
-    RFC 7519 JWT
-    \\\texttt{https://tools.ietf.org/html/rfc7519}
-
-    \bibitem{jwt}
-    JSON Web Token (JWT)
-    \\\texttt{https://tools.ietf.org/html/rfc7519}
-
-    \bibitem{enisa-2019}
-    ENISA,
-    Privacy and data protection in mobile applications, 29.01.2019
-    \\\texttt{https://www.enisa.europa.eu/publications/privacy-and-data-protection-in-mobile-applications}
-
-    \bibitem{enisa-2017}
-    ENISA,
-    Smartphone Secure Development Guidelines, 27.02.2017,
-    \\\texttt{https://www.enisa.europa.eu/publications/smartphone-secure-development-guidelines-2016}
-
-    \bibitem{enisa-security-data-processing}
-    ENISA,
-    Guidelines for SMEs on the security of personal data processing, 27.01.2017
-    \\\texttt{https://www.enisa.europa.eu/publications/guidelines-for-smes-on-the-security-of-personal-data-processing}
-
-    \bibitem{enisa-2017}
-    OWASP Mobile Application Security Verification Standard,
-    \\\texttt{https://github.com/OWASP/owasp-masvs}
-
-    \bibitem{amprenta}
-    amprenta
-    \\\texttt{https://engineering.nyu.edu/news/so-you-think-you-can-secure-your-mobile-phone-fingerprint}
-
-    \bibitem{2fa-pic}
-    What is Two-Factor Authentication?
-    \\\texttt{https://blog.templatetoaster.com/wordpress-two-factor-authentication/}
-\end{thebibliography}   
+\section{Bibliografie}
+\nocite{owasp-top10-2017}
+\nocite{owasp-top10-mobile}
+\nocite{3ways-auth}
+\nocite{rfc-7519}
+\nocite{jwt}
+\nocite{enisa-2017}
+\nocite{enisa-security-data-processing}
+\nocite{goldberg1998comparison}
+\nocite{felt2017measuring}
+\printbibliography[title=Bibliografie]
 
 \end{document}
