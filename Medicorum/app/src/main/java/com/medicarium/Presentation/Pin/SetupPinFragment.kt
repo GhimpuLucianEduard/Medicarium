@@ -58,6 +58,7 @@ class SetupPinFragment : BaseFragment(), KodeinAware {
 
     private fun handleContinueClicked() {
         if (viewModel.pinCode.value == viewModel.confirmPinCode.value) {
+            viewModel.onPinConfigured()
             dialogService.showNeutralDialog(
                 activity!!,
                 "Pin configured",
@@ -66,7 +67,6 @@ class SetupPinFragment : BaseFragment(), KodeinAware {
                     Navigation.findNavController(activity!!, R.id.nav_host_fragment)
                         .navigate(SetupPinFragmentDirections.actionSetupPinFragmentToPinAuthFragment())
                 })
-            viewModel.onPinConfigured()
         } else {
             dialogService.showNeutralDialog(
                 activity!!,

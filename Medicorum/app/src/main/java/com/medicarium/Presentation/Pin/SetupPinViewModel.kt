@@ -29,6 +29,7 @@ class SetupPinViewModel(
 
     fun onPinConfigured() {
         preferences.put(PIN, pinCode.value!!)
+        preferences.apply()
     }
 
 }

@@ -108,6 +108,7 @@ class SignupViewModel(
                     Log.i(API_REQ, "Sms check request succeeded, got usr: $it")
                     preferences.put(USER_VERIFIED, true)
                     preferences.put(TOKEN, it.token)
+                    preferences.apply()
                     Log.i("REQ_API", preferences.get(TOKEN, "afSDFSD"))
                     navigateToPinSetup.value = Event(true)
                 }, {

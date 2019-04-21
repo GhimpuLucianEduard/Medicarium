@@ -5,8 +5,10 @@ import android.util.Patterns
 import android.view.MotionEvent
 import android.widget.EditText
 import android.widget.ImageButton
+import androidx.lifecycle.MutableLiveData
 import com.google.android.material.textfield.TextInputLayout
 import java.util.*
+import java.util.function.Predicate
 import java.util.stream.Collectors
 
 @SuppressLint("SimpleDateFormat")
@@ -65,4 +67,37 @@ fun ImageButton.addScaleAnimation() {
         }
         false
     }
+}
+
+fun <T> MutableLiveData<List<T>>.add(item: T) {
+    val updatedItems = this.value as ArrayList
+    updatedItems.add(item)
+    this.value = updatedItems
+}
+
+fun <T> MutableLiveData<List<T>>.delete(item: T) {
+    val updatedItems = this.value as ArrayList
+    updatedItems.remove(item)
+    this.value = updatedItems
+}
+
+fun <T> MutableLiveData<T>.notifyObservers(item: T) {
+    val value = this.value
+    this.value = value
+}
+
+
+fun Long?.timestampToString() : String {
+
+    if (this == null) {
+        return String.empty()
+    }
+    val calendar = Calendar.getInstance()
+    calendar.timeInMillis = this
+
+    val year = calendar.get(Calendar.YEAR)
+    val month = calendar.get(Calendar.MONTH) + 1 // java wtf?
+    val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
+
+    return "$dayOfMonth/$month/$year"
 }

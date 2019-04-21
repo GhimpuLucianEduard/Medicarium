@@ -11,7 +11,9 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.andreacioccarelli.cryptoprefs.CryptoPrefs
 import com.medicarium.R
+import com.medicarium.Utilities.Fingerprint.FingerprintUtility
 import com.medicarium.Utilities.SharedPreferences
+import com.medicarium.Utilities.SharedPreferences.Companion.PIN
 import com.medicarium.Utilities.SharedPreferences.Companion.TOKEN
 import empty
 import kotlinx.android.synthetic.main.activity_main.*
@@ -39,15 +41,27 @@ class MainActivity : AppCompatActivity(), KodeinAware {
         val graph = navInflater.inflate(R.navigation.navigation_graph)
 
 
-//        val preferences = CryptoPrefs(this, SharedPreferences.FILE_NAME, SharedPreferences.SECRET_KEY)
-//        graph.startDestination = R.id.fingerPrintFragment
-//        if (preferences.get(TOKEN, String.empty()) == String.empty()) {
-//            graph.startDestination = R.id.loginFragment
-//        } else {
-//            graph.startDestination = R.id.fingerPrintFragment
-//        }
+        val preferences = CryptoPrefs(this, SharedPreferences.FILE_NAME, SharedPreferences.SECRET_KEY)
+        graph.startDestination = R.id.fingerPrintFragment
 
-        graph.startDestination = R.id.historyFragment
+        if (preferences.get(TOKEN, String.empty()) == String.empty()) {
+            graph.startDestination = R.id.loginFragment
+        } else {
+            if (FingerprintUtility.hasFingerprintSupport(this)) {
+                graph.startDestination = R.id.fingerPrintFragment
+            } else {
+
+                var hasPin = preferences.get(PIN, String.empty()) != String.empty()
+
+                if (hasPin) {
+                    graph.startDestination = R.id.pinAuthFragment
+                } else {
+                    graph.startDestination = R.id.setupPinFragment
+                }
+            }
+        }
+
+        //graph.startDestination = R.id.historyFragment
 
         navController.graph = graph
     }

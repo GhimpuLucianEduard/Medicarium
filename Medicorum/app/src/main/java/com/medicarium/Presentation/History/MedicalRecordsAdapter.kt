@@ -8,12 +8,19 @@ import com.bumptech.glide.Glide
 import com.ernestoyaquello.dragdropswiperecyclerview.DragDropSwipeAdapter
 import com.medicarium.Data.Models.MedicalRecord
 import com.medicarium.R
-import kotlinx.android.synthetic.main.medical_test_layout.view.*
+import kotlinx.android.synthetic.main.medical_record_layout.view.*
+import timestampToString
 
-class MedicalTestsAdapter(
+class MedicalRecordsAdapter(
     dataset: List<MedicalRecord> = emptyList(),
     private val context: Context
-) : DragDropSwipeAdapter<MedicalRecord, MedicalTestsAdapter.ViewHolder>(dataset) {
+) : DragDropSwipeAdapter<MedicalRecord, MedicalRecordsAdapter.ViewHolder>(dataset) {
+
+    fun setItems(data: List<MedicalRecord>) {
+        dataSet = data.sortedByDescending {
+            it.timestamp
+        }
+    }
 
     class ViewHolder(itemView: View) : DragDropSwipeAdapter.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.nameTextView
@@ -23,12 +30,12 @@ class MedicalTestsAdapter(
         val previewImageView: ImageView = itemView.previewImageView
     }
 
-    override fun getViewHolder(itemView: View) = MedicalTestsAdapter.ViewHolder(itemView)
+    override fun getViewHolder(itemView: View) = MedicalRecordsAdapter.ViewHolder(itemView)
 
-    override fun onBindViewHolder(item: MedicalRecord, viewHolder: MedicalTestsAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(item: MedicalRecord, viewHolder: MedicalRecordsAdapter.ViewHolder, position: Int) {
         // Here we update the contents of the view holder's views to reflect the item's data
         viewHolder.nameTextView.text = item.name
-        viewHolder.dateTextView.text = item.timestamp.toString()
+        viewHolder.dateTextView.text = item.timestamp.timestampToString()
         viewHolder.categoryTextView.text = item.medicalCategory.toString().toLowerCase().capitalize()
         viewHolder.categoryImageView.setBackgroundResource(context.resources.getIdentifier(item.medicalCategory.toString().toLowerCase(),
             "drawable", context.packageName))
@@ -40,7 +47,7 @@ class MedicalTestsAdapter(
             .into(viewHolder.previewImageView)
     }
 
-    override fun getViewToTouchToStartDraggingItem(item: MedicalRecord, viewHolder: MedicalTestsAdapter.ViewHolder, position: Int): View? {
+    override fun getViewToTouchToStartDraggingItem(item: MedicalRecord, viewHolder: MedicalRecordsAdapter.ViewHolder, position: Int): View? {
         // We return the view holder's view on which the user has to touch to drag the item
         return viewHolder.nameTextView
     }

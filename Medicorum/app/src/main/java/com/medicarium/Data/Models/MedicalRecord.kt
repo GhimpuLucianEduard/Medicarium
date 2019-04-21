@@ -7,6 +7,7 @@ import java.util.*
 data class MedicalRecord(
     var id: String = String.empty(),
     var name: String = String.empty(),
-    var medicalCategory: MedicalCategory = MedicalCategory.OTHER,
-    var timestamp: Long = Calendar.getInstance().timeInMillis
+    var medicalCategory: MedicalCategory,
+    var timestamp: Long,
+    var entries: List<MedicalRecordEntry> = emptyList()
 )

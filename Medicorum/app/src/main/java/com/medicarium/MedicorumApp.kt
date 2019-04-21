@@ -5,9 +5,12 @@ import android.content.Context
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.medicarium.Data.ApiServices.AuthService
 import com.medicarium.Data.ApiServices.AuthServiceImpl
+import com.medicarium.Data.ApiServices.MedicalRecordService
+import com.medicarium.Data.ApiServices.MedicalRecordServiceImpl
 import com.medicarium.Data.ApiServices.RefitServices.ApiServiceFactory
 import com.medicarium.Data.ApiServices.RefitServices.ConnectivityInterceptor
 import com.medicarium.Data.ApiServices.RefitServices.ConnectivityInterceptorImpl
+import com.medicarium.Presentation.History.MedicalRecordsViewModelFactory
 import com.medicarium.Presentation.Login.LoginViewModelFactory
 import com.medicarium.Presentation.Login.PinAuthViewModelFactory
 import com.medicarium.Presentation.Pin.SetupPinViewModelFactory
@@ -38,12 +41,14 @@ class MedicorumApp : Application(), KodeinAware {
 
         // api services
         bind<AuthService>() with singleton { AuthServiceImpl(instance()) }
+        bind<MedicalRecordService>() with singleton { MedicalRecordServiceImpl(instance()) }
 
         // view models
         bind() from provider { LoginViewModelFactory(instance(), instance()) }
         bind() from provider { SignupViewModelFactory(instance(), instance(), instance()) }
         bind() from provider { SetupPinViewModelFactory(instance()) }
         bind() from provider { PinAuthViewModelFactory(instance()) }
+        bind() from singleton { MedicalRecordsViewModelFactory(instance(), instance()) }
     }
 
     init {

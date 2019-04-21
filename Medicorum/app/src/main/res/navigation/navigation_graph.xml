@@ -148,9 +148,9 @@
     </fragment>
     <fragment
         android:id="@+id/medicalTestsFragment"
-        android:name="com.medicarium.Presentation.History.MedicalTestsFragment"
+        android:name="com.medicarium.Presentation.History.MedicalRecordsFragment"
         android:label="medical_tests_fragment"
-        tools:layout="@layout/medical_tests_fragment">
+        tools:layout="@layout/medical_records_fragment">
         <action
             android:id="@+id/action_medicalTestsFragment_to_addMedicalTestFragment"
             app:destination="@id/addMedicalTestFragment"
@@ -161,7 +161,7 @@
     </fragment>
     <fragment
         android:id="@+id/addMedicalTestFragment"
-        android:name="com.medicarium.Presentation.History.AddMedicalTestFragment"
+        android:name="com.medicarium.Presentation.History.AddMedicalRecordFragment"
         android:label="add_medical_test_fragment"
-        tools:layout="@layout/add_medical_test_fragment" />
+        tools:layout="@layout/add_medical_record_fragment" />
 </navigation>

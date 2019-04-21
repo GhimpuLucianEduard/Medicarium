@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.medicarium.Presentation.History.AddMedicalRecordFragment">
+
+    <data>
+
+        <import type="com.medicarium.Utilities.TimestampStringConverter" />
+        <import type="com.medicarium.Utilities.MedicalCategoryStringConverter" />
+
+        <variable
+            name="medicalRecordsViewModel"
+            type="com.medicarium.Presentation.History.MedicalRecordsViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/pureWhite">
+
+        <com.medicarium.Presentation.CustomControls.CustomNavigationBar
+            android:id="@+id/customNavigationBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navbarTitle="@string/add_new_record" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/new_medical_record"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/customNavigationBar" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/nameTextInput"
+            style="@style/SignUpTextInputLayout"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView4">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nameEditText"
+                style="@style/BaseEditText"
+                android:layout_marginTop="128dp"
+                android:hint="@string/name"
+                android:inputType="text"
+                android:nextFocusDown="@id/passwordEditText"
+                android:text="@={medicalRecordsViewModel.medicalRecordToAdd.name}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/dateTextInput"
+            style="@style/SignUpTextInputLayout"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameTextInput">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dateEditText"
+                style="@style/BaseEditText"
+                android:drawableEnd="@drawable/arrow_right"
+                android:enabled="true"
+                android:focusable="false"
+                android:hint="@string/date"
+                android:inputType="none"
+                android:nextFocusDown="@id/passwordEditText"
+                android:text="@{TimestampStringConverter.timestampToString(medicalRecordsViewModel.medicalRecordToAdd.timestamp)}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/categoryTextInput"
+            style="@style/SignUpTextInputLayout"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dateTextInput">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/categoryEditText"
+                style="@style/BaseEditText"
+                android:drawableEnd="@drawable/arrow_right"
+                android:enabled="true"
+                android:focusable="false"
+                android:hint="@string/category"
+                android:inputType="none"
+                android:text="@{MedicalCategoryStringConverter.medicalCategoryToString(medicalRecordsViewModel.medicalRecordToAdd.medicalCategory)}"
+                android:nextFocusDown="@id/passwordEditText" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/addRecordButton"
+            style="@style/BaseButton"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/add_record"
+            android:enabled="@{medicalRecordsViewModel.isAddNewRecordEnabled}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/categoryTextInput" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

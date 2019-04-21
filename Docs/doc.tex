@@ -266,26 +266,26 @@ siguranței procesării datelor personale de către companii mari.
 \caption{Autentificare în doi pași}
 \end{figure}
 
-\subsection{Comunicarea cu serverul si servicii (networking) *}
+\subsection{Canale de comunicare}
 \subsubsection{HTTP și HTTPS}
 
-Majoritatea aplicatiilor mobile se folosesc de unul sau mai multe servere pentru a isi aduce date
-sau a prelucra date preluate de la utilizator. Aceasta practica este folosita pentru a evita de a stoca
-date pe dispozitivele utilizatorului avand in vedere memoria limitata pe care o au. Din acest motiv 
-este necesar folosire unor protocoale de comunicare. Cele mai folosite protocoale de comunicare in ecosistemul
-mobil sunt HTTP si HTTPS.
+Majoritatea aplicațiilor mobile se folosesc de unul sau mai multe servere pentru a își aduce date
+sau pentru a prelucra date preluate de la utilizator. Această practică este folosită pentru a evita  stocarea de
+date pe dispozitivele utilizatorului având în vedere memoria limitată pe care o dețin. Din acest motiv 
+este necesar folosire unor protocoale de comunicare. Cele mai folosite protocoale de comunicare în ecosistemul
+mobil sunt HTTP și HTTPS.
 
-Aceste protocoale de comunicare sunt un set de reguli care descriu modalitatea prin care datele sun trimise si 
-primite. In mediul mobil, HTTP si HTTPS sunt folosite pentru a trimite text imagini si sunete.
+Aceste protocoale de comunicare sunt un set de reguli care descriu modalitatea prin care datele sun trimise și 
+primite. În mediul mobil, HTTP și HTTPS sunt cele maifolosite protocoale pentru a trimite text imagini și sunete.
 
-HTTPS este varianta sigura a lui HTTP, pe tot parcursul comunicarii, datele sunt criptate de la un capat la altul.
-Desi HTTP este mai frecvent folosit, este recomandată folosirea protocolului HTTPS mai ales pentru aplicatii 
-care gestioneaza date sensibile.
+HTTPS este varianta sigură a lui HTTP, pe tot parcursul comunicării, datele sunt criptate de la un capăt la altul.
+Deși HTTP este mai frecvent folosit, este recomandată folosirea protocolului HTTPS mai ales pentru aplicații 
+care gestionează date sensibile.
 
-Dezavantul folosirii protocolului HTTPS il reprezinta performanta. Criptare si decriptarea datelor trasmise sunt
-operatii costisitoare. Desi exista o pierdere de performanta, exista studii \cite{goldberg1998comparison} care demonstreaza
-ca diferenta de performanta este modesta, si incurajeaza folosirea protocolului mai sigur. Un alt studiu \cite{felt2017measuring}
-arata ca pe anumite sisteme de operare precum Android, data de adoptie pentru HTTPS este in urma fata de rata de adoptie
+Dezavantul folosirii protocolului HTTPS îl reprezintă performanță. Criptare și decriptarea datelor trasmise sunt
+operații costisitoare. Deși există o pierdere de performanță, există studii \cite{goldberg1998comparison} care demonstrează
+că diferența de performanță este modestă, și încurajează folosirea protocolului mai sigur. Un alt studiu \cite{felt2017measuring}
+arată că pe anumite sisteme de operare mobile, precum Android, rata de adopție pentru HTTPS este în urmă față de rata de adopție
 pe desktop. 
 
 \begin{figure}[H]
@@ -295,8 +295,60 @@ pe desktop.
 Febraruie 2017 \cite{felt2017measuring}}
 \end{figure}
 
-\subsubsection{Alte canale de comunicare (SMS)}
-\subsubsection{Web sockets}
+\subsubsection{SMS}
+
+SMS (Short Message Service) este un serviciu folosit de majoritatea dispozitivelor mobile. Cazurile de 
+utilizare ale serviciului variază de la simpla folosire pentru a comunica mesaje scurte, până la 
+autentificare cu parolă unică. În 2010, 6.1 trilioane de mesaje au fost trimise cu o medie de 193.000 de SMS-uri
+pe secundă \cite{riseof3g}. 
+
+
+Din punct de vedere tehnic, SMS este un protocol de comunicare care permite schimbul de mesaj scurte. Un SMS 
+poate fi format din 160 de caractere alfanumerice, mesajele mai mari de 160 de caractere sunt sparte în 
+mai multe mesaje. 
+Un mesaj trimits este mai întâi interceptat de SMSC (Short Message Service Center) care de cele mai multe ori
+este menținut de providerii de rețele telefonice. SMSC-ul trimite mai apoi mesajul către un alt SMSC (al receptorului)
+mesaj pe care în final îl trimite receptorului.
+
+În ciudat popularității sale, comunicare prin SMS prezintă
+anumite vulnerabilități. Cel mai periculoasă vulnerabilitate 
+este "SMS spoofing". Aceasta are loc când un atacator manipulează
+adresa mesajului pentru a impersona pe cineva. Aceste tipuri de
+atacuri pot fi prevenite prin verificarea datelor emițătorului 
+înainte că mesajul să ajungă la receptor. O altă metodă de protejare,
+adoptată mai ales în cadrul autentificării prin 2 pași, este folosirea unui
+SMS gateway, servicii special dedicate pentru astefel de operații, dotate
+cu diverse măsuri de protecție.
+
+\subsubsection{WebSocket}
+
+Standardizat în 2011 în RFC 6455 \cite{fette2011websocket}, WebSocket este
+un protocol de comunicare bidirecțional bazandu-se defapt o conexiune de tip TCP.
+
+Principalul avantaj pe care îl oferă protocolul WebSocket este facilitatea
+prin care se permite trasferul de date în mod bidirecțional. În comparație cu protocolul HTTP,
+un server poate transmite date unui client fără ca acesta să fie făcut o cerere.
+
+La fel ca HTTP, protocolul WebSocket (WS) este dublat de variată protejată WSS, oferind
+criptare de la un capăt la altul al comunicării.
+
+Când vine vorba de aplicații mobile, WebScocket-urile sunt folosite
+predominant de aplicații care au nevoie de o comunicare de tip broadcast. 
+Aplicațiile de mesagerie în grup precum WhatsApp folosesc WebSocket-uri pentru
+a notifica toți utilizatorii unui grup de mesajele noi primite.
+
+Deși WebSocket rezolvă probleme de conectivitate, nu rezolva și problemele de 
+securitate \cite{erkkila2012websocket}. vulnerabilități la nivelul acestui protocol
+variază de la simple interceptări ale datelor în rețea, atunci când se folosește varianta
+neprotejată a protocolului, până la vulnerabilități mai severe precum blocarea serviciului
+(DDos) \cite{test-ws}. Pentru a evita astfel de probleme este sugerată folosirea variantei
+protajate (wss) și limitarea conexiunilor sau verificarea conexiuniilor când provin din aceasă sursă.
+
+
+Fiind o tehnologie încă tânăra, WebSocket încă nu este la fel de răspândit
+precum HTTP sau SMS, dar că orice sistem de comunicare, includerea lui într-o
+soluție soft necesită atenție sporită pentru a prevenii eventuale probleme de securitate.
+
 
 \subsection{Persistența datelor}
 \subsubsection{Metode de persistare a datelor}
@@ -352,6 +404,9 @@ Febraruie 2017 \cite{felt2017measuring}}
 \nocite{enisa-security-data-processing}
 \nocite{goldberg1998comparison}
 \nocite{felt2017measuring}
+\nocite{fette2011websocket}
+\nocite{erkkila2012websocket}
+\nocite{test-ws}
 \printbibliography[title=Bibliografie]
 
 \end{document}

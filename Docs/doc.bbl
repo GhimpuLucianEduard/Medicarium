@@ -240,6 +240,81 @@
       \field{pages}{1323\bibrangedash 1338}
       \range{pages}{16}
     \endentry
+    \entry{riseof3g}{inproceedings}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labeltitlesource}{title}
+      \field{title}{The rise of 3G}
+      \verb{urlraw}
+      \verb http://www.itu.int/ITU-D/ict/material/FactsFigures2010.pdf
+      \endverb
+      \verb{url}
+      \verb http://www.itu.int/ITU-D/ict/material/FactsFigures2010.pdf
+      \endverb
+    \endentry
+    \entry{fette2011websocket}{report}{}
+      \name{author}{2}{}{%
+        {{hash=cdf249d29ccc7edcf24f6bfef0893ebd}{%
+           family={Fette},
+           familyi={F\bibinitperiod},
+           given={Ian},
+           giveni={I\bibinitperiod}}}%
+        {{hash=8fa97ca9bca09f72482fe5f985ecef60}{%
+           family={Melnikov},
+           familyi={M\bibinitperiod},
+           given={Alexey},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{a413dbe318e95f69f8330db28642e805}
+      \strng{fullhash}{a413dbe318e95f69f8330db28642e805}
+      \strng{bibnamehash}{a413dbe318e95f69f8330db28642e805}
+      \strng{authorbibnamehash}{a413dbe318e95f69f8330db28642e805}
+      \strng{authornamehash}{a413dbe318e95f69f8330db28642e805}
+      \strng{authorfullhash}{a413dbe318e95f69f8330db28642e805}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The websocket protocol}
+      \field{type}{techreport}
+      \field{year}{2011}
+    \endentry
+    \entry{erkkila2012websocket}{article}{}
+      \name{author}{1}{}{%
+        {{hash=37b5bf9cfded2fddc8e34d65a4751ad9}{%
+           family={Erkkil{ä}},
+           familyi={E\bibinitperiod},
+           given={Jussi-Pekka},
+           giveni={J\bibinithyphendelim P\bibinitperiod}}}%
+      }
+      \strng{namehash}{37b5bf9cfded2fddc8e34d65a4751ad9}
+      \strng{fullhash}{37b5bf9cfded2fddc8e34d65a4751ad9}
+      \strng{bibnamehash}{37b5bf9cfded2fddc8e34d65a4751ad9}
+      \strng{authorbibnamehash}{37b5bf9cfded2fddc8e34d65a4751ad9}
+      \strng{authornamehash}{37b5bf9cfded2fddc8e34d65a4751ad9}
+      \strng{authorfullhash}{37b5bf9cfded2fddc8e34d65a4751ad9}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Aalto University School of Science}
+      \field{title}{Websocket security analysis}
+      \field{year}{2012}
+      \field{pages}{2\bibrangedash 3}
+      \range{pages}{2}
+    \endentry
+    \entry{test-ws}{online}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labeltitlesource}{title}
+      \field{title}{Testing WebSockets}
+      \verb{urlraw}
+      \verb https://www.owasp.org/index.php/Testing_WebSockets_(OTG-CLIENT-010)
+      \endverb
+      \verb{url}
+      \verb https://www.owasp.org/index.php/Testing_WebSockets_(OTG-CLIENT-010)
+      \endverb
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

@@ -1985,15 +1985,22 @@
     <bcf:citekey order="9">felt2017measuring</bcf:citekey>
     <bcf:citekey order="10">felt2017measuring</bcf:citekey>
     <bcf:citekey order="11">felt2017measuring</bcf:citekey>
-    <bcf:citekey order="12">owasp-top10-2017</bcf:citekey>
-    <bcf:citekey order="13">owasp-top10-mobile</bcf:citekey>
-    <bcf:citekey order="14">3ways-auth</bcf:citekey>
-    <bcf:citekey order="15">rfc-7519</bcf:citekey>
-    <bcf:citekey order="16">jwt</bcf:citekey>
-    <bcf:citekey order="17">enisa-2017</bcf:citekey>
-    <bcf:citekey order="18">enisa-security-data-processing</bcf:citekey>
-    <bcf:citekey order="19">goldberg1998comparison</bcf:citekey>
-    <bcf:citekey order="20">felt2017measuring</bcf:citekey>
+    <bcf:citekey order="12">riseof3g</bcf:citekey>
+    <bcf:citekey order="13">fette2011websocket</bcf:citekey>
+    <bcf:citekey order="14">erkkila2012websocket</bcf:citekey>
+    <bcf:citekey order="15">test-ws</bcf:citekey>
+    <bcf:citekey order="16">owasp-top10-2017</bcf:citekey>
+    <bcf:citekey order="17">owasp-top10-mobile</bcf:citekey>
+    <bcf:citekey order="18">3ways-auth</bcf:citekey>
+    <bcf:citekey order="19">rfc-7519</bcf:citekey>
+    <bcf:citekey order="20">jwt</bcf:citekey>
+    <bcf:citekey order="21">enisa-2017</bcf:citekey>
+    <bcf:citekey order="22">enisa-security-data-processing</bcf:citekey>
+    <bcf:citekey order="23">goldberg1998comparison</bcf:citekey>
+    <bcf:citekey order="24">felt2017measuring</bcf:citekey>
+    <bcf:citekey order="25">fette2011websocket</bcf:citekey>
+    <bcf:citekey order="26">erkkila2012websocket</bcf:citekey>
+    <bcf:citekey order="27">test-ws</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

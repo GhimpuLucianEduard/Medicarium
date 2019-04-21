@@ -6,6 +6,7 @@
     
     
     <color name="accentRed">#E65F5C</color>
+    <color name="accentRedHalfOpacity">#80E65F5C</color>
     <color name="accentBlue">#3DBBDC</color>
     <color name="primaryBlack">#333333</color>
     <color name="primaryDarkGrey">#999999</color>
