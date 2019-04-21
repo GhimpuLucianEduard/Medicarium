@@ -361,10 +361,45 @@ soluție soft necesită atenție sporită pentru a prevenii eventuale probleme d
 \subsubsection{Distribuirea aplicației}
 \subsubsection{Probleme specifice pe anumite platforme}
 
+\newpage
 \section{Medicarium}
 \subsection{Analiza aplicației}
 \subsubsection{Problematica}
+
+
+"Mobile Health" (m-health) \cite{kahn2010mobile}
+este termenul folosit pentru a descrie utilizarea tehnologiilor mobile precum telefoanele pentru
+a sprijinii și îmbunătății sistemul de sănătate. Aplicațiile mobile au un potențial foarte mare când vine vorba de medicină, cazurile lor
+de utilizare variază de la simpla monitorizare a unor aspecte medicale până la 
+comunicare între doctori, pacienți și instituții medicale.
+
+În ultimii ani dispozitivele mobile au început să fie dotate cu din ce în ce mai mulți
+senzori pentru a oferii mai mult suport pentru astfel de aplicații. Creșterea în popularitate a adus ca urmare anumite reglementări.
+În iulie 2011, Administrația Statelor Unite pentru Alimente și Medicamente a emis un proiect de orientare privind 
+reglementarea aplicațiilor medicale mobile \cite{barton2012regulation}. Astfel se propune ca aplicațiile
+mobile medicale trebuie să gasesasca un echilibru intre înbunatațirea calității vieții utilizatoriilor și 
+respectarea siguranței și confidențialității.
+
+
+Medicarium este o aplicație care își propune centralizarea istoricului medical al utilizatorilor săi.
+În România există deja un astfel de sistem pin "Cardul de Sănătate". Din păcate nu toate persoanele din România 
+au primit astfel de carduri, mai mult de cât atât, viitorul acestui sistem nu este cert. O altă problema a cardului
+de sănătate este faptul că utilitatea lui este limitată la sistemul de sănătate public
+din România.
+
+Luând aceste probleme în calcul, Medicarium poate fi folosit oriunde, de oricine indiferent
+că vorbim de sistemul public sau private și indiferent de țară.
+
+În prima faza Medicarium va fi folosit pentru a păstra istoricul medical al pacientului. 
+Sunt stocate date generale ale pacientului (grupa de sânge, greutate, vârstă etc\dots), 
+un istoric al documentelor medicale (analize, teste) și un istoric al medicamentelor folosite de utilizator.
+
+
+TODO sa adaug ce mai face aplicatia
+
 \subsubsection{Cazuri de utilizare}
+
+TODO sa le adaug cand is sigur ce face aplicatia
 
 \subsection{Proiectarea aplicației}
 \subsubsection{Arhitectura}
@@ -373,6 +408,63 @@ soluție soft necesită atenție sporită pentru a prevenii eventuale probleme d
 \subsection{Implementarea aplicației - Serverul și serviciile}
 
 \subsubsection{Server REST}
+
+Representational State Transfer (REST) este stil arhitectural software care defineste
+un set de constrangeri pentru creearea de servicii Web. Un serviciu Web este un server web
+constriuit pentru a satisface toate nevoile unui saite sau unei aplicatii \cite{masse2011rest}.
+
+Principala caracteristica a acestor tipuri de servicii il reprezinta faptul care serverul
+nu stocheaza nici o stare a sesiunii clientului. Fiecare cerere contine toate informatiile
+necesare pentru a putea intelege cererea. Cererile au loc in izolare si sunt idependente, serverul
+nu se foloseste de informatii din alte cereri iar clientul este responsabil pentru trimitarea de
+orice data e necesara pentru a obtine raspunsul dorit.
+
+Pricipalele avnataje ale unui serviciu REST sunt:
+
+\begin{itemize}
+    \item Suport pentru diferite format de date (JSON, XML, text etc\dots)
+    \item Performanta crescuta si eficienta, serviciile REST folosesc putina latime de banda
+    \item Usor de modificat, datorita unicitatii arhitecturii, coponentele sunt izolate
+    usarand eventuale modificari
+    \item Scalabilitate, fiind principalul motiv care a adus la adoptatea serviciilor REST \cite{masse2011rest}
+\end{itemize}
+
+In Medicarium, serverul REST este responsabil de a servii clientii mobili resurse de
+care au nevoie. Exista o serie de rute la dispozitia clientilor accesibile doar pe baza 
+de Json Web Token (JWT). 
+
+\bigskip
+
+Exemple de rute folosite in aplicatiie:
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm, height=4cm]{get.png}
+\caption{Exemplu de metoda GET cu JWT in antetul cererii}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=8cm, height=6cm]{post.png}
+\caption{Exemplu de metoda POST cu JSON in corpul cererii}
+\end{figure}
+    
+\begin{figure}[H]
+\centering
+\includegraphics[width=8cm, height=4cm]{delete.png}
+\caption{Exemplu de metoda DELETE cu mesaj de eroare
+\end{figure}
+    
+\begin{figure}[H]
+\centering
+\includegraphics[width=8cm, height=4cm]{patch.png}
+\caption{Exemplu de metoda PATCH folosita pentru modificarea de resurse
+\end{figure}
+    
+
+
 \subsubsection{Node.js}
 \subsubsection{MongoDB}
 \subsubsection{Rute disponibile}
@@ -407,6 +499,11 @@ soluție soft necesită atenție sporită pentru a prevenii eventuale probleme d
 \nocite{fette2011websocket}
 \nocite{erkkila2012websocket}
 \nocite{test-ws}
+
+\nocite{kahn2010mobile}
+\nocite{barton2012regulation}
+
+\nocite{masse2011rest}
 \printbibliography[title=Bibliografie]
 
 \end{document}
