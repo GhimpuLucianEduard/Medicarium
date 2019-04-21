@@ -4,5 +4,6 @@ import empty
 
 data class MedicalRecordEntry(
     var id: String = String.empty(),
-    var name: String = String.empty()
+    var name: String = String.empty(),
+    var imageUrl: String = String.empty()
 )

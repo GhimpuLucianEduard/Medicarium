@@ -164,4 +164,9 @@
         android:name="com.medicarium.Presentation.History.AddMedicalRecordFragment"
         android:label="add_medical_test_fragment"
         tools:layout="@layout/add_medical_record_fragment" />
+    <fragment
+        android:id="@+id/medicalRecordDetailsFragment"
+        android:name="com.medicarium.Presentation.History.MedicalRecordDetailsFragment"
+        android:label="medical_record_details_fragment"
+        tools:layout="@layout/medical_record_details_fragment" />
 </navigation>

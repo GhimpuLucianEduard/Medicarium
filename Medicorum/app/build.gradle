@@ -140,4 +140,7 @@ dependencies {
 
     // dialog
     implementation 'com.github.mirrajabi:search-dialog:1.2.3'
+
+    // image viewer
+    implementation 'com.github.stfalcon:stfalcon-imageviewer:0.1.0'
 }

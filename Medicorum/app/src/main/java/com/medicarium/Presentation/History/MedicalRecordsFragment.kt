@@ -94,10 +94,6 @@ class MedicalRecordsFragment : BaseFragment(), KodeinAware {
 
         recyclerView.reduceItemAlphaOnSwiping = true
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            recyclerView.defaultFocusHighlightEnabled = true
-        }
-
         recyclerView.scrollListener = object : OnListScrollListener {
             override fun onListScrolled(
                 scrollDirection: OnListScrollListener.ScrollDirection,
