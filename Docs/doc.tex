@@ -392,14 +392,42 @@ că vorbim de sistemul public sau private și indiferent de țară.
 
 În prima faza Medicarium va fi folosit pentru a păstra istoricul medical al pacientului. 
 Sunt stocate date generale ale pacientului (grupa de sânge, greutate, vârstă etc\dots), 
-un istoric al documentelor medicale (analize, teste) și un istoric al medicamentelor folosite de utilizator.
+cat si documente medicale (analize, teste).
 
 
 TODO sa adaug ce mai face aplicatia
 
+
+\newpage
 \subsubsection{Cazuri de utilizare}
 
-TODO sa le adaug cand is sigur ce face aplicatia
+Aplicatia Medicarium permite urmatoarele functionalitati:
+
+\begin{enumerate}
+    \item Inregistrare si verificare cont prin factori multiplii.
+    \item Autentificare prin factori multipli (date de logare, pin si senzori biomerici).
+    \item Stocarea si editarea datelor medicale generale ale pacientului.
+    \item Stocarea documentelor medicale. Utilizatorul poate adauga noi documente 
+    folosind camera sau din galaria telefonului.
+    \item Modificarea vizibilitatii datelor in caz de urgenta.
+    \item Mod de urgenta care paote fi folosit de orice persoana pentru a vedea
+    datele medicale pe care utilizatorul le-a setat in prealabil. 
+\end{enumerate}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=9cm]{cazuri.png}
+\caption{Diagrama Cazurilor de Utilizare}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm, height=8cm]{arhi.png}
+\caption{Diagrama de arhi}
+\end{figure}
+
 
 \subsection{Proiectarea aplicației}
 \subsubsection{Arhitectura}
@@ -454,17 +482,9 @@ Exemple de rute folosite in aplicatiie:
 \begin{figure}[H]
 \centering
 \includegraphics[width=8cm, height=4cm]{delete.png}
-\caption{Exemplu de metoda DELETE cu mesaj de eroare
+\caption{Exemplu de metoda DELETE cu mesaj de eroare}
 \end{figure}
     
-\begin{figure}[H]
-\centering
-\includegraphics[width=8cm, height=4cm]{patch.png}
-\caption{Exemplu de metoda PATCH folosita pentru modificarea de resurse
-\end{figure}
-    
-
-
 \subsubsection{Node.js}
 \subsubsection{MongoDB}
 \subsubsection{Rute disponibile}

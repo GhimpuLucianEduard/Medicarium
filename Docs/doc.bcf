@@ -1993,3 +1993,36 @@
     <bcf:citekey order="17">barton2012regulation</bcf:citekey>
     <bcf:citekey order="18">masse2011rest</bcf:citekey>
     <bcf:citekey order="19">masse2011rest</bcf:citekey>
+    <bcf:citekey order="20">owasp-top10-2017</bcf:citekey>
+    <bcf:citekey order="21">owasp-top10-mobile</bcf:citekey>
+    <bcf:citekey order="22">3ways-auth</bcf:citekey>
+    <bcf:citekey order="23">rfc-7519</bcf:citekey>
+    <bcf:citekey order="24">jwt</bcf:citekey>
+    <bcf:citekey order="25">enisa-2017</bcf:citekey>
+    <bcf:citekey order="26">enisa-security-data-processing</bcf:citekey>
+    <bcf:citekey order="27">goldberg1998comparison</bcf:citekey>
+    <bcf:citekey order="28">felt2017measuring</bcf:citekey>
+    <bcf:citekey order="29">fette2011websocket</bcf:citekey>
+    <bcf:citekey order="30">erkkila2012websocket</bcf:citekey>
+    <bcf:citekey order="31">test-ws</bcf:citekey>
+    <bcf:citekey order="32">kahn2010mobile</bcf:citekey>
+    <bcf:citekey order="33">barton2012regulation</bcf:citekey>
+    <bcf:citekey order="34">masse2011rest</bcf:citekey>
+  </bcf:section>
+  <!-- SORTING TEMPLATES -->
+  <bcf:sortingtemplate name="none">
+    <bcf:sort order="1">
+      <bcf:sortitem order="1">citeorder</bcf:sortitem>
+    </bcf:sort>
+  </bcf:sortingtemplate>
+  <!-- DATALISTS -->
+  <bcf:datalist section="0"
+                name="none/global//global/global"
+                type="entry"
+                sortingtemplatename="none"
+                sortingnamekeytemplatename="global"
+                labelprefix=""
+                uniquenametemplatename="global"
+                labelalphanametemplatename="global">
+  </bcf:datalist>
+</bcf:controlfile>
