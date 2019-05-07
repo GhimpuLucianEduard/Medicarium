@@ -65,7 +65,8 @@ class MedicalRecordsViewModel(
 
     fun addMedicalRecord() {
         isBusy.value = true
-        medicalRecordsService.addMedicalRecord(medicalRecordToAdd.value!!.toMedicalRecord())
+        medicalRecordsService
+            .addMedicalRecord(medicalRecordToAdd.value!!.toMedicalRecord())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({

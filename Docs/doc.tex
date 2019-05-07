@@ -20,14 +20,12 @@
 
 \tableofcontents
 
-
 \section{Introducere}
 \subsection{Introducere}
 \subsection{Ecosistemul aplicațiilor mobile}
 \subsection{GDPR}
 
 \section{Securitatea și confidențialitatea datelor în contextul aplicațiilor mobile}
-
 
 \subsection{Autentificarea si înregistrarea}
 \newpage
@@ -266,6 +264,51 @@ siguranței procesării datelor personale de către companii mari.
 \caption{Autentificare în doi pași}
 \end{figure}
 
+\subsection{Permisiuni}
+
+Permisiunile sunt un aspect important în vederea păstrării condifentialitatii datelor utilizatorului.
+O aplicație poate cere o anumită permisiune în diferite cazuri, pentru a accesa date personale (contacte, mesaje)
+sau pentru a accesa anumite funcționalități și senzori (apeluri telefonice, camera, senzori biometrici).
+
+În medie un dispozitivil mobil are instalate 95 de aplicații, fiecare aplicație având nevoie
+de 5 permisiuni \cite{liu2016follow}. Problematica permisiunilor este adesea ignorată și de utilizator
+și de dezvoltatorul aplicației. 
+În trecut, pe dispozitivele cu sistem de operare Android, când o aplicație trebuia
+să determine SSID-ul rețelei curente nici o permisiune nu era necesară. Acest lucru putând duce la
+determinarea locației utilizatorului bazat pe numele și SSID-ul rețelei \cite{ssidloc}. Spre exemplu dacă rețeau s-ar numi
+"Gara Nord București", locația utilizatorului ar fi putut fi dezvăluită fără permisiunea lui. În versiunile noi de Android,
+determinarea SSID-ului se poate face doar dacă utilizatorul a dat consensul pentru
+folosirea locației sale.
+
+În același timp, dezvoltatorul aplicației nu trebuie să abuzeze de permisiuni. Cererile directe 
+către utilizator ar trebuii să se limiteze la funcționalitățile aplicației. Spre exemplu, o aplicație
+de timp calculator nu ar avea nevoie de permisiunea pentru apeluri telefonice.
+
+Pentru a combate astfel de cazuri, google a început dezvoltarea unui algoritm pentru 
+determinarea dacă o aplicație folosest ein mod eronat anumite permisiuni \cite{googleperm}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=8cm]{calc.png}
+    \caption{Abuzarea de permisiuni \cite{redditcalc}}
+    \end{figure}
+
+Pentru o gestiune corectă a permisiunilor se mai recomandă următoarele:
+
+\begin{itemize}
+    \item Cererea unei anumite permisiuni să aibe loc doar atunci când este strict necesară.
+    În cazul în care o aplicație depinde în mod permanent de o anumită permisiune (permisiunea de locație pentru aplicații de navigare),
+    atunci cererea se poate face la deschiderea aplicației.
+    \item Trebuie luat în considerare și diferitele versiuni ale sistemului de operare. Atât pe Android cât și pe iOS
+    pot fi necesare diferite permisiuni pentru aceași acțiune. Exemplu cu SSID amintit anterior.
+    \item Folosirea unei singure permisiuni în loc de un întreg grup. De multe ori mai multe permisiuni sunt
+    grupate penru a facilita cererea lor. Dar în cazul în care doar un element din grup este folosit atunci este 
+    recomandat folosirea doar a elementului respectiv.
+    \item Expunerea în mod clar a motivului necesității unei anumite permisiuni către utilizator.
+\end{itemize}
+
+
+
 \subsection{Canale de comunicare}
 \subsubsection{HTTP și HTTPS}
 
@@ -350,16 +393,95 @@ precum HTTP sau SMS, dar că orice sistem de comunicare, includerea lui într-o
 soluție soft necesită atenție sporită pentru a prevenii eventuale probleme de securitate.
 
 
+\newpage
 \subsection{Persistența datelor}
 \subsubsection{Metode de persistare a datelor}
-\subsubsection{Criptografie}
-\subsubsection{Gestionarea datelor sensibile}
 
-\subsection{Alți factori}
-\subsubsection{Permisiuni}
-\subsubsection{Webviews}
-\subsubsection{Distribuirea aplicației}
-\subsubsection{Probleme specifice pe anumite platforme}
+Una din principalele atribuții a majoritatea aplicațiilor mobile
+este aceea de a gestiona și/sau stoca datele utilizatorului. Fie că 
+vorbim de aplicații cu servicii web dedicate sau jocuri simple, toate aplicațiile
+au nevoie de o metodă pentru persistare datelor. 
+
+Deși modalitatea de persistare a datelor diferă în funcție de platforma
+(iOS sau Adroid), se pot extrage câteva caracteristici generale comune.
+
+Dezvoltatorul aplicației trebuie să decidă unde și cum va stoca datele,
+în funcție de gradul lor de confidențialitate și tipul de dată. Folosirea
+în mod eronat a sistemelor oferite de platforma pe care se dezvoltă aplicația
+poate duce la expunerea de date sensibile.
+
+Există mai multe metode prin care se pot salva datele și unde pot apărea
+vulnerabilități din punct de vedere al securității:
+
+\begin{enumerate}
+    \item Fișiere Log, scopul lor, în mod normal, este acela de a păstra
+    un jurnal al activității pentru o anumită aplicație, fiind ușor
+    accesibile. Date sensibile pot fi expuse în mod involuntar prin astfel de fișiere (credentiale, token-uri, 
+    date primite din cereri HTML).
+    \item Baze de date locale SQL. Folosite pentru a păstra
+    un volum mai mare de date. Pe ambele platforme există variate necriptate și criptate.
+    \item Fișiere folosite pentru setări (SharedPreferences și NSUserDefaults). Folosite
+    pentru a stoca date de dimensiune mică cum ar fi valori pentru setări. La fel că 
+    bazele de dată SQL, există variante criptate și necriptate. Trebuie menționat
+    că atunci când fișierele de preferințe sunt folosite pentru a stoca date de autentificare (token-uri) 
+    este recomandată folosirea variantei criptate.
+    \item Memoria internă, sistemul de fișiere intern al dispositivului poate fi folosit
+    pentru a păstra date. Deobicei se poate folosii pentru a păstra fișiere publice de tip 
+    multimedia, cum ar fi poze sau videoclipuri.
+    \item Memoria externă (doar pe Android), asemănătoare cu memoria internă, 
+    disponibilă prin folosirea de carturi SD sau alte extensii hardware.
+\end{enumerate}
+
+Majoritatea metodelor enunțate anterior sunt protejate într-un fel sau altul
+de sistemul de operare. În cazul dispozitivelor mobile modificate (jailbreak sau rooted), 
+sistemele de protecție oferite de sistemul de operare ajung a fi compromise.
+
+\subsubsection{Criptografie}
+
+Dupa cum am vazut pana acum, multe aspecte ale unei aplicatii mobile pot fi securizate
+prin folosirea de elemente native securizate, librarii sau implemtarii proprii. Toate acestea
+au la baza o caracteristica comuna, criptarea datelor.
+
+\bigskip
+
+După cum am văzut până acum, multe aspecte ale unei aplicații mobile pot fi securizate
+prin folosirea de elemente native securizate, librării sau implemtarii proprii. Toate acestea
+au la baza o caracteristică comună, criptarea datelor.
+
+\bigskip
+
+Criptografia este studiul tehnicilor matematice legate de aspectele 
+securității informațiilor, cum ar fi confidențialitatea, integritatea datelor, 
+autentificarea entității și autentificarea originii datelor \cite{katz1996handbook}.
+
+Problematica securității informației nu este una modernă, de a lungul istoriei 
+au fost nevoie de diferite metode de securizare a informației, mai ales în timp de război.
+Deobicei implica păstrarea datelor într-o maniere incopresibila. Pentru a decripta
+astfel de mesaje, se puteau folosii diferite tehnici de decodare.
+
+Criptografia modernă se rezumă la algoritmi bazați pe teorie matematică, greu 
+de spart datorită complixitatii și ipotezelor pe care se bazează. Practic astfel de
+algoritmi pot fi sparți dar necesită o putere de calcul foarte mare.
+
+Deși există multe tehnici folosite în criptarea datelor, cea mai populară și folosită
+în zilele noastre este criptarea prin cheie publică (criptografie asimetrică), folosită
+de instituii guvernamentale, armata și corporații mari.
+
+
+Criptografia asimetrică presupune folosirea a două chei, una pentru criptarea datelor
+(cheia publică) și una pentru decriptarea datelor (cheia privată). Fiecare receptor are o cheie privată unică pe care o folosește pentru a de cripta datele.
+Emițătorul oferă cheia publică oricui, folosită pentru a cripta datele. Cheia publică și privată sunt deobicei într-o relație matematică dar calcularea lor
+nu este fezabilă.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=6cm]{public_key_cryptography.jpg}
+    \caption{Criptografie Asimetrică \cite{tutrsa}}
+    \end{figure}
+
+RSA (Rivest–Shamir–Adleman) este cel mai folosit cripto sistem cu cheie publică. Relația matematică 
+dintre cele două chei este securizată prin alegerea a două numere prime foate mari care sunt păstrate secrete \cite{barton2012regulation}.
+
 
 \newpage
 \section{Medicarium}
@@ -394,24 +516,20 @@ că vorbim de sistemul public sau private și indiferent de țară.
 Sunt stocate date generale ale pacientului (grupa de sânge, greutate, vârstă etc\dots), 
 cat si documente medicale (analize, teste).
 
-
-TODO sa adaug ce mai face aplicatia
-
-
 \newpage
 \subsubsection{Cazuri de utilizare}
 
-Aplicatia Medicarium permite urmatoarele functionalitati:
+Aplicatia Medicarium permite urmatoarele funcționalități:
 
 \begin{enumerate}
-    \item Inregistrare si verificare cont prin factori multiplii.
-    \item Autentificare prin factori multipli (date de logare, pin si senzori biomerici).
-    \item Stocarea si editarea datelor medicale generale ale pacientului.
-    \item Stocarea documentelor medicale. Utilizatorul poate adauga noi documente 
+    \item Înregistrare și verificare cont.
+    \item Autentificare prin factori multipli (date de logare, pin și senzori biomerici).
+    \item Stocarea și editarea datelor medicale generale ale pacientului.
+    \item Stocarea documentelor medicale. Utilizatorul poate adaugă noi documente 
     folosind camera sau din galaria telefonului.
-    \item Modificarea vizibilitatii datelor in caz de urgenta.
-    \item Mod de urgenta care paote fi folosit de orice persoana pentru a vedea
-    datele medicale pe care utilizatorul le-a setat in prealabil. 
+    \item Modificarea vizibilității datelor în caz de urgență.
+    \item Mod de urgență care paote fi folosit de orice persoană pentru a vedea
+    datele medicale pe care utilizatorul le-a setat în prealabil. 
 \end{enumerate}
 
 
@@ -421,62 +539,79 @@ Aplicatia Medicarium permite urmatoarele functionalitati:
 \caption{Diagrama Cazurilor de Utilizare}
 \end{figure}
 
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=10cm, height=8cm]{arhi.png}
-\caption{Diagrama de arhi}
-\end{figure}
-
-
+\newpage
 \subsection{Proiectarea aplicației}
 \subsubsection{Arhitectura}
+
+Solutia o sa fie compusa din 2 aplicatii mobile, clientul mobil propriu-zis
+si un "SMS Slave", o aplicatie separata folosita special pentru a trimite mesaje
+pentru autentificarea si verificarea utilizatorilor.
+
+Clientul mobil este accesibil oricui pe cand aplicatia pentru mesaje este privata,
+fiind intretinuta impreuna cu serverele si baza de date.
+
+La fel ca aplicatiile, avem doua server, un REST API care satisface cererile primite
+de clientii mobili si un SMS Gateway, care intermediaza comunicarea intre serverul REST
+si SMS Slave-ul.
+
+Comunicarea intre servere se face prin HTTPS.
+Comunicarea intre SMS Gateway si SMS Slave se face prin WebSocket pentru a mentine
+un canal de comunicare bidirectional.
+
+Server-ul REST comunica direct cu o baza de date  nonrelationala de tip mongoDB.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=10cm, height=8cm]{arhi.png}
+    \caption{Diagrama de arhi}
+    \end{figure}
+
 \subsubsection{UML ceva???}
 
 \subsection{Implementarea aplicației - Serverul și serviciile}
 
 \subsubsection{Server REST}
 
-Representational State Transfer (REST) este stil arhitectural software care defineste
-un set de constrangeri pentru creearea de servicii Web. Un serviciu Web este un server web
-constriuit pentru a satisface toate nevoile unui saite sau unei aplicatii \cite{masse2011rest}.
+Representational State Transfer (REST) este stil arhitectural software care definește
+un set de constrângeri pentru creearea de servicii Web. Un serviciu Web este un server web
+constriuit pentru a satisface toate nevoile unui site sau unei aplicații \cite{masse2011rest}.
 
-Principala caracteristica a acestor tipuri de servicii il reprezinta faptul care serverul
-nu stocheaza nici o stare a sesiunii clientului. Fiecare cerere contine toate informatiile
-necesare pentru a putea intelege cererea. Cererile au loc in izolare si sunt idependente, serverul
-nu se foloseste de informatii din alte cereri iar clientul este responsabil pentru trimitarea de
-orice data e necesara pentru a obtine raspunsul dorit.
+Principala caracteristică a acestor tipuri de servicii îl reprezintă faptul care serverul
+nu stochează nici o stare a sesiunii clientului. Fiecare cerere conține toate informațiile
+necesare pentru a putea înțelege cererea. Cererile au loc în izolare și sunt idependente, serverul
+nu se folosește de informații din alte cereri iar clientul este responsabil pentru trimitarea de
+orice dată e necesară pentru a obține răspunsul dorit.
 
 Pricipalele avnataje ale unui serviciu REST sunt:
 
 \begin{itemize}
     \item Suport pentru diferite format de date (JSON, XML, text etc\dots)
-    \item Performanta crescuta si eficienta, serviciile REST folosesc putina latime de banda
-    \item Usor de modificat, datorita unicitatii arhitecturii, coponentele sunt izolate
-    usarand eventuale modificari
+    \item Performanță crescută și eficientă, serviciile REST folosesc puțină lățime de bandă
+    \item Ușor de modificat, datorită unicității arhitecturii, coponentele sunt izolate
+    ușuarând eventuale modificări
     \item Scalabilitate, fiind principalul motiv care a adus la adoptatea serviciilor REST \cite{masse2011rest}
 \end{itemize}
 
-In Medicarium, serverul REST este responsabil de a servii clientii mobili resurse de
-care au nevoie. Exista o serie de rute la dispozitia clientilor accesibile doar pe baza 
+În Medicarium, serverul REST este responsabil de a servii clienții mobili cu resurse de
+care au nevoie. Există o serie de rute la dispoziția clienților accesibile doar pe baza 
 de Json Web Token (JWT). 
 
 \bigskip
 
-Exemple de rute folosite in aplicatiie:
+Exemple de rute folosite în aplicatiie:
 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=10cm, height=4cm]{get.png}
-\caption{Exemplu de metoda GET cu JWT in antetul cererii}
+\caption{Exemplu de metoda GET cu JWT în antetul cererii}
 \end{figure}
 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=8cm, height=6cm]{post.png}
-\caption{Exemplu de metoda POST cu JSON in corpul cererii}
+\caption{Exemplu de metoda POST cu JSON în corpul cererii}
 \end{figure}
     
 \begin{figure}[H]
@@ -486,8 +621,29 @@ Exemple de rute folosite in aplicatiie:
 \end{figure}
     
 \subsubsection{Node.js}
+
+Pentru implementarea serverlui REST s-a folosit
+Node.js, un mediu de rulare care permite execuția de cod
+javascript în afară browser-ului.
+
+Node.js este dublat de npm, un sistem de gestionarea a pachetelor
+care permite customizarea unui proiect Node.js cu diferite pachete.
+
+Există numeroase avantaje atunci când se folosește Node.js pentru dezvoltarea unui server.
+Fiind javascript, serverul în sine este mai lejer și mai ușor de întreținut. Mai mult
+de cât atât, este și mult mai rapid, operațiile de I/O fiind foarte rapide.
+Un alt avantaj important îl reprezintă numeroase librării și pachete disponibile în npm.
+
+Servicii mari precum Ebay, Netflix și PayPal \cite{tilkov2010node}, folosesc Node.js, iar popularitatea
+acestui stă doar să crească.
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=10cm]{nodespeed.png}
+\caption{Performanță a diferitor framework-uri \cite{reqpersec}}
+\end{figure}
+    
 \subsubsection{MongoDB}
-\subsubsection{Rute disponibile}
 \subsubsection{Autentificare in doi pași}
 
 \subsection{Implementarea aplicației - Clientul mobil}
@@ -510,6 +666,12 @@ Exemple de rute folosite in aplicatiie:
 \nocite{owasp-top10-2017}
 \nocite{owasp-top10-mobile}
 \nocite{3ways-auth}
+
+\nocite{liu2016follow}
+\nocite{ssidloc}
+\nocite{googleperm}
+\nocite{redditcalc}
+
 \nocite{rfc-7519}
 \nocite{jwt}
 \nocite{enisa-2017}
@@ -520,10 +682,17 @@ Exemple de rute folosite in aplicatiie:
 \nocite{erkkila2012websocket}
 \nocite{test-ws}
 
+\nocite{katz1996handbook}
+\nocite{tutrsa}
+\nocite{jonsson2003public}
+
 \nocite{kahn2010mobile}
 \nocite{barton2012regulation}
 
 \nocite{masse2011rest}
+\nocite{tilkov2010node}
+\nocite{reqpersec}
+
 \printbibliography[title=Bibliografie]
 
 \end{document}

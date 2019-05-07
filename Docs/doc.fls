@@ -143,9 +143,15 @@ INPUT ./images/fingerprint-smartphone_0.jpg
 INPUT /Users/luciangh/Repos/Medicarium/Docs/./images/wordpress-two-factor-authentication.png
 INPUT ./images/wordpress-two-factor-authentication.png
 INPUT ./images/wordpress-two-factor-authentication.png
+INPUT /Users/luciangh/Repos/Medicarium/Docs/./images/calc.png
+INPUT ./images/calc.png
+INPUT ./images/calc.png
 INPUT /Users/luciangh/Repos/Medicarium/Docs/./images/http.png
 INPUT ./images/http.png
 INPUT ./images/http.png
+INPUT /Users/luciangh/Repos/Medicarium/Docs/./images/public_key_cryptography.jpg
+INPUT ./images/public_key_cryptography.jpg
+INPUT ./images/public_key_cryptography.jpg
 INPUT /Users/luciangh/Repos/Medicarium/Docs/./images/cazuri.png
 INPUT ./images/cazuri.png
 INPUT ./images/cazuri.png
@@ -161,6 +167,9 @@ INPUT ./images/post.png
 INPUT /Users/luciangh/Repos/Medicarium/Docs/./images/delete.png
 INPUT ./images/delete.png
 INPUT ./images/delete.png
+INPUT /Users/luciangh/Repos/Medicarium/Docs/./images/nodespeed.png
+INPUT ./images/nodespeed.png
+INPUT ./images/nodespeed.png
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmti12.tfm
 INPUT /usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmtt12.tfm
 INPUT /Users/luciangh/Repos/Medicarium/Docs/doc.aux
