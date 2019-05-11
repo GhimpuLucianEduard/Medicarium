@@ -20,10 +20,59 @@
 
 \tableofcontents
 
+\newpage
 \section{Introducere}
-\subsection{Introducere}
-\subsection{Ecosistemul aplicațiilor mobile}
+\subsection{Problematica}
+
+În ultimi ani, piață dispozitivelor mobile a crescut în mod exponențial lucru datorat în primul
+rând dezvoltării tehnologice. Interesul oamenilor s-a schimbat ușor de la calculatoare de birou spre 
+dispozitive mobile precum telefoanele și ceasurile smart. 
+
+Cantitatea de date pe care aceste dispozitive mobile o prelucrează este imensă, printre care și date sensibile
+și confidențiale. Adesea acest aspect este ignorat de dezvoltatori de aplicații mobile ducând astfel
+la aplicații mobile care în mod voluntar sau involuntar expun datele utilizatorului. 
+
+Lucrarea nu se limitează doar la problemele de securitate care pot apărea în cadrul unei aplicații, ci 
+tratează și problematica confidențialității datelor și cum sunt ele prelucrate. Se tot pune problema dacă companii mari precum Facebook, Google și Amazon au dreptul de a avea acces la
+cantitatea uriașă de date fără consimțământul utilizatorului.
+
+Scopul acestei lucrări este de a identifica astfel de probleme și de a propune soluții viabile.
+Trebuie făcută precizarea că această lucrare tratează doar probleme la nivel de aplicație și cum poate
+un dezvoltator să le evite sau să le prevină. Nu o să tratăm probleme de securitate de la nivel sistemelor
+de operare.
+
+\newpage
 \subsection{GDPR}
+
+The General Data Protection Regulation (GDPR) este un set de reglementări aduse în vederea protejării datelor
+persoanelor din Uniunea Europeană. Legea a fost adoptată în 25 Mai 2018 și are că principal scop împuternicirea
+indivizilor prin a le oferi control asupra datelor personale prelucrate de companii. Legea impune că 
+orice proces comercial care gestionează date personale să o facă într-o manieră sigură și cu aprobarea
+utilizatorului.
+
+Pentru a nu crea confuzii, legea definiste noțiunea de date personale ca orice formă de informație
+care poate fi folosită pentru identifica un idivit în mod direct sau indirect. În această definiție intră
+date precum: numele, numere de identitatea, locația sau date de o anumită natură (medicale, pshihologice, 
+economice, genetice, economice, sociale, culturale) care pot fi asociate cu utilizatorul.
+
+Printre reglementările propuse se numără:
+\begin{itemize}
+    \item Abilitatea de a asigura confidențialitatea, integritatea, disponibilitatea și persistența
+    serviciilor care prelucrează datele personale.
+    \item Abilitatea de a asigura encriptarea datelor.
+    \item Abilitatea de a oferi acces la date în cazul unui accident (backup).
+    \item Impunerea unui proces de testare riguros care să asigure și să evalueze caracteristicile
+    tehnice ale sistemului care procesează datele.
+\end{itemize}
+
+Abateri de la astfel de reglementări pot fi sancționate cu amenzi infunție de
+veniturile globale brute ale companiei.
+
+Un alt aspect important al acestei legi îl reprezintă ideea de consimțământ, o declarație prin care
+se oferă în mod voluntar acces la anumite date unei anumite entități. 
+
+\newpage
+\subsection{Structura lucrării}
 
 \section{Securitatea și confidențialitatea datelor în contextul aplicațiilor mobile}
 
@@ -563,10 +612,90 @@ Server-ul REST comunica direct cu o baza de date  nonrelationala de tip mongoDB.
 \begin{figure}[H]
     \centering
     \includegraphics[width=10cm, height=8cm]{arhi.png}
-    \caption{Diagrama de arhi}
+    \caption{Diagrama de arhitectura a aplicatiei}
     \end{figure}
 
-\subsubsection{UML ceva???}
+\subsubsection{MVVM}
+
+Pentru a crea o arhitectură ușor de menținut și ușor de modificat am optat să folosesc
+șablonul arhitectural MVVM.
+
+MVVM este un șablon arhitectural original dezvoltat de Microsoft pentru Windows Presentation Foundation (WPF) framework-ul
+din .NET destinat dezvoltării de aplicații desktop. Este o variată a MVP-ului, un alt șablon arhitectural.
+Este predominant folosit pentru dezvoltarea de aplicații cu interfață grafică. Structural el este alcătuit din 3 componente:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{mvvm.png}
+\caption{Componentele din MVVM \nocite{mvvmpng}}
+\end{figure}
+
+\begin{enumerate}
+    \item View. Se referă la un ecran sau la o parte din interfață grafică,
+    ce e văzut de utilizator. Este responsabil de input-ul dat de utilizator. În cazul aplicației
+    Medicarium, view-urile sunt toate ecranele pe care aplicația le are
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=4cm, height=6cm]{view.png}
+    \caption{Exemplu de View bazat pe cod XML}
+    \end{figure}
+
+    \item ViewModel. Descrie starea datelor din model, care apoi este observată de
+    View. Deobicei include un Binder carenotifică View-ul când au loc schimbări în Model.
+    ViewModel-ul este decuplat de View, nu are nici o referință la el.
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[height=6cm]{viewModel.png}
+    \caption{Exemplu de ViewModel pentru View-ul anterior}
+    \end{figure}
+    
+    \item Model. Se referă la datele care sunt observate. Poate
+    fi un model din aplicație sau un set de date. Unicul său scop
+    e să păstreze datele.
+
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[height=6cm]{model.png}
+        \caption{Exemplu de Model din aplicația Medicarium}
+        \end{figure}
+
+\end{enumerate}
+
+Deși Google nu impune un anumit stil arhitectural pentru aplicațiile mobile Android, MVP
+era cel mai folosit șablon. Asta s-a schimbat recent cu introducerea lui Android
+Jetpack, un set de librării care vin să ajute dezvoltatorii de aplicații și care
+favorizează folosirea MVVM.
+
+Principalele avantaje a MVVM-ului față de MVP sunt:
+\begin{itemize}
+    \item O separare mai bună a responsabilităților care implicit duce la o cuplare
+    redusă. ViewModel-ul nu are nici o referință la View, el doar oferă o reprezentare
+    a datelor care poate fi observată de cineva sau nu.
+    \item Ușurează testarea. Componentele fiind redus cuplate între ele pot fi 
+    mai ușor testate. ViewModel-ul este o simplă clasa POJO sau POCO care conține
+    doar propietăți și metode ușor de testat.
+    \item Codul din ViewModel este ușor de refolosit, fâcand MVVM destul de popular pentru proiecte pe diferite platforme.
+    \item Cod mai ușor de menținut și mai adecvat pentru metodologii de lucru precum
+    agile.
+    \item Funcționează foarte bine cu alte șabloane de proiectare (Command, Singleton, 
+    Factory etc\dots)
+
+\end{itemize}
+
+Ca orice alt șablon arhitectural și MVVM prezintă puncte slabe:
+\begin{itemize}
+    \item Mai mult cod. Deși codul devin mai ușor de menținut, cantitatea lui
+    poate crește considerabil.
+    \item Depanarea codului poate fi anevoiasă datorită sistemului de Databinding.
+    \item Poate fi mai greu de înțeles la prima vedere, comparat cu MVC și MVP.
+\end{itemize}
+
+Deși MVVM se pretează cel mai bine pentru aplicații mari cu interfață grafică unde testarea este
+esențială, poate fi folosit și pentru aplicații de dimensiuni medii. Folosit cum trebuie
+poate ajută la o dezvoltare mai rapidă și la o calitate crescută a codului.
 
 \subsection{Implementarea aplicației - Serverul și serviciile}
 
@@ -599,7 +728,6 @@ de Json Web Token (JWT).
 \bigskip
 
 Exemple de rute folosite în aplicatiie:
-
 
 \begin{figure}[H]
 \centering
@@ -642,13 +770,163 @@ acestui stă doar să crească.
 \includegraphics[height=10cm]{nodespeed.png}
 \caption{Performanță a diferitor framework-uri \cite{reqpersec}}
 \end{figure}
-    
-\subsubsection{MongoDB}
-\subsubsection{Autentificare in doi pași}
 
+\newpage
+\subsubsection{MongoDB}
+
+MongoDB este un tip de baza de date flexibi și scalabil. Combină abilitatea
+de a scala cu o multe funcții secundare precum: indexi secundari, interogări range,
+sortări, agregări și indexi geospațiali \cite{banker2011mongodb}.
+
+Mai mult decât atât, MongoDB intră în categoria bazelor de date non 
+relaționale (NoSSQL). Astfel de baze de date oferă alternative când vine vorba
+de modelarea datelor, nu înlocuiesc complet sistemul relațional ci doar îl extind.
+
+Câteva din avantaje folosirii unei baze de date NoSQL \cite{nayak2013type}:
+\begin{itemize}
+    \item Mai rapide și eficiente
+    \item Oferă o gama largă de modele de date
+    \item Ușor de scalat
+    \item Nu necesită administratori de baze de date
+    \item Foarte populare și evoluează rapid
+\end{itemize}
+
+Există însă și câteva dezavantaje față de o baza de date relațională:
+\begin{itemize}
+    \item Devenind populare destul de recent, încă sunt imature
+    \item Nu există un limbaj standard pentru interogări
+    \item Unele interpretări nu respectă ACID
+    \item Mentenanță poate fi dificilă
+\end{itemize}
+
+
+Din punct de vedere tehnic, MongoDB lucrează cu "documente", obiecte de tip JSON care 
+mapează entitatiile din aplicație. Este important de precizat că nu există o stuctură
+pe care documentele care mapează aceași entitate trebuie să o respecte. Spre exemplu, putem aveam
+două documente diferite care mapează o persoana, unul să conțînă doar numele și vârstă, iar al doilea să conțînă
+nume, vârstă și înălțime. Acest lucru permite o scalabilitate mai ușoară și în general este mai
+ușor de lucrat direct cu obiecte de tip JSON.
+
+\bigskip
+
+În aplicația Medicarium, folosirea unei baze de date MongoDB facilitează în primul rând comunicare
+între toate entitățiile care se ocupă de datele aplicației.
+Un alt avantaj pe care îl aduce aplicației este eficientă și rapiditatea cu care sunt aduse datele.
+Diferența de tip pe care o aduce la citirea si scrierea de date conteaza foarte mult pentru o aplicație mobilă.
+
+Acest sistem implica toate partile solutiei soft, de la aplicatia in sine, pana la
+aplicatia dedicata sa trimita doar mesaje.
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=7cm]{exmongo.png}
+\caption{Exemplu de documente păstrate în baza de date}
+\end{figure}
+
+\newpage
+
+\subsubsection{Verificarea in doi pași}
+
+Pentru a crește nivelul de securitate al aplicației există un sistem de verificare
+în doi pași. Așa cum am precizant în prima parte a lucrării, adăugarea unui astfel de sistem
+poate fi foarte benefic pentru aplicații.
+Mai mult de cât atât, așa cum este precizat și în studiul făcut de ENISA \cite{enisa-2019}, un
+astfel de sistem este recomandat pentru a face aplicația să respecte prevederile aduse în GDPR. 
+
+\bigskip
+
+Un flow detaliat al unei astfel de verificări:
+
+\begin{enumerate}
+    \item Un utilizator nou dorește să se înregistreze SAU un utilizator cu cont deja creat
+    nu are contul verificat
+    \item Serverul REST primește cererea de la clientul mobil și va aduce date din baza de date pentru
+    a verifică dacă utilizator are cont verificat
+    \item În cazul în care utilizatorul are cont verificat, poate intră în aplicație. În caz contrar,
+    o cerere este trimisă la serverul care se ocupă de mesaje (SMS Gateway)
+    \item SMS Gateway o să salveze cererea în baza de date și va notifica dispozitivul mobil 
+    care se ocupă cu trimiterea de mesaje, care la rândul lui va trimite codul la utilizator.
+    \item Utilizatorul primește mesajul și introduce codul în dispozitiv, care apoi v-a fi verificat 
+    pe server. Dacă codul este valid, utilizatorul își poate continuă activitatea, altfel o să fie nevoit
+    să mai încerce o dată.
+    \item Verificarea mai poate eșua dacă utilizatorul nu își verifică codul în decursul a 5 minute, valabilitatea
+    codului fiind limitată din motive de securitate
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=15cm, height=18cm]{2fa.png}
+\caption{Diagrama de secvență pentru verificarea în doi pași} (baza de date este exclusă pentru a simplifica diagrama)
+\end{figure}
+
+
+\newpage
 \subsection{Implementarea aplicației - Clientul mobil}
 \subsubsection{Android Jetpack}
+
+Pentru implementarea ambelor aplicatii, clientul mobil Medicarium si aplicatia pentru mesaje, am optat 
+sa dezvolt pe Android, sistem de operare mentinut de Google. Este bazat pe un kernel Linux si este optimizat
+pentru a lucra pe device-uri cu touchscreen. 
+
+Mai mult de cat atat, am folosit Android Jetpack,
+o colectie de librarii dezvoltate recent care au in vedere imbunatatirea procesului de dezvoltare
+a aplicatiilor mobile. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm, height=8cm]{androidjetpack.png}
+\caption{Componentele din Android Jetpack \cite{jetpackpng}}
+\end{figure}
+
+\bigskip
+Motivele folosirii platformei Android:
+\begin{enumerate}
+    \item Popularitea crescuta a sisemului de operare Android. Conform unei 
+    statistici \cite{statcounter} sistemul de operare Android ocupa 75\% din 
+    piata mobila, pe cand iOS doar 22\%
+    \item Sistemul de operare Android este mai vulnerabil de cat iOS. Acest
+    lucru se datoreaza faptului ca fiecare vanzator de telefoane cu Android
+    are tendinta de a modifica putin sistemul de operare pentru al ajusta nevoilor
+    proprii. Sistemul in sine este mentinut doar de Google, astfel se creaza discrepante
+    intre diposizivele mobile cu acelasi sistem de operare dar producatori diferiti
+    de hardware. Pe de alta parte, Apple detine controlul si al software-ului (sistemul de operare iOS) 
+    si al hardware-ului, fiind mai usor de impus masuri de securitate intr-un sistem inchis.
+\end{enumerate}
+
 \subsubsection{Kotlin}
+
+Daca pana acum nu mult timp sigura metoda pentru a dezvolta aplicatii pentru Android era Java, in ultimii
+ani un nou limbaj este disponibil, Kotlin. Kotlin este un limbaj care a aparut din dorinta de a rezolva
+anumite probleme de proiectare pe care Java le are si pentru a imbunatatii procesul de dezvoltare.
+
+Kotlin este un limbaj nou, stabil care poate functiona pe orice device cu Android si rezolva multe
+probleme pe care Java nu a putut. Aduce multe concepte in plus, este un limbaj a carui scop e sa faca
+viata dezoltatorilor mult mai usoara \cite{moskala2017android}. Kotlin ruleaza pe JVM facand astfel ca orice cod scris in Java sa fie 100\% compatibil.
+
+Cateva avantaje pe care le ofera Kotlin fata de Java:
+\begin{itemize}
+    \item Cod mai putin. Kotlin este un limbaj mai concis, codul este mai usor de scris
+    si citit, crescand astfel eficienta dezvoltatorilor si reducand codebase-ul.
+    \item Suport pentru programare functionala. Exista numeroase constructii si concepte
+    ale programarii functionale care pot fi folosite in Kotlin.
+    \item Null safety. In compartie cu Java, in Kotlin orice obiect care poate avea asignata 
+    valoarea null trebuie marcat cu nullable in caz contrar codul o sa esueze la compilare.
+    \item Complet compatibil cu Java, trecerea de la Java la Kotlin fiind triviala.
+    \item Multe alte concepte moderne (operatori ternari, corutine, extensii de metode etc\dots)
+    
+\end{itemize}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=12cm, height=8cm]{kotvsjava.png}
+    \caption{Comparatie intre cod Java si cod Kotlin \cite{kotlinvsjava}}
+    \end{figure}
+    
+Multe librarii au inceput deja migrarea din Java in Kotlin. Iar Google a anuntat ca limbajul principal
+pentru Android a devenit in mod oficial Kotlin.
+
+
 \subsubsection{Autentificarea}
 \subsubsection{Securitatea aplicației}
 \subsubsection{Gestionarea permisiunilor}
@@ -661,7 +939,6 @@ acestui stă doar să crească.
 \section{Concluzii}
 
 \newpage
-
 \section{Bibliografie}
 \nocite{owasp-top10-2017}
 \nocite{owasp-top10-mobile}
@@ -689,9 +966,20 @@ acestui stă doar să crească.
 \nocite{kahn2010mobile}
 \nocite{barton2012regulation}
 
+\nocite{mvvmpng}
+
 \nocite{masse2011rest}
 \nocite{tilkov2010node}
 \nocite{reqpersec}
+
+\nocite{banker2011mongodb}
+\nocite{nayak2013type}
+
+
+\nocite{jetpackpng}
+\nocite{statcounter}
+\nocite{moskala2017android}
+\nocite{kotlinvsjava}
 
 \printbibliography[title=Bibliografie]
 

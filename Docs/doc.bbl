@@ -583,6 +583,30 @@
       \field{pages}{252\bibrangedash 258}
       \range{pages}{7}
     \endentry
+    \entry{mvvmpng}{online}{}
+      \name{author}{1}{}{%
+        {{hash=9c677286866aad38f8e9b660f5411814}{%
+           family={Wikipedia},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{fullhash}{9c677286866aad38f8e9b660f5411814}
+      \strng{bibnamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorbibnamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authornamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorfullhash}{9c677286866aad38f8e9b660f5411814}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Model-view-viewmodel}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel
+      \endverb
+    \endentry
     \entry{masse2011rest}{book}{}
       \name{author}{1}{}{%
         {{hash=d17b34343fbf45b0a0ec9962f1ac0431}{%
@@ -667,6 +691,198 @@
       \verb https://medium.com/@mihaigeorge.c/web-rest-api-benchmark-on-a-real-life-application-ebb743a5d7a3
       \endverb
     \endentry
+    \entry{banker2011mongodb}{book}{}
+      \name{author}{1}{}{%
+        {{hash=b21107beccd5aa95349a90017e775dfd}{%
+           family={Banker},
+           familyi={B\bibinitperiod},
+           given={Kyle},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Manning Publications Co.}%
+      }
+      \strng{namehash}{b21107beccd5aa95349a90017e775dfd}
+      \strng{fullhash}{b21107beccd5aa95349a90017e775dfd}
+      \strng{bibnamehash}{b21107beccd5aa95349a90017e775dfd}
+      \strng{authorbibnamehash}{b21107beccd5aa95349a90017e775dfd}
+      \strng{authornamehash}{b21107beccd5aa95349a90017e775dfd}
+      \strng{authorfullhash}{b21107beccd5aa95349a90017e775dfd}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{MongoDB in action}
+      \field{year}{2011}
+    \endentry
+    \entry{nayak2013type}{article}{}
+      \name{author}{3}{}{%
+        {{hash=2798836b2f3550424dab20ded7ac9b88}{%
+           family={Nayak},
+           familyi={N\bibinitperiod},
+           given={Ameya},
+           giveni={A\bibinitperiod}}}%
+        {{hash=4c49270a871a60f3ceecca0a8d0f78cd}{%
+           family={Poriya},
+           familyi={P\bibinitperiod},
+           given={Anil},
+           giveni={A\bibinitperiod}}}%
+        {{hash=8a294621c4c8d00c190823635d32fe63}{%
+           family={Poojary},
+           familyi={P\bibinitperiod},
+           given={Dikshay},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{36ec13c998314e31ae5a212524e0a1e8}
+      \strng{fullhash}{36ec13c998314e31ae5a212524e0a1e8}
+      \strng{bibnamehash}{36ec13c998314e31ae5a212524e0a1e8}
+      \strng{authorbibnamehash}{36ec13c998314e31ae5a212524e0a1e8}
+      \strng{authornamehash}{36ec13c998314e31ae5a212524e0a1e8}
+      \strng{authorfullhash}{36ec13c998314e31ae5a212524e0a1e8}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Applied Information Systems}
+      \field{number}{4}
+      \field{title}{Type of NOSQL databases and its comparison with relational databases}
+      \field{volume}{5}
+      \field{year}{2013}
+      \field{pages}{16\bibrangedash 19}
+      \range{pages}{4}
+    \endentry
+    \entry{enisa-2019}{online}{}
+      \name{author}{1}{}{%
+        {{hash=5f0e758bd03c86f599b64eab1cb40ba4}{%
+           family={ENISA},
+           familyi={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{5f0e758bd03c86f599b64eab1cb40ba4}
+      \strng{fullhash}{5f0e758bd03c86f599b64eab1cb40ba4}
+      \strng{bibnamehash}{5f0e758bd03c86f599b64eab1cb40ba4}
+      \strng{authorbibnamehash}{5f0e758bd03c86f599b64eab1cb40ba4}
+      \strng{authornamehash}{5f0e758bd03c86f599b64eab1cb40ba4}
+      \strng{authorfullhash}{5f0e758bd03c86f599b64eab1cb40ba4}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Privacy and data protection in mobile applications}
+      \field{year}{2019}
+      \verb{urlraw}
+      \verb https://www.enisa.europa.eu/publications/privacy-and-data-protection-in-mobile-applications
+      \endverb
+      \verb{url}
+      \verb https://www.enisa.europa.eu/publications/privacy-and-data-protection-in-mobile-applications
+      \endverb
+    \endentry
+    \entry{jetpackpng}{online}{}
+      \name{author}{1}{}{%
+        {{hash=353587b1dad213c99f480923664bc407}{%
+           family={Saiyed},
+           familyi={S\bibinitperiod},
+           given={Asfak},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{353587b1dad213c99f480923664bc407}
+      \strng{fullhash}{353587b1dad213c99f480923664bc407}
+      \strng{bibnamehash}{353587b1dad213c99f480923664bc407}
+      \strng{authorbibnamehash}{353587b1dad213c99f480923664bc407}
+      \strng{authornamehash}{353587b1dad213c99f480923664bc407}
+      \strng{authorfullhash}{353587b1dad213c99f480923664bc407}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{What is Android Jetpack?}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://android.jlelse.eu/what-is-android-jetpack-737095e88161
+      \endverb
+      \verb{url}
+      \verb https://android.jlelse.eu/what-is-android-jetpack-737095e88161
+      \endverb
+    \endentry
+    \entry{statcounter}{online}{}
+      \name{author}{1}{}{%
+        {{hash=fee3fc182e02f376217580e5bfec4f51}{%
+           family={StatCounter},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{fee3fc182e02f376217580e5bfec4f51}
+      \strng{fullhash}{fee3fc182e02f376217580e5bfec4f51}
+      \strng{bibnamehash}{fee3fc182e02f376217580e5bfec4f51}
+      \strng{authorbibnamehash}{fee3fc182e02f376217580e5bfec4f51}
+      \strng{authornamehash}{fee3fc182e02f376217580e5bfec4f51}
+      \strng{authorfullhash}{fee3fc182e02f376217580e5bfec4f51}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{StatCounter}
+      \field{year}{2019}
+      \verb{urlraw}
+      \verb http://gs.statcounter.com/os-market-share/mobile/worldwide
+      \endverb
+      \verb{url}
+      \verb http://gs.statcounter.com/os-market-share/mobile/worldwide
+      \endverb
+    \endentry
+    \entry{moskala2017android}{book}{}
+      \name{author}{2}{}{%
+        {{hash=f2ac4d714a1ec8f4ef6f65b772264d69}{%
+           family={Moskala},
+           familyi={M\bibinitperiod},
+           given={Marcin},
+           giveni={M\bibinitperiod}}}%
+        {{hash=c324a5c1a83f4495323fb873438c4080}{%
+           family={Wojda},
+           familyi={W\bibinitperiod},
+           given={Igor},
+           giveni={I\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Packt Publishing Ltd}%
+      }
+      \strng{namehash}{23c77120828f6c515079617d83f24e28}
+      \strng{fullhash}{23c77120828f6c515079617d83f24e28}
+      \strng{bibnamehash}{23c77120828f6c515079617d83f24e28}
+      \strng{authorbibnamehash}{23c77120828f6c515079617d83f24e28}
+      \strng{authornamehash}{23c77120828f6c515079617d83f24e28}
+      \strng{authorfullhash}{23c77120828f6c515079617d83f24e28}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Android Development with Kotlin}
+      \field{year}{2017}
+    \endentry
+    \entry{kotlinvsjava}{online}{}
+      \name{author}{1}{}{%
+        {{hash=396e02c9b7f218309897a724250ed155}{%
+           family={Otten},
+           familyi={O\bibinitperiod},
+           given={Pieter},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{396e02c9b7f218309897a724250ed155}
+      \strng{fullhash}{396e02c9b7f218309897a724250ed155}
+      \strng{bibnamehash}{396e02c9b7f218309897a724250ed155}
+      \strng{authorbibnamehash}{396e02c9b7f218309897a724250ed155}
+      \strng{authornamehash}{396e02c9b7f218309897a724250ed155}
+      \strng{authorfullhash}{396e02c9b7f218309897a724250ed155}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Kotlin vs Java}
+      \verb{urlraw}
+      \verb https://www.mediaan.com/kotlin-vs-java/
+      \endverb
+      \verb{url}
+      \verb https://www.mediaan.com/kotlin-vs-java/
+      \endverb
+    \endentry
     \entry{jonsson2003public}{report}{}
       \name{author}{2}{}{%
         {{hash=b1a97c8786efb9f7daf3f4ccadf4a6f1}{%
@@ -686,8 +902,8 @@
       \strng{authorbibnamehash}{e31b46ee29043b905710950ca5aa8328}
       \strng{authornamehash}{e31b46ee29043b905710950ca5aa8328}
       \strng{authorfullhash}{e31b46ee29043b905710950ca5aa8328}
-      \field{sortinit}{4}
-      \field{sortinithash}{11cdaee3b18e01d77f3f428b13c1fc76}
+      \field{sortinit}{5}
+      \field{sortinithash}{3c19c3776b658b3558e9e2e4840c01e2}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Public-key cryptography standards (PKCS)\# 1: RSA cryptography specifications version 2.1}

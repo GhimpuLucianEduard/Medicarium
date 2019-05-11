@@ -1,83 +1,83 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1}Introducere}{3}
+\contentsline {section}{\numberline {1}Introducere}{4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.1}Introducere}{3}
+\contentsline {subsection}{\numberline {1.1}Problematica}{4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.2}Ecosistemul aplica\IeC {\textcommabelow t}iilor mobile}{3}
+\contentsline {subsection}{\numberline {1.2}GDPR}{5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.3}GDPR}{3}
+\contentsline {subsection}{\numberline {1.3}Structura lucr\IeC {\u a}rii}{6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2}Securitatea \IeC {\textcommabelow s}i confiden\IeC {\textcommabelow t}ialitatea datelor \IeC {\^\i }n contextul aplica\IeC {\textcommabelow t}iilor mobile}{3}
+\contentsline {section}{\numberline {2}Securitatea \IeC {\textcommabelow s}i confiden\IeC {\textcommabelow t}ialitatea datelor \IeC {\^\i }n contextul aplica\IeC {\textcommabelow t}iilor mobile}{6}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1}Autentificarea si \IeC {\^\i }nregistrarea}{3}
+\contentsline {subsection}{\numberline {2.1}Autentificarea si \IeC {\^\i }nregistrarea}{6}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.1.1}Ceva introducere *}{4}
+\contentsline {subsubsection}{\numberline {2.1.1}Ceva introducere *}{7}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.1.2}JWT}{5}
+\contentsline {subsubsection}{\numberline {2.1.2}JWT}{8}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.1.3}Autentificare prin senzori biometrici}{7}
+\contentsline {subsubsection}{\numberline {2.1.3}Autentificare prin senzori biometrici}{10}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.1.4}Autentificare prin factori multiplii}{8}
+\contentsline {subsubsection}{\numberline {2.1.4}Autentificare prin factori multiplii}{11}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2}Permisiuni}{10}
+\contentsline {subsection}{\numberline {2.2}Permisiuni}{13}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3}Canale de comunicare}{12}
+\contentsline {subsection}{\numberline {2.3}Canale de comunicare}{15}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.3.1}HTTP \IeC {\textcommabelow s}i HTTPS}{12}
+\contentsline {subsubsection}{\numberline {2.3.1}HTTP \IeC {\textcommabelow s}i HTTPS}{15}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.3.2}SMS}{13}
+\contentsline {subsubsection}{\numberline {2.3.2}SMS}{16}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.3.3}WebSocket}{14}
+\contentsline {subsubsection}{\numberline {2.3.3}WebSocket}{17}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.4}Persisten\IeC {\textcommabelow t}a datelor}{15}
+\contentsline {subsection}{\numberline {2.4}Persisten\IeC {\textcommabelow t}a datelor}{18}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.4.1}Metode de persistare a datelor}{15}
+\contentsline {subsubsection}{\numberline {2.4.1}Metode de persistare a datelor}{18}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.4.2}Criptografie}{16}
+\contentsline {subsubsection}{\numberline {2.4.2}Criptografie}{19}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3}Medicarium}{18}
+\contentsline {section}{\numberline {3}Medicarium}{21}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.1}Analiza aplica\IeC {\textcommabelow t}iei}{18}
+\contentsline {subsection}{\numberline {3.1}Analiza aplica\IeC {\textcommabelow t}iei}{21}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {3.1.1}Problematica}{18}
+\contentsline {subsubsection}{\numberline {3.1.1}Problematica}{21}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {3.1.2}Cazuri de utilizare}{19}
+\contentsline {subsubsection}{\numberline {3.1.2}Cazuri de utilizare}{22}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2}Proiectarea aplica\IeC {\textcommabelow t}iei}{20}
+\contentsline {subsection}{\numberline {3.2}Proiectarea aplica\IeC {\textcommabelow t}iei}{23}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {3.2.1}Arhitectura}{20}
+\contentsline {subsubsection}{\numberline {3.2.1}Arhitectura}{23}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {3.2.2}UML ceva???}{21}
+\contentsline {subsubsection}{\numberline {3.2.2}MVVM}{24}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3}Implementarea aplica\IeC {\textcommabelow t}iei - Serverul \IeC {\textcommabelow s}i serviciile}{21}
+\contentsline {subsection}{\numberline {3.3}Implementarea aplica\IeC {\textcommabelow t}iei - Serverul \IeC {\textcommabelow s}i serviciile}{27}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {3.3.1}Server REST}{21}
+\contentsline {subsubsection}{\numberline {3.3.1}Server REST}{27}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {3.3.2}Node.js}{23}
+\contentsline {subsubsection}{\numberline {3.3.2}Node.js}{29}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {3.3.3}MongoDB}{24}
+\contentsline {subsubsection}{\numberline {3.3.3}MongoDB}{30}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {3.3.4}Autentificare in doi pa\IeC {\textcommabelow s}i}{24}
+\contentsline {subsubsection}{\numberline {3.3.4}Verificarea in doi pa\IeC {\textcommabelow s}i}{32}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.4}Implementarea aplica\IeC {\textcommabelow t}iei - Clientul mobil}{24}
+\contentsline {subsection}{\numberline {3.4}Implementarea aplica\IeC {\textcommabelow t}iei - Clientul mobil}{34}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {3.4.1}Android Jetpack}{24}
+\contentsline {subsubsection}{\numberline {3.4.1}Android Jetpack}{34}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {3.4.2}Kotlin}{24}
+\contentsline {subsubsection}{\numberline {3.4.2}Kotlin}{35}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {3.4.3}Autentificarea}{24}
+\contentsline {subsubsection}{\numberline {3.4.3}Autentificarea}{36}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {3.4.4}Securitatea aplica\IeC {\textcommabelow t}iei}{24}
+\contentsline {subsubsection}{\numberline {3.4.4}Securitatea aplica\IeC {\textcommabelow t}iei}{36}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {3.4.5}Gestionarea permisiunilor}{24}
+\contentsline {subsubsection}{\numberline {3.4.5}Gestionarea permisiunilor}{36}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {3.4.6}Gestionarea fisierelor}{24}
+\contentsline {subsubsection}{\numberline {3.4.6}Gestionarea fisierelor}{36}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.5}Testarea}{24}
+\contentsline {subsection}{\numberline {3.5}Testarea}{36}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4}Manual de utilizare}{24}
+\contentsline {section}{\numberline {4}Manual de utilizare}{36}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}Concluzii}{24}
+\contentsline {section}{\numberline {5}Concluzii}{36}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6}Bibliografie}{25}
+\contentsline {section}{\numberline {6}Bibliografie}{37}

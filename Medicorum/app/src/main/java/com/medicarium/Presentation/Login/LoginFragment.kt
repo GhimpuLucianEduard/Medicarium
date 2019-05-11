@@ -10,14 +10,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.medicarium.Presentation.BaseFragment
 import com.medicarium.Presentation.Services.DialogService
-import com.medicarium.Presentation.Signup.SignupViewModel
-import com.medicarium.Presentation.Signup.SignupViewModelFactory
 import com.medicarium.R
 import com.medicarium.Utilities.ErrorMessages.Companion.INVALID_EMAIL
 import com.medicarium.Utilities.ErrorMessages.Companion.INVALID_PASSWORD
 import com.medicarium.Utilities.EventObserver
 import com.medicarium.databinding.LoginFragmentBinding
-import com.medicarium.databinding.SignupFragmentBinding
 import isEmailValid
 import isPasswordValid
 import kotlinx.android.synthetic.main.login_fragment.*
