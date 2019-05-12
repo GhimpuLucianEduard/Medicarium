@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
         }
 
         // TODO remove
-        graph.startDestination = R.id.medicalRecordDetailsFragment
+        //graph.startDestination = R.id.addMedicalTestFragment
 
         navController.graph = graph
     }

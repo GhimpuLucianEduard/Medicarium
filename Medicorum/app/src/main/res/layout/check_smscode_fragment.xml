@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/nunito_semibold"
-            android:text="0728189341"
+            android:text="0724442312"
             android:textColor="@color/accentBlue"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"

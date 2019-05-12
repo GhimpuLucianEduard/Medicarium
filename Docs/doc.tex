@@ -71,14 +71,52 @@ veniturile globale brute ale companiei.
 Un alt aspect important al acestei legi îl reprezintă ideea de consimțământ, o declarație prin care
 se oferă în mod voluntar acces la anumite date unei anumite entități. 
 
+Legea este mult mai amplă și cuprinde mult mai multe aspecte legate de întregul proces
+de prelucrarea datelor, am reamintit aici doar câteva dintre ele. 
+Putem totuși trage concluzia că aceste reglementări afectează în mod direct toți
+dezvoltatorii de soluții soft prin urmare naște necesitatea de a informa astfel de
+dezvoltatori de eventualele probleme și cum le pot prevenii.
+
 \newpage
 \subsection{Structura lucrării}
 
-\section{Securitatea și confidențialitatea datelor în contextul aplicațiilor mobile}
+În prima parte a lucrării vom aborda câteva aspecte teoretice legate de întregul proces
+prin care pot trece datele personale ale unui utlizator.
+Vom urmării procesul în patru etape:
 
-\subsection{Autentificarea si înregistrarea}
+\begin{enumerate}
+    \item Autentificarea și verificarea identității utilizatorilor. Metode prin pare un utilizator 
+    de poate autentifica și cum putem verifică
+    identitatea lor. Vom încerca să găsim o soluție cât mai sigur dar și ușor de
+    folosit pentru utilizatori.
+    \item Cererea de permisiuni către utilizator. Vom dezbate metode prin
+    care putem cere consimțământul utlizatorului și de ce este el necesar.
+    \item Comunicarea și trasmiterea datelor. De multe ori există mai multe entități fizice 
+    (servere, cliente, baze de date etc\dots) prin care datele utilizatorilor trec, 
+    astfel în cât se impune folosirea unor canale de comunicare sigure.
+    \item Persistarea și criptarea datelor. În final o să vedem cum putem păstra
+    datele utilizatorilor într-o manieră sigură.  
+\end{enumerate}
+
+Această nu este o lista exhaustivă ci doar urmărește unele dintre cele mai importante 
+etape alese în funcție de regrementariile impuse de GDPR. 
+
+\bigskip
+
+În a două parte o să prezint o aplicație mobilă, Medicarium, în care au fost aplicate
+aspectele teoretice discutate în prima parte. Aplicația urmărește prelucrarea datelor
+medicale ale utilizatorilor. 
+
+O să discutam despre cum putem proiecta o aplicație mobilă astfel în cât
+să devină flexibilă și ușor de modificat pentru a putea prevenii și soluționa orice
+problema legată de securitatea aplicației și de ce tehnologii ne putem 
+folosi pentru a implementa o astfel de soluție soft.
+
+
 \newpage
-\subsubsection{Ceva introducere *}
+\section{Securitatea și confidențialitatea datelor în contextul aplicațiilor mobile}
+\subsection{Autentificarea și verificarea identității}
+\subsubsection{Importanța autentificării}
 
 Indiferent că vorbim de aplicații web, desktop sau mobile, majoritatea folosesc 
 o metodă de autentificare. Auntentificarea șî înregistrarea stau la baza
@@ -272,6 +310,8 @@ Ambele metode pot coexista în funcție de context.
 \caption{Autentificare prin senzor de amprentă}
 \end{figure}
 
+
+\newpage
 \subsubsection{Autentificare prin factori multiplii}
 
 Autentificare prin factori multiplii (MFA) este un sistem de securizare a autentificării
@@ -357,7 +397,7 @@ Pentru o gestiune corectă a permisiunilor se mai recomandă următoarele:
 \end{itemize}
 
 
-
+\newpage
 \subsection{Canale de comunicare}
 \subsubsection{HTTP și HTTPS}
 
@@ -382,7 +422,7 @@ pe desktop.
 
 \begin{figure}[H]
 \centering
-\includegraphics{http.png}
+\includegraphics[width=15cm, height=7cm]{http.png}
 \caption{Procentul de utilizare HTTPS pe diferite sisteme de operare la sfarsitul unei saptamani din
 Febraruie 2017 \cite{felt2017measuring}}
 \end{figure}
@@ -926,18 +966,215 @@ Cateva avantaje pe care le ofera Kotlin fata de Java:
 Multe librarii au inceput deja migrarea din Java in Kotlin. Iar Google a anuntat ca limbajul principal
 pentru Android a devenit in mod oficial Kotlin.
 
+\newpage
+\subsubsection{Implementarea autentificării}
 
-\subsubsection{Autentificarea}
-\subsubsection{Securitatea aplicației}
-\subsubsection{Gestionarea permisiunilor}
-\subsubsection{Gestionarea fisierelor}
+In aceasta ultima parte vom vedeam cum am implementat in aplicatie anumite necesitati
+discutate in partea teoretic.
+Vom incepe cu Autentificarea si verificarea identidatii. Ca in orice aplicatie, la inceput
+in prima instanta suntem intampinati cu doua optiuni, a ne loga cu un cont deja creat sau a
+crea un cont nou:
 
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[b]{0.4\textwidth}
+      \includegraphics[width=\textwidth]{login.png}
+      \caption{Ecranul de Login}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.4\textwidth}
+      \includegraphics[width=\textwidth]{register.png}
+      \caption{Ecranul de Register}
+    \end{minipage}
+  \end{figure}
+
+In cazul in care contul utilizatorului nu este verificat, un mesaj o sa fie trimis
+catre numarul lui personal pentru a isi verifica identitatea. Mesajul este trimis
+prin SMS Gateway, serverul separat care se ocupa doar cu trimiterea de mesaje de verificare.
+
+\begin{figure}[H]
+\centering
+\begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{smsfrag.png}
+    \caption{Ecranul de verificare a codului primit prin SMS}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{smsslave.jpg}
+    \caption{Aplicația SMS slave}
+\end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics{exsms.png}
+\caption{Model de SMS cu cod de verificare}
+\end{figure}
+
+O data ce un utlizator are contul verificat acesta poate intra in aplicatie
+in dou feluri, prin amprenta sau prin cod PIN. Desi varianta cea mai facila ar fi prin
+aprenta, nu toate telefoanele au senzor astfel in cat se impune necesitatea implementarii
+si a autentificarii prin pin.
+
+\begin{figure}[H]
+\centering
+\begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{pin.png}
+    \caption{Autentificare prin cod PIN}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{fingfrag.png}
+    \caption{Autentificae prin aprentă}
+\end{minipage}
+\end{figure}
+
+Pentru a asigura ca dispozitivul mobil suporta senzor de amprenta se fac o serie 
+de verificari. Se verifica daca versiunea sistemului de operare e potrivita,
+daca exista senzor de amprenta, daca avem permisiunea de a folosi amprenta utilizatorului
+si daca exista cel putin o aprenta setata pe dispozitivul respectiv.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=14cm, height=9cm]{fingver.png}
+\caption{Metoda care verifica daca autentificarea prin amprenta este posibilă}
+\end{figure}
+
+In cazul in care verificarea prin amprenta nu este posibilă, utilizatorul poate folosi
+autentificarea prin cod PIN.
+
+\newpage
+\subsection{Gestionarea permisiunilor}
+
+Aplicatia necestia o serie de permisiuni pentru a functiona la capabilitatile sale
+maxime. Asta nu insemna ca fara anumite permisiuni aplicatie nu functioneaza ci doar o
+sa limiteze functionalitatile disponibile. Spre exemplu daca utilizatorul nu permite
+accesul la camera, el o sa poata folosii restul aplicatie dar nu functionalitatile care necesita 
+permisiunea la camera.
+
+Permisiunile sunt cerute in general atunci cand sunt necesare.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm, height=7cm]{listapermi.png}
+    \caption{Lista de permisiuni folosite in Medicarium}
+    \end{figure}
+
+\begin{itemize}
+    \item Permisiunea pentru Internet si starea retelei sunt folosite
+    pentru a accesa reteau si pentru a verifica daca exista conexiune
+    \item Permisiunea la senzorii biometrici si senzorul de amprenta sunt folosite
+    pentru autentificare
+    \item Camera, autofocusul si accesul la datele externe sunt folosite atunci cand se aduga anlize noi
+    \item Permisiunea pentru vibratii este folosita pentru a oferii feedback utilizatorului
+\end{itemize}
+
+\subsection{Persistența datelor si comunicarea cu serverul}
+
+Majoritatea datelor nu sunt pastrate pe dispozitivul utilizatorului ci sunt
+trimise direct serverului prin canale siguri de comunicare folosind HTTPS.
+
+Putem exemplifica un astfel de flow pentru functionalitatea de "adauga analiza medicala":
+
+\begin{enumerate}
+    \item In prima faza utilizatorul completeaza datele necesare si sunt validate
+    in clientul mobil.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=7cm, height=13cm]{addNewRecord.jpg}
+        \caption{Ecranul unde sunt completate datele}
+        \end{figure}
+
+    
+    \item O cerere HTTP POST este apoi facuta catre server.
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=15cm]{addMethod.png}
+        \caption{Metoda HTTP si ruta la care se face cererea}
+        \end{figure}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=15cm, height=7cm]{addRequest.png}
+            \caption{Codul prin care se face cererea la server}
+            \end{figure}
+
+
+    \item In final datele ajung la server si sunt salvate in baza de date.
+    
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=10cm, height=6cm]{addServer.png}
+        \caption{Cod din server}
+        \end{figure}
+
+\end{enumerate}
+
+Datele care sunt salvate in memoria telefonului sunt datele generale ale utilizatorului care pot fi folosite
+si fara conexiune la internet pentru modul de urgenta. Ele sunt pastrate intr-o baza de date locala criptata.
+Sunt folosite si fisierele de preferinta pentru a salva date de dimensiuni mici 
+cu scop auxiliar. La fel ca baza de date locala, si fisierele de preferinte sunt criptate.
+
+\bigskip
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{noncript.png}
+    \caption{Fisier de preferinte fara criptare}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics{cript2.png}
+        \caption{Fisier de preferinte cu criptate}
+        \end{figure}
+
+\newpage
 \subsection{Testarea}
 
-\section{Manual de utilizare}
+Pentru a asigura calitatea solutie soft am dezvoltat in paralel cu aplicatia 
+si o suita de teste. Majoritatea testelor sunt de tip unitar, verificand o anumita
+funtionalitate. De asemenea testele sunt separate in functie de entitatea pe care o testeaza 
+(serverul sau clientul).
+
+
+Pentru a testa serverul REST facut in Node.js am folosit o serie de pachete ajutatoare: 
+mocha, chai si supertest. Am creat teste pentru rutele disponibile. Testele ruleaza intr-o
+configurarea separata care valideaza token-ul de autentificare in mod implicit.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=10cm, height=8cm]{unitnode.png}
+    \caption{Exemple de teste unitare in Node.js}
+    \end{figure}
+
+
+Pentru a rula un test pe o anumita ruta se defineste ruta la care se va executa testul,
+metoda (GET, POST, DELETE, etc\dots) si eventualele date de care e nevoie. Apoi se defineste
+ce cod ar trebuii sa aibe raspunsul primit si eventual ce date sau tip de date ar trebuii primite.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=8cm, height=6cm]{confnode.png}
+    \caption{Rularea unei suite de teste pe ruta /medicalHistory}
+    \end{figure}
+
+
+Pentru clientul mobil am folosit JUnit, o librarie specilizate pe unit testing si
+diferite librarii auxiliare oferite de Kotlin si Android pentru a elabora si teste de integrare.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=10cm, height=8cm]{interg.png}
+    \caption{Clasa cu test de integrare care cuprinde mai multe servicii si un ViewModel}
+    \end{figure}
+
+
 
 \section{Concluzii}
-
 \newpage
 \section{Bibliografie}
 \nocite{owasp-top10-2017}

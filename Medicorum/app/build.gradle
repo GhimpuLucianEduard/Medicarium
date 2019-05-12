@@ -30,6 +30,9 @@ android {
     packagingOptions {
         exclude 'META-INF/main.kotlin_module'
         exclude 'META-INF/library_release.kotlin_module'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE.md'
+        exclude 'META-INF/LICENSE-notice.md'
     }
 }
 
@@ -143,4 +146,11 @@ dependencies {
 
     // image viewer
     implementation 'com.github.stfalcon:stfalcon-imageviewer:0.1.0'
+
+
+    testImplementation "junit:junit:4.12"
+    testImplementation "org.mockito:mockito-core:1.10.19"
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation "androidx.arch.core:core-testing:2.0.0"
 }

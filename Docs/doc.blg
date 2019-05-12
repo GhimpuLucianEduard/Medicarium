@@ -1,18 +1,18 @@
 [0] Config.pm:302> INFO - This is Biber 2.11
-[0] Config.pm:305> INFO - Logfile is 'doc.blg'
-[51] biber-darwin:313> INFO - === Sat May 11, 2019, 20:31:12
-[88] Biber.pm:371> INFO - Reading 'doc.bcf'
-[206] Biber.pm:857> INFO - Found 33 citekeys in bib section 0
-[223] Biber.pm:3976> INFO - Processing section 0
-[242] Biber.pm:4136> INFO - Looking for bibtex format file 'ref.bib' for section 0
-[245] bibtex.pm:1500> INFO - LaTeX decoding ...
-[284] bibtex.pm:1316> INFO - Found BibTeX data source 'ref.bib'
-[451] Utils.pm:193> WARN - BibTeX subsystem: warning: comma(s) at end of name (removing)
-[451] Utils.pm:193> WARN - BibTeX subsystem: author, warning: comma(s) at end of name (removing)
-[483] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[483] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[484] Biber.pm:3804> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
-[484] Biber.pm:3810> INFO - No sort tailoring available for locale 'en-US'
-[520] bbl.pm:617> INFO - Writing 'doc.bbl' with encoding 'UTF-8'
-[534] bbl.pm:720> INFO - Output to doc.bbl
-[535] Biber.pm:110> INFO - WARNINGS: 2
+[1] Config.pm:305> INFO - Logfile is 'doc.blg'
+[67] biber-darwin:313> INFO - === Sun May 12, 2019, 21:02:26
+[107] Biber.pm:371> INFO - Reading 'doc.bcf'
+[242] Biber.pm:857> INFO - Found 33 citekeys in bib section 0
+[273] Biber.pm:3976> INFO - Processing section 0
+[292] Biber.pm:4136> INFO - Looking for bibtex format file 'ref.bib' for section 0
+[295] bibtex.pm:1500> INFO - LaTeX decoding ...
+[344] bibtex.pm:1316> INFO - Found BibTeX data source 'ref.bib'
+[596] Utils.pm:193> WARN - BibTeX subsystem: warning: comma(s) at end of name (removing)
+[596] Utils.pm:193> WARN - BibTeX subsystem: author, warning: comma(s) at end of name (removing)
+[651] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[652] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[652] Biber.pm:3804> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
+[652] Biber.pm:3810> INFO - No sort tailoring available for locale 'en-US'
+[731] bbl.pm:617> INFO - Writing 'doc.bbl' with encoding 'UTF-8'
+[769] bbl.pm:720> INFO - Output to doc.bbl
+[772] Biber.pm:110> INFO - WARNINGS: 2

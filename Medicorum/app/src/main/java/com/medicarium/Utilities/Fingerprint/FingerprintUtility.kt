@@ -1,6 +1,7 @@
 package com.medicarium.Utilities.Fingerprint
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.app.KeyguardManager
 import android.content.Context
@@ -21,6 +22,7 @@ import javax.crypto.SecretKey
 
 // TODO create FingerprintService
 // N.B. using FingerprintManager instead of BiometricDialog to create own UI
+@Suppress("DEPRECATION")
 @TargetApi(Build.VERSION_CODES.M)
 class FingerprintUtility {
 
@@ -30,6 +32,7 @@ class FingerprintUtility {
         private const val ANDROID_KEY_STORE = "AndroidKeyStore"
         private const val KEY_NAME = "fingerPrintKey"
         private lateinit var keyStore: KeyStore
+
 
         fun hasFingerprintSupport(context: Context): Boolean {
 
@@ -44,7 +47,8 @@ class FingerprintUtility {
                 }
 
                 // check permission
-                if (ActivityCompat.checkSelfPermission(context, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(context, Manifest.permission.USE_FINGERPRINT)
+                    != PackageManager.PERMISSION_GRANTED) {
                     return false
                 }
 
