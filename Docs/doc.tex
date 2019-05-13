@@ -7,16 +7,43 @@
 \graphicspath{ {./images/} }
 
 \begin{document}
-\title{Securitatea și confidențialitatea datelor în contextul aplicațiilor mobile}
+\begin{titlepage}
+    \begin{center}
+        {\scshape\large UNIVERSITATEA BABES-BOLYAI CLUJ-NAPOCA \par}
+        \vspace{0.2cm}
+        {\scshape\large FACULTATEA DE MATEMATICA SI INFORMATICA \par}
+        \vspace{0.2cm}
+        {\scshape\large SPECIALIZAREA INFORMATICA \par}
+        \vspace{4.5cm}
+        {\LARGE\bfseries LUCRARE DE LICENTA \par}
+        \vspace{0.3cm}
+        {\LARGE\bfseries Securitatea și confidențialitatea datelor în contextul aplicațiilor mobile\par}
+        \vspace{0.5cm}
+   \end{center}
 
-\author{Ghimpu Lucian Eduard}
-\maketitle
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+\vspace*{\fill}
+\begin{minipage}{0.5\textwidth}
+\begin{flushleft} \large
+\emph{Conducator stiintific}\\
+Prof. Dr. Istvan \textsc{CZIBULA} 
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Absolvent}\\
+Lucian Edaurd \textsc{Ghimpu} 
+\end{flushright}
+\end{minipage}
+\vspace{2.0cm}
+\begin{center}
+{\large 2019}
+\end{center}
+\end{titlepage}
 
-\textsc{Conducător științific}
-
-\textsc{Dr. CZIBULA Istvan, Profesor Universitar}
-
-\newpage
 
 \tableofcontents
 
@@ -655,6 +682,47 @@ Server-ul REST comunica direct cu o baza de date  nonrelationala de tip mongoDB.
     \caption{Diagrama de arhitectura a aplicatiei}
     \end{figure}
 
+\newpage
+Server-ul REST o sa fie impărțit in mai multe module dupa cum urmeaza:
+
+\begin{itemize}
+    \item Un modul pentru Modele (Models), cara să conțină difinițiile schemelor 
+    entităților din baza de date.
+    \item Un modul pentru Rute (Routes), care gestioneaza cererile primite la server
+    \item Un modul pentru interceptorul de token (Middleware), cărui rol e sa
+    verifice daca cererile către server au un token valid.
+    \item Un modul de teste
+    \item Modulul principal care cuprinde restul modulelor si contine fișierele server.js
+    si index.js a caror scop e să centralizeze restul modulelor
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=12cm, height=10cm]{pacheteserver.png}
+    \caption{Diagrama de pachete pentru server}
+    \end{figure}
+
+\newpage
+Clientul mobil o să fie și el împărțit in pachete:
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm, height=17cm]{pacheteclient.png}
+    \caption{Diagrama de pachete a clientului mobil}
+    \end{figure}
+
+
+Conținutul parțial al pachetului Data prin urmatoarea diagramă de clase:
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm,height=17cm]{dataclase.png}
+    \caption{Diagrama de clase parțială a pachetului Data}
+    \end{figure}
+
 \subsubsection{MVVM}
 
 Pentru a crea o arhitectură ușor de menținut și ușor de modificat am optat să folosesc
@@ -724,6 +792,13 @@ Principalele avantaje a MVVM-ului față de MVP sunt:
     Factory etc\dots)
 
 \end{itemize}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm,height=10cm]{mvvmclase.png}
+    \caption{Diagrama de clase care evidentiază structura MVVM pentru funcționalitatea de login}
+    \end{figure}
 
 Ca orice alt șablon arhitectural și MVVM prezintă puncte slabe:
 \begin{itemize}
@@ -968,11 +1043,9 @@ pentru Android a devenit in mod oficial Kotlin.
 
 \newpage
 \subsubsection{Implementarea autentificării}
-
-In aceasta ultima parte vom vedeam cum am implementat in aplicatie anumite necesitati
-discutate in partea teoretic.
-Vom incepe cu Autentificarea si verificarea identidatii. Ca in orice aplicatie, la inceput
-in prima instanta suntem intampinati cu doua optiuni, a ne loga cu un cont deja creat sau a
+În această ultimă parte vom vedeam cum am implementat în aplicație anumite necesități
+discutate în partea teoretic.
+Vom începe cu autentificarea și verificarea identității. Ca în orice aplicație, în prima instanța suntem întâmpinați cu două opțiuni, a ne loga cu un cont deja creat sau a
 crea un cont nou:
 
 \begin{figure}[H]
@@ -988,9 +1061,9 @@ crea un cont nou:
     \end{minipage}
   \end{figure}
 
-In cazul in care contul utilizatorului nu este verificat, un mesaj o sa fie trimis
-catre numarul lui personal pentru a isi verifica identitatea. Mesajul este trimis
-prin SMS Gateway, serverul separat care se ocupa doar cu trimiterea de mesaje de verificare.
+În cazul în care contul utilizatorului nu este verificat, un mesaj o să fie trimis
+către numărul lui personal pentru a își verifică identitatea. Mesajul este trimis
+prin SMS Gateway, serverul separat care se ocupă doar cu trimiterea de mesaje de verificare.
 
 \begin{figure}[H]
 \centering
@@ -1011,10 +1084,10 @@ prin SMS Gateway, serverul separat care se ocupa doar cu trimiterea de mesaje de
 \caption{Model de SMS cu cod de verificare}
 \end{figure}
 
-O data ce un utlizator are contul verificat acesta poate intra in aplicatie
-in dou feluri, prin amprenta sau prin cod PIN. Desi varianta cea mai facila ar fi prin
-aprenta, nu toate telefoanele au senzor astfel in cat se impune necesitatea implementarii
-si a autentificarii prin pin.
+O dată ce un utlizator are contul verificat acesta poate intra în aplicație
+în dou feluri, prin amprentă sau prin cod PIN. Deși varianta cea mai facilă ar fi prin
+aprentă, nu toate telefoanele au senzor astfel în cât se impune necesitatea implementării
+și a autentificării prin pin.
 
 \begin{figure}[H]
 \centering
@@ -1029,56 +1102,56 @@ si a autentificarii prin pin.
 \end{minipage}
 \end{figure}
 
-Pentru a asigura ca dispozitivul mobil suporta senzor de amprenta se fac o serie 
-de verificari. Se verifica daca versiunea sistemului de operare e potrivita,
-daca exista senzor de amprenta, daca avem permisiunea de a folosi amprenta utilizatorului
-si daca exista cel putin o aprenta setata pe dispozitivul respectiv.
+Pentru a asigura că dispozitivul mobil suportă senzor de amprenta se fac o serie 
+de verificări. Se verifică dacă versiunea sistemului de operare este potrivită,
+dacă există senzor de amprenta, dacă avem permisiunea de a folosi amprenta utilizatorului
+și dacă există cel puțîn o aprentă setată pe dispozitivul respectiv.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=14cm, height=9cm]{fingver.png}
-\caption{Metoda care verifica daca autentificarea prin amprenta este posibilă}
+\caption{Metoda care verifică dacă autentificarea prin amprenta este posibilă}
 \end{figure}
 
-In cazul in care verificarea prin amprenta nu este posibilă, utilizatorul poate folosi
+În cazul în care verificarea prin amprenta nu este posibilă, utilizatorul poate folosi
 autentificarea prin cod PIN.
 
 \newpage
-\subsection{Gestionarea permisiunilor}
+\subsubsection{Gestionarea permisiunilor}
 
-Aplicatia necestia o serie de permisiuni pentru a functiona la capabilitatile sale
-maxime. Asta nu insemna ca fara anumite permisiuni aplicatie nu functioneaza ci doar o
-sa limiteze functionalitatile disponibile. Spre exemplu daca utilizatorul nu permite
-accesul la camera, el o sa poata folosii restul aplicatie dar nu functionalitatile care necesita 
-permisiunea la camera.
+Aplicația necestia o serie de permisiuni pentru a funcționa la capabilitățile sale
+maxime. Asta nu însemna că fără anumite permisiuni aplicație nu funcționează ci doar o
+să limiteze funcționalitățile disponibile. Spre exemplu dacă utilizatorul nu permite
+accesul la camera, el o să poată folosii restul aplicație dar nu funcționalitățile care necesită 
+camera.
 
-Permisiunile sunt cerute in general atunci cand sunt necesare.
+Permisiunile sunt cerute în general atunci când sunt necesare.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm, height=7cm]{listapermi.png}
-    \caption{Lista de permisiuni folosite in Medicarium}
+    \caption{Lista de permisiuni folosite în Medicarium}
     \end{figure}
 
 \begin{itemize}
-    \item Permisiunea pentru Internet si starea retelei sunt folosite
-    pentru a accesa reteau si pentru a verifica daca exista conexiune
-    \item Permisiunea la senzorii biometrici si senzorul de amprenta sunt folosite
+    \item Permisiunea pentru Internet și starea rețelei sunt folosite
+    pentru a accesa rețeau și pentru a verifică dacă există conexiune
+    \item Permisiunea la senzorii biometrici și senzorul de amprenta sunt folosite
     pentru autentificare
-    \item Camera, autofocusul si accesul la datele externe sunt folosite atunci cand se aduga anlize noi
-    \item Permisiunea pentru vibratii este folosita pentru a oferii feedback utilizatorului
+    \item Camera, autofocusul și accesul la datele externe sunt folosite atunci când se adugă anlize noi
+    \item Permisiunea pentru vibrații este folosită pentru a oferii feedback utilizatorului
 \end{itemize}
 
-\subsection{Persistența datelor si comunicarea cu serverul}
+\subsubsection{Persistența datelor și comunicarea cu serverul}
 
-Majoritatea datelor nu sunt pastrate pe dispozitivul utilizatorului ci sunt
-trimise direct serverului prin canale siguri de comunicare folosind HTTPS.
+Majoritatea datelor nu sunt păstrate pe dispozitivul utilizatorului ci sunt
+trimise direct serverului prin canale siguri de comunicare, folosind HTTPS.
 
-Putem exemplifica un astfel de flow pentru functionalitatea de "adauga analiza medicala":
+Putem exemplifica un astfel de flow pentru funcționalitatea de "adaugă analiză medicală":
 
 \begin{enumerate}
-    \item In prima faza utilizatorul completeaza datele necesare si sunt validate
-    in clientul mobil.
+    \item În prima faza utilizatorul completează datele necesare și sunt validate
+    în clientul mobil.
 
     \begin{figure}[H]
         \centering
@@ -1087,12 +1160,12 @@ Putem exemplifica un astfel de flow pentru functionalitatea de "adauga analiza m
         \end{figure}
 
     
-    \item O cerere HTTP POST este apoi facuta catre server.
+    \item O cerere HTTP POST este apoi făcută către server.
     
     \begin{figure}[H]
         \centering
         \includegraphics[width=15cm]{addMethod.png}
-        \caption{Metoda HTTP si ruta la care se face cererea}
+        \caption{Metodă HTTP și ruta la care se face cererea}
         \end{figure}
 
         \begin{figure}[H]
@@ -1102,7 +1175,7 @@ Putem exemplifica un astfel de flow pentru functionalitatea de "adauga analiza m
             \end{figure}
 
 
-    \item In final datele ajung la server si sunt salvate in baza de date.
+    \item În final datele ajung la server și sunt salvate în baza de date.
     
 
     \begin{figure}[H]
@@ -1113,48 +1186,48 @@ Putem exemplifica un astfel de flow pentru functionalitatea de "adauga analiza m
 
 \end{enumerate}
 
-Datele care sunt salvate in memoria telefonului sunt datele generale ale utilizatorului care pot fi folosite
-si fara conexiune la internet pentru modul de urgenta. Ele sunt pastrate intr-o baza de date locala criptata.
-Sunt folosite si fisierele de preferinta pentru a salva date de dimensiuni mici 
-cu scop auxiliar. La fel ca baza de date locala, si fisierele de preferinte sunt criptate.
+Datele care sunt salvate în memoria telefonului sunt datele generale ale utilizatorului care pot fi folosite
+și fără conexiune la internet pentru modul de urgență. Ele sunt păstrate într-o baza de date locală criptată.
+Sunt folosite și fișierele de preferință pentru a salva date de dimensiuni mici 
+cu scop auxiliar. La fel că baza de date locală, și fișierele de preferințe sunt criptate.
 
 \bigskip
 
 \begin{figure}[H]
     \centering
     \includegraphics{noncript.png}
-    \caption{Fisier de preferinte fara criptare}
+    \caption{Fișier de preferințe fără criptare}
     \end{figure}
 
     \begin{figure}[H]
         \centering
         \includegraphics{cript2.png}
-        \caption{Fisier de preferinte cu criptate}
+        \caption{Fișier de preferințe cu criptate}
         \end{figure}
 
 \newpage
 \subsection{Testarea}
 
-Pentru a asigura calitatea solutie soft am dezvoltat in paralel cu aplicatia 
-si o suita de teste. Majoritatea testelor sunt de tip unitar, verificand o anumita
-funtionalitate. De asemenea testele sunt separate in functie de entitatea pe care o testeaza 
+Pentru a asigura calitatea soluției soft am dezvoltat în paralel cu aplicația 
+și o suită de teste. Majoritatea testelor sunt de tip unitar, verificând o anumită
+funtionalitate. De asemenea testele sunt separate în funcție de entitatea pe care o testează 
 (serverul sau clientul).
 
 
-Pentru a testa serverul REST facut in Node.js am folosit o serie de pachete ajutatoare: 
-mocha, chai si supertest. Am creat teste pentru rutele disponibile. Testele ruleaza intr-o
-configurarea separata care valideaza token-ul de autentificare in mod implicit.
+Pentru a testa serverul REST făcut în Node.js am folosit o serie de pachete ajutătoare: 
+mocha, chai și supertest. Am creat teste pentru rutele disponibile. Testele rulează într-o
+configurarea separată care validează token-ul de autentificare în mod implicit.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=10cm, height=8cm]{unitnode.png}
-    \caption{Exemple de teste unitare in Node.js}
+    \caption{Exemple de teste unitare în Node.js}
     \end{figure}
 
 
-Pentru a rula un test pe o anumita ruta se defineste ruta la care se va executa testul,
-metoda (GET, POST, DELETE, etc\dots) si eventualele date de care e nevoie. Apoi se defineste
-ce cod ar trebuii sa aibe raspunsul primit si eventual ce date sau tip de date ar trebuii primite.
+Pentru a rula un test pe o anumită ruta se definește ruta la care se va execută testul,
+metodă (GET, POST, DELETE, etc\dots) și eventualele date de care e nevoie. Apoi se definește
+ce cod ar trebuii să aibe răspunsul primit și eventual ce date sau tip de date ar trebuii primite.
 
 \begin{figure}[H]
     \centering
@@ -1163,18 +1236,46 @@ ce cod ar trebuii sa aibe raspunsul primit si eventual ce date sau tip de date a
     \end{figure}
 
 
-Pentru clientul mobil am folosit JUnit, o librarie specilizate pe unit testing si
-diferite librarii auxiliare oferite de Kotlin si Android pentru a elabora si teste de integrare.
+Pentru clientul mobil am folosit JUnit, o librărie specilizate pe unit testing și
+diferite librării auxiliare oferite de Kotlin și Android pentru a elabora și teste de integrare.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=10cm, height=8cm]{interg.png}
-    \caption{Clasa cu test de integrare care cuprinde mai multe servicii si un ViewModel}
+    \caption{Clasa cu test de integrare care cuprinde mai multe servicii și un ViewModel}
     \end{figure}
 
 
-
+\newpage
 \section{Concluzii}
+
+Acestă lucrare a avut ca scop exemplificarea în mod practic și teoretic a anumitor probleme
+pe care o aplicație mobilă le poate avea atunci când lucrează cu date personale.
+Având în vedere mișcările din lumea politică și adopotarea unor legi precum GDPR, 
+astfel de subiecte devin din ce în ce mai relevante pentru utilizatori dar și pentru
+dezvoltatorii de aplicații. 
+
+\bigskip
+
+Aplicația Medicarium a fost dezvoltată că și un reper. Pas cu pas, de la proiectarea
+aplicației până la testare, există decizii importante pe care trebuie luate pentru a asigura
+integritatea, confidențialitatea și disponibilitatea datelor utilizatorilor.
+
+\bigskip
+Aplicația poate fi extinsă și imbunatatia, ce am tratat în lucrare nu cuprinde
+amplul spectru a cea ce înseamnă securitate și confidențialitate. În lucrare am
+observat câteva din cele mai importante etape a unei aplicații. O îmbunătățire
+ar putea fi creare unui sistem de backup al datelor mai riguros. La momentul de față
+singurul backup disponibil este la nivelul bazei de date. O altă îmbunătățire
+ar putea fi extinderea modului offline astfel în cât să cuprindă toate funcționalitățile
+aplicației, nu doar modul de urgență.
+
+\bigskip
+
+În concluzie, se recomandă ca dezvoltatorii de aplicații mobile să ia în serios
+problematica securității și confidentialitații datelor, în caz contrar, se pot
+lua măsuri legale care pot afecta în mod negativ compania sau persoană respectivă.
+
 \newpage
 \section{Bibliografie}
 \nocite{owasp-top10-2017}
