@@ -1,6 +1,8 @@
 package com.medicarium.Presentation.CustomControls
 
 import android.content.Context
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.TransitionDrawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
@@ -20,13 +22,29 @@ class CustomNavigationBar @JvmOverloads constructor(
         attributes?.let {
             val typedArray = context.obtainStyledAttributes(it, R.styleable.custom_navigation_bar, 0, 0)
             val title = resources.getText(typedArray.getResourceId(R.styleable.custom_navigation_bar_navbarTitle, R.string.continue_text))
+            val leftImage = resources.getDrawable(typedArray.getResourceId(R.styleable.custom_navigation_bar_navBarLeftImage, R.drawable.back_arrow))
             titleTextView.text = title
+            imageButton.background = leftImage
             typedArray.recycle()
         }
     }
 
-    public fun setOnclickListener(clickListener: OnClickListener) {
+    fun setTitletext(text: String) {
+        titleTextView.text = text
+    }
+
+    fun setLeftImageDrawnable(drawable: Drawable) {
+        imageButton.background = drawable
+    }
+
+    fun setLeftButtonClickListener(clickListener: OnClickListener) {
         imageButton?.setOnClickListener(clickListener)
+    }
+
+    fun setLeftButtonClickListener(clickListener: () -> Unit) {
+        imageButton?.setOnClickListener {
+            clickListener.invoke()
+        }
     }
 
 }

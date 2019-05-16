@@ -29,6 +29,15 @@
             android:layout_weight="1"
             android:text="@string/create_account" />
 
+        <ImageButton
+            android:id="@+id/rightImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/back_arrow"
+            android:hapticFeedbackEnabled="true" />
+
     </LinearLayout>
 
 </merge>

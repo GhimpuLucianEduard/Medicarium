@@ -5,6 +5,7 @@ import android.content.DialogInterface
 import android.view.View
 
 interface DialogService {
+
     fun showNeutralDialog(
         context: Context,
         title: String,

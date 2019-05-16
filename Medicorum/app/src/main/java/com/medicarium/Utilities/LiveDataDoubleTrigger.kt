@@ -9,3 +9,4 @@ class LiveDataDoubleTrigger<A, B>(a: LiveData<A>, b: LiveData<B>) : MediatorLive
         addSource(b) { value = a.value to it }
     }
 }
+

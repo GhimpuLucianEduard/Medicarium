@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.ernestoyaquello.dragdropswiperecyclerview.DragDropSwipeRecyclerView
@@ -16,6 +17,8 @@ import com.medicarium.Presentation.CustomControls.CustomNavigationBar
 import com.medicarium.R
 import com.stfalcon.imageviewer.StfalconImageViewer
 import kotlinx.android.synthetic.main.medical_records_fragment.*
+import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.support.v4.act
 
 class MedicalRecordDetailsFragment : Fragment(), MedicalRecordEntriesAdapter.OnImageCardClickListener {
 
@@ -64,16 +67,29 @@ class MedicalRecordDetailsFragment : Fragment(), MedicalRecordEntriesAdapter.OnI
     }
 
     override fun onImageCardClicked(position: Int, entry: MedicalRecordEntry, imageView: ImageView) {
-        StfalconImageViewer.Builder<MedicalRecordEntry>(context, data) { view, item ->
+
+        val overlay = CustomNavigationBar(activity!!).also {
+            it.setLeftImageDrawnable(activity!!.getDrawable(R.drawable.close_black)!!)
+            it.setTitletext(entry.name)
+        }
+
+        val imageViewer = StfalconImageViewer.Builder<MedicalRecordEntry>(context, adapter.dataSet) { view, item ->
             Glide.with(activity!!)
                 .load(item.imageUrl)
                 .centerCrop()
                 .into(view)
             }
             .withStartPosition(position)
-            .withOverlayView(CustomNavigationBar(activity!!))
+            .withOverlayView(overlay)
+            .withImageChangeListener {
+                overlay.setTitletext(adapter.dataSet[it].name)
+            }
             .withTransitionFrom(imageView)
             .show()
+
+        overlay.setLeftButtonClickListener {
+            imageViewer.dismiss()
+        }
     }
 
 }

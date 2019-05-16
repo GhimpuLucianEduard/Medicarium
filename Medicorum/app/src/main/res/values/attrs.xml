@@ -2,5 +2,7 @@
 <resources>
     <declare-styleable name="custom_navigation_bar">
         <attr name="navbarTitle" format="reference" />
+        <attr name="navBarLeftImage" format="reference" />
+        <attr name="navBarRightImage" format="reference" />s
     </declare-styleable>
 </resources>

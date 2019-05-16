@@ -1,7 +1,6 @@
 package com.medicarium.Presentation.History
 
 import android.content.Context
-import android.media.Image
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -48,7 +47,7 @@ class MedicalRecordEntriesAdapter(
         viewHolder: ViewHolder,
         position: Int
     ): View? {
-        return viewHolder.imageView
+        return viewHolder.nameTextView
     }
 
     interface OnImageCardClickListener {
