@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.medicarium.Presentation.History.MedicalRecordDetailsFragment">
 
+    <data>
+        <variable
+            name="medicalRecordDetailsViewModel"
+            type="com.medicarium.Presentation.History.MedicalRecordDetailsViewModel"/>
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -13,19 +19,81 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/pureWhite"
-            android:elevation="2dp"
+            app:navbarTitle="@string/continue_text"
+            app:navBarRightImage="@drawable/more_verti"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/medicalCategoryLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Medical Category:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/navigationBar" />
+
+        <TextView
+            android:id="@+id/medicalCategoryTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/nunito_bold"
+            app:layout_constraintStart_toEndOf="@+id/medicalCategoryLabel"
+            app:layout_constraintTop_toBottomOf="@+id/navigationBar" />
+
+        <ImageView
+            android:id="@+id/medicalCategoryImageView"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toEndOf="@+id/medicalCategoryTextView"
+            app:layout_constraintTop_toBottomOf="@+id/navigationBar" />
+
+        <TextView
+            android:id="@+id/dateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
+            android:text="Date:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/medicalCategoryTextView" />
+
+        <TextView
+            android:id="@+id/dateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/nunito_bold"
+            app:layout_constraintStart_toEndOf="@+id/dateLabel"
+            app:layout_constraintTop_toBottomOf="@+id/medicalCategoryTextView" />
 
         <com.ernestoyaquello.dragdropswiperecyclerview.DragDropSwipeRecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="72dp"
             app:item_layout="@layout/medical_record_entry_layout"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/navigationBar" />
+
+        <com.leinardi.android.speeddial.SpeedDialView
+            android:id="@+id/addButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:sdMainFabClosedSrc="@drawable/add_icon_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        </com.leinardi.android.speeddial.SpeedDialView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

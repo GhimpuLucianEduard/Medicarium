@@ -7,8 +7,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.medicarium.Data.ApiServices.MedicalRecordService
+import com.medicarium.Data.Enums.MedicalCategory
 import com.medicarium.Data.Mappers.toMedicalRecord
 import com.medicarium.Data.Models.MedicalRecord
+import com.medicarium.Data.Models.MedicalRecordEntry
 import com.medicarium.Presentation.BaseAndroidViewModel
 import com.medicarium.Presentation.DataViewModels.MedicalRecordObservable
 import com.medicarium.Presentation.DataViewModels.PropertyAwareMutableLiveData
@@ -33,6 +35,7 @@ class MedicalRecordsViewModel(
     val isBusy = MutableLiveData<Boolean>()
     val medicalRecordToAdd = PropertyAwareMutableLiveData<MedicalRecordObservable>()
     val navigateBack = MutableLiveData<Event<Boolean>>()
+    lateinit var lastSelectedMedicalRecord: MedicalRecord
 
     val isAddNewRecordEnabled: LiveData<Boolean> =
         Transformations.map(LiveDataDoubleTrigger(medicalRecordToAdd, isBusy)) {

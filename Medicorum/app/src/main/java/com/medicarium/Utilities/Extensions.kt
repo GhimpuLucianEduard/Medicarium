@@ -7,9 +7,12 @@ import android.widget.EditText
 import android.widget.ImageButton
 import androidx.lifecycle.MutableLiveData
 import com.google.android.material.textfield.TextInputLayout
+import com.medicarium.Data.Models.MedicalRecord
+import com.medicarium.Data.Models.MedicalRecordEntry
 import java.util.*
 import java.util.function.Predicate
 import java.util.stream.Collectors
+import kotlin.collections.ArrayList
 
 @SuppressLint("SimpleDateFormat")
 fun String.Companion.timeStampToDateString(date: Long): String {
@@ -100,4 +103,27 @@ fun Long?.timestampToString() : String {
     val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
 
     return "$dayOfMonth/$month/$year"
+}
+
+fun MedicalRecordEntry.deepClone() : MedicalRecordEntry = MedicalRecordEntry(
+    id = this.id,
+    name = this.name,
+    imageUrl = this.imageUrl
+)
+
+fun MedicalRecord.deepClone() : MedicalRecord {
+
+    val listOfEntries = ArrayList<MedicalRecordEntry>()
+
+    this.entries.forEach {
+        listOfEntries.add(it.deepClone())
+    }
+
+    return MedicalRecord(
+        id = this.id,
+        medicalCategory = this.medicalCategory,
+        name = this.name,
+        timestamp = this.timestamp,
+        entries = listOfEntries
+    )
 }

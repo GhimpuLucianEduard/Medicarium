@@ -23,8 +23,12 @@ class CustomNavigationBar @JvmOverloads constructor(
             val typedArray = context.obtainStyledAttributes(it, R.styleable.custom_navigation_bar, 0, 0)
             val title = resources.getText(typedArray.getResourceId(R.styleable.custom_navigation_bar_navbarTitle, R.string.continue_text))
             val leftImage = resources.getDrawable(typedArray.getResourceId(R.styleable.custom_navigation_bar_navBarLeftImage, R.drawable.back_arrow))
+            // TODO: not sure how to set null as default drawable
+            val rightImage = resources.getDrawable(typedArray.getResourceId(R.styleable.custom_navigation_bar_navBarRightImage, R.drawable.empty_drawable))
             titleTextView.text = title
             imageButton.background = leftImage
+            rightImageButton.background = rightImage
+
             typedArray.recycle()
         }
     }
@@ -37,12 +41,22 @@ class CustomNavigationBar @JvmOverloads constructor(
         imageButton.background = drawable
     }
 
+    fun setRightImageDrawnable(drawable: Drawable) {
+        rightImageButton.background = drawable
+    }
+
     fun setLeftButtonClickListener(clickListener: OnClickListener) {
         imageButton?.setOnClickListener(clickListener)
     }
 
     fun setLeftButtonClickListener(clickListener: () -> Unit) {
         imageButton?.setOnClickListener {
+            clickListener.invoke()
+        }
+    }
+
+    fun setRightButtonClickListener(clickListener: () -> Unit) {
+        rightImageButton?.setOnClickListener {
             clickListener.invoke()
         }
     }

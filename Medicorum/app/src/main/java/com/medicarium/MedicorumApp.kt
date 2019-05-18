@@ -10,6 +10,7 @@ import com.medicarium.Data.ApiServices.MedicalRecordServiceImpl
 import com.medicarium.Data.ApiServices.RefitServices.ApiServiceFactory
 import com.medicarium.Data.ApiServices.RefitServices.ConnectivityInterceptor
 import com.medicarium.Data.ApiServices.RefitServices.ConnectivityInterceptorImpl
+import com.medicarium.Presentation.History.MedicalRecordDetailsViewModelFactory
 import com.medicarium.Presentation.History.MedicalRecordsViewModelFactory
 import com.medicarium.Presentation.Login.LoginViewModelFactory
 import com.medicarium.Presentation.Login.PinAuthViewModelFactory
@@ -49,6 +50,7 @@ class MedicorumApp : Application(), KodeinAware {
         bind() from provider { SetupPinViewModelFactory(instance()) }
         bind() from provider { PinAuthViewModelFactory(instance()) }
         bind() from singleton { MedicalRecordsViewModelFactory(instance(), instance()) }
+        bind() from singleton { MedicalRecordDetailsViewModelFactory(instance(), instance()) }
     }
 
     init {

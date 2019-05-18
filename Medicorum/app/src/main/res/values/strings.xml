@@ -46,4 +46,7 @@
     <string name="add_new_record">Add New Record</string>
     <string name="add_record">Add Record</string>
 
+    <string name="ok_text_caps">OK</string>
+    <string name="cancel_text_caps">CANCEL</string>
+
 </resources>
