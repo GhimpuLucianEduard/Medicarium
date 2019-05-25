@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.cloudinary.android.MediaManager
 import com.ernestoyaquello.dragdropswiperecyclerview.DragDropSwipeAdapter
 import com.medicarium.Data.Models.MedicalRecordEntry
 import com.medicarium.Presentation.History.MedicalRecordEntriesAdapter.ViewHolder
@@ -36,7 +37,7 @@ class MedicalRecordEntriesAdapter(
 
         } else {
             Glide.with(context)
-                .load(item.imageUrl)
+                .load(MediaManager.get().url().generate(item.imageUrl))
                 .centerCrop()
                 .into(viewHolder.imageView)
         }

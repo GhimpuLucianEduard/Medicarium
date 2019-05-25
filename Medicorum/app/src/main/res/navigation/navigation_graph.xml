@@ -158,6 +158,13 @@
             app:exitAnim="@anim/slide_out"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_medicalTestsFragment_to_medicalRecordDetailsFragment"
+            app:destination="@id/medicalRecordDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/addMedicalTestFragment"
@@ -168,5 +175,18 @@
         android:id="@+id/medicalRecordDetailsFragment"
         android:name="com.medicarium.Presentation.History.MedicalRecordDetailsFragment"
         android:label="medical_record_details_fragment"
-        tools:layout="@layout/medical_record_details_fragment" />
+        tools:layout="@layout/medical_record_details_fragment" >
+        <action
+            android:id="@+id/action_medicalRecordDetailsFragment_to_editMedicalRecordFragment"
+            app:destination="@id/editMedicalRecordFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/editMedicalRecordFragment"
+        android:name="com.medicarium.Presentation.History.EditMedicalRecordFragment"
+        android:label="edit_medical_record_fragment"
+        tools:layout="@layout/edit_medical_record_fragment" />
 </navigation>

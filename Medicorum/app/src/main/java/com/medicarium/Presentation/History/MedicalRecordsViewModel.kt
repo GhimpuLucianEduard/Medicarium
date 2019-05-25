@@ -102,4 +102,27 @@ class MedicalRecordsViewModel(
             })
             .addTo(compositeDisposable)
     }
+
+    fun editMedicalRecord(updatedMedicalRecord: MedicalRecord) {
+        isBusy.value = true
+        medicalRecordsService.editMedicalRecord(updatedMedicalRecord)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                Log.i(LoggerConstants.API_REQ, "Edit medical record request succesed: $it")
+                val updatedItems = _medicalRecords as ArrayList<MedicalRecord>
+                updatedItems.map { mr ->
+                    if (it.id == mr.id) {
+                        it
+                    }
+                }
+                _medicalRecords.value = updatedItems
+            }, {
+                Log.e(LoggerConstants.API_REQ, "Edit medical record request failed: ${it.message}")
+                isBusy.value = false
+            }, {
+                isBusy.value = false
+            })
+            .addTo(compositeDisposable)
+    }
 }

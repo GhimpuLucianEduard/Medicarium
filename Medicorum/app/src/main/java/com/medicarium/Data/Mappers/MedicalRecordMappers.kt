@@ -29,12 +29,14 @@ fun MedicalRecordDataModel.toMedicalRecord() = MedicalRecord (
 
 fun MedicalRecordEntry.toMedicalRecordEntryDataModel() = MedicalRecordEntryDataModel (
     id = id,
-    name = name
+    name = name,
+    imageUrl = imageUrl
 )
 
 fun MedicalRecordEntryDataModel.toMedicalRecordEntry() = MedicalRecordEntry (
     id = id,
-    name = name
+    name = name,
+    imageUrl = imageUrl
 )
 
 fun MedicalRecord.toMedicalRecordObservable() = MedicalRecordObservable (

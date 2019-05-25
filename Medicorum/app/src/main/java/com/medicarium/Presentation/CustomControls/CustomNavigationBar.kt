@@ -1,10 +1,13 @@
 package com.medicarium.Presentation.CustomControls
 
 import android.content.Context
+import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.TransitionDrawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.TouchDelegate
+import android.view.View
 import android.widget.LinearLayout
 import com.medicarium.R
 import kotlinx.android.synthetic.main.custom_navigation_bar.view.*
@@ -28,6 +31,20 @@ class CustomNavigationBar @JvmOverloads constructor(
             titleTextView.text = title
             imageButton.background = leftImage
             rightImageButton.background = rightImage
+
+
+            val parent = imageButton.parent as View
+            parent.post {
+                Runnable {
+                    val rect = Rect()
+                    imageButton.getHitRect(rect)
+                    rect.top -= 200
+                    rect.left -= 200
+                    rect.bottom += 200
+                    rect.right += 200
+                    parent.touchDelegate = TouchDelegate(rect, imageButton)
+                }
+            }
 
             typedArray.recycle()
         }

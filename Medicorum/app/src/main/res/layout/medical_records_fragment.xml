@@ -34,7 +34,6 @@
             app:behind_swiped_item_bg_color="@color/accentRed"
             app:behind_swiped_item_icon="@drawable/delete_swipe_list"
             app:behind_swiped_item_icon_margin="8dp"
-            app:divider="@drawable/basic_list_divider"
             app:item_layout="@layout/medical_record_layout"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

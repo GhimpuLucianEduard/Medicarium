@@ -45,8 +45,10 @@
     <string name="category">Category</string>
     <string name="add_new_record">Add New Record</string>
     <string name="add_record">Add Record</string>
-
+    <string name="edit_medical_record">Edit Medical Record</string>
+    <string name="type_name">Type the name</string>
     <string name="ok_text_caps">OK</string>
     <string name="cancel_text_caps">CANCEL</string>
+    <string name="save">Save</string>
 
 </resources>

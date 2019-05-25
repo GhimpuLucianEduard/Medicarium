@@ -2,6 +2,7 @@ package com.medicarium
 
 import android.app.Application
 import android.content.Context
+import com.cloudinary.android.MediaManager
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.medicarium.Data.ApiServices.AuthService
 import com.medicarium.Data.ApiServices.AuthServiceImpl
@@ -50,7 +51,7 @@ class MedicorumApp : Application(), KodeinAware {
         bind() from provider { SetupPinViewModelFactory(instance()) }
         bind() from provider { PinAuthViewModelFactory(instance()) }
         bind() from singleton { MedicalRecordsViewModelFactory(instance(), instance()) }
-        bind() from singleton { MedicalRecordDetailsViewModelFactory(instance(), instance()) }
+        bind() from singleton { MedicalRecordDetailsViewModelFactory(instance(), instance(), instance()) }
     }
 
     init {
@@ -67,6 +68,7 @@ class MedicorumApp : Application(), KodeinAware {
 
     override fun onCreate() {
         super.onCreate()
+        MediaManager.init(this)
         val context: Context = applicationContext()
         AndroidThreeTen.init(this)
     }

@@ -26,7 +26,7 @@ import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 
 
-class MedicalRecordsFragment : BaseFragment(), KodeinAware {
+class MedicalRecordsFragment : BaseFragment(), KodeinAware, MedicalRecordsAdapter.OnMedicalCardClickListener {
 
     override val kodein by closestKodein()
     private val dialogService: DialogService by instance()
@@ -76,7 +76,7 @@ class MedicalRecordsFragment : BaseFragment(), KodeinAware {
 
     private fun setUpRecyclerView() {
 
-        adapter = MedicalRecordsAdapter(emptyList(), activity!!)
+        adapter = MedicalRecordsAdapter(emptyList(), activity!!, this)
         recyclerView.layoutManager = LinearLayoutManager(activity!!)
         recyclerView.adapter = adapter
 
@@ -95,17 +95,26 @@ class MedicalRecordsFragment : BaseFragment(), KodeinAware {
         recyclerView.reduceItemAlphaOnSwiping = true
 
         recyclerView.scrollListener = object : OnListScrollListener {
-            override fun onListScrolled(
-                scrollDirection: OnListScrollListener.ScrollDirection,
-                distance: Int
-            ) {
-                Log.i("REQ_API", "Scroldir: ${scrollDirection}, distcance: $distance")
 
-                if (scrollDirection == OnListScrollListener.ScrollDirection.DOWN) {
+            override fun onListScrollStateChanged(scrollState: OnListScrollListener.ScrollState) {
+                if (scrollState == OnListScrollListener.ScrollState.DRAGGING) {
                     addButton.hide()
                 } else {
                     addButton.show()
                 }
+            }
+
+            override fun onListScrolled(
+                scrollDirection: OnListScrollListener.ScrollDirection,
+                distance: Int
+            ) {
+//                Log.i("REQ_API", "Scroldir: ${scrollDirection}, distcance: $distance")
+//
+//                if (scrollDirection == OnListScrollListener.ScrollDirection.DOWN) {
+//                    addButton.hide()
+//                } else {
+//                    addButton.show()
+//                }
             }
         }
 
@@ -131,6 +140,12 @@ class MedicalRecordsFragment : BaseFragment(), KodeinAware {
             }
 
         }
+    }
+
+    override fun onMedicalRecordClicked(record: MedicalRecord) {
+        viewModel.lastSelectedMedicalRecord = record
+        Navigation.findNavController(activity!!, R.id.nav_host_fragment)
+            .navigate(MedicalRecordsFragmentDirections.actionMedicalTestsFragmentToMedicalRecordDetailsFragment())
     }
 
 }

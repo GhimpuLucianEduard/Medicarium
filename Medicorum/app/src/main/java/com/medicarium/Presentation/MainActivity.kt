@@ -10,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.andreacioccarelli.cryptoprefs.CryptoPrefs
+import com.cloudinary.android.MediaManager
 import com.medicarium.R
 import com.medicarium.Utilities.Fingerprint.FingerprintUtility
 import com.medicarium.Utilities.SharedPreferences
@@ -62,7 +63,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
         }
 
         // TODO remove
-        graph.startDestination = R.id.medicalRecordDetailsFragment
+        //graph.startDestination = R.id.medicalRecordDetailsFragment
 
         navController.graph = graph
     }
