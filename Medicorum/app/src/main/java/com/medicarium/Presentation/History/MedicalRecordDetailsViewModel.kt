@@ -29,7 +29,7 @@ class MedicalRecordDetailsViewModel(
         }
 
     init {
-        onViewCreated()
+        cloneMedicalRecord.value = originalMedicalRecord.deepClone()
     }
 
     fun removeEntry(currentPosition: Int) {
@@ -55,6 +55,6 @@ class MedicalRecordDetailsViewModel(
     }
 
     fun onViewCreated() {
-        cloneMedicalRecord.value = originalMedicalRecord.deepClone()
+        //cloneMedicalRecord.value = originalMedicalRecord.deepClone()
     }
 }

@@ -7,10 +7,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.medicarium.Data.ApiServices.MedicalRecordService
-import com.medicarium.Data.Enums.MedicalCategory
 import com.medicarium.Data.Mappers.toMedicalRecord
 import com.medicarium.Data.Models.MedicalRecord
-import com.medicarium.Data.Models.MedicalRecordEntry
 import com.medicarium.Presentation.BaseAndroidViewModel
 import com.medicarium.Presentation.DataViewModels.MedicalRecordObservable
 import com.medicarium.Presentation.DataViewModels.PropertyAwareMutableLiveData
@@ -18,10 +16,10 @@ import com.medicarium.Utilities.Event
 import com.medicarium.Utilities.LiveDataDoubleTrigger
 import com.medicarium.Utilities.LoggerConstants
 import delete
+import kotlin.collections.ArrayList
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
-import java.util.concurrent.TimeUnit
 
 class MedicalRecordsViewModel(
     application: Application,
@@ -110,13 +108,16 @@ class MedicalRecordsViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 Log.i(LoggerConstants.API_REQ, "Edit medical record request succesed: $it")
-                val updatedItems = _medicalRecords as ArrayList<MedicalRecord>
-                updatedItems.map { mr ->
-                    if (it.id == mr.id) {
-                        it
+                val updatedItems = _medicalRecords.value as kotlin.collections.ArrayList<MedicalRecord>
+                val newList = ArrayList<MedicalRecord>()
+                updatedItems.forEach { element ->
+                    if (it.id == element.id ) {
+                        newList.add(it)
+                    } else {
+                        newList.add(element)
                     }
                 }
-                _medicalRecords.value = updatedItems
+                _medicalRecords.value = newList
             }, {
                 Log.e(LoggerConstants.API_REQ, "Edit medical record request failed: ${it.message}")
                 isBusy.value = false
