@@ -1,13 +1,13 @@
 # Fdb version 3
-["biber doc"] 1557746486 "doc.bcf" "doc.bbl" "doc" 1557746567
-  "doc.bcf" 1557746545 93334 3a9b9666005a6e30b24c204fea078d33 ""
+["biber doc"] 1558878465 "doc.bcf" "doc.bbl" "doc" 1558878895
+  "doc.bcf" 1558878886 93334 3a9b9666005a6e30b24c204fea078d33 ""
   "ref.bib" 1557583496 7101 95578b33dc993b4be96cd06a823ee732 ""
   (generated)
-  "doc.blg"
   "doc.bbl"
-["pdflatex"] 1557746540 "/Users/luciangh/Repos/Medicarium/Docs/doc.tex" "/Users/luciangh/Repos/Medicarium/Docs/doc.pdf" "doc" 1557746567
-  "/Users/luciangh/Repos/Medicarium/Docs/doc.aux" 1557746545 21149 13e7e83459f20d333aea24174bd283b1 ""
-  "/Users/luciangh/Repos/Medicarium/Docs/doc.tex" 1557746567 61019 33e43471afcdc147ad8738f9e5aae4d8 ""
+  "doc.blg"
+["pdflatex"] 1558878881 "/Users/luciangh/Repos/Medicarium/Docs/doc.tex" "/Users/luciangh/Repos/Medicarium/Docs/doc.pdf" "doc" 1558878895
+  "/Users/luciangh/Repos/Medicarium/Docs/doc.aux" 1558878886 21293 0b16998170fb9d7d9ac929b580baf15d ""
+  "/Users/luciangh/Repos/Medicarium/Docs/doc.tex" 1558878895 63370 1c63f46bc28bb899342d609c80028ed3 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1480098701 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1480098701 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -80,11 +80,11 @@
   "/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1523934492 2717033 f61a5287d9c22a39a74f1979fe3f905c ""
   "/usr/local/texlive/2018/texmf-var/web2c/pdftex/pdflatex.fmt" 1553345263 4220280 e9ab1f3901a8435cbd960ad548ec28db ""
   "/usr/local/texlive/2018/texmf.cnf" 1523934483 577 0b39adfd7c93507ff20c9c14c2f1a33f ""
-  "doc.aux" 1557746545 21149 13e7e83459f20d333aea24174bd283b1 ""
-  "doc.bbl" 1557746488 37283 ab39e2097939842e6635619ae83d5826 "biber doc"
-  "doc.run.xml" 1557746545 2291 088fc6009fabddef59e2604c91703471 ""
-  "doc.tex" 1557746567 61019 33e43471afcdc147ad8738f9e5aae4d8 ""
-  "doc.toc" 1557746545 4674 a4c10accf997dfa654911394476f2b17 ""
+  "doc.aux" 1558878886 21293 0b16998170fb9d7d9ac929b580baf15d ""
+  "doc.bbl" 1558878467 37283 ab39e2097939842e6635619ae83d5826 "biber doc"
+  "doc.run.xml" 1558878886 2291 088fc6009fabddef59e2604c91703471 ""
+  "doc.tex" 1558878895 63370 1c63f46bc28bb899342d609c80028ed3 ""
+  "doc.toc" 1558878886 4783 a0eb843fbcbe96cc508681a25a3d247e ""
   "images/2fa.png" 1557573238 78190 dbed4709745a1c57804da348561e51fa ""
   "images/3ways.jpg" 1554647229 36628 938053917429bdbb80df95e8ad31df85 ""
   "images/addMethod.png" 1557660721 14344 6c161850d83f85f97c25d4db791c2337 ""
@@ -132,11 +132,11 @@
   "images/viewModel.png" 1557584407 167968 574031d7dbdb5cfbd1c1a212b1994a98 ""
   "images/wordpress-two-factor-authentication.png" 1554734769 25794 0523142943d6f45fe182e6cb9062b60f ""
   (generated)
-  "doc.toc"
-  "/Users/luciangh/Repos/Medicarium/Docs/doc.pdf"
-  "doc.aux"
-  "/Users/luciangh/Repos/Medicarium/Docs/doc.log"
   "doc.run.xml"
+  "/Users/luciangh/Repos/Medicarium/Docs/doc.pdf"
   "doc.bcf"
   "doc.log"
+  "doc.toc"
+  "/Users/luciangh/Repos/Medicarium/Docs/doc.log"
+  "doc.aux"
   "doc.pdf"
