@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/genericInfoCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/pureWhite"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/generalInfoTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:text="Generic information"
+                    android:textColor="@color/primaryBlack"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/nameTextInput"
+                    style="@style/SignUpTextInputLayout"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/generalInfoTitle">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nameEditText"
+                        style="@style/BaseEditText"
+                        android:enabled="true"
+                        android:focusable="false"
+                        android:hint="@string/first_name_hint"
+                        android:inputType="none"
+                        android:nextFocusDown="@id/passwordEditText"
+                        android:text="Name ger" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageSwitcher
+                    android:id="@+id/firstNameImageSwitcher"
+                    style="@style/EyeImageSwitcher"
+                    app:layout_constraintBottom_toTopOf="@+id/lastNameTextInput"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/nameTextInput"
+                    app:layout_constraintTop_toTopOf="@+id/nameTextInput">
+
+                </ImageSwitcher>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/lastNameTextInput"
+                    style="@style/SignUpTextInputLayout"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nameTextInput">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/lastNameEditText"
+                        style="@style/BaseEditText"
+                        android:enabled="true"
+                        android:focusable="false"
+                        android:hint="@string/last_name_hint"
+                        android:inputType="none"
+                        android:nextFocusDown="@id/passwordEditText"
+                        android:text="Last" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <ImageSwitcher
+                    android:id="@+id/lastNameImageSwitcher"
+                    style="@style/EyeImageSwitcher"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/phoneTextInput"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/lastNameTextInput"
+                    app:layout_constraintTop_toTopOf="@+id/lastNameTextInput">
+
+                </ImageSwitcher>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/phoneTextInput"
+                    style="@style/SignUpTextInputLayout"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lastNameTextInput">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phoneEditText"
+                        style="@style/BaseEditText"
+                        android:enabled="true"
+                        android:focusable="false"
+                        android:hint="@string/phone_number_hint"
+                        android:inputType="none"
+                        android:nextFocusDown="@id/passwordEditText"
+                        android:text="0983989248" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <ImageSwitcher
+                    android:id="@+id/phoneNumberImageSwitcher"
+                    style="@style/EyeImageSwitcher"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="22dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/phoneTextInput"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/lastNameTextInput"
+                    app:layout_constraintTop_toTopOf="@+id/phoneTextInput" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_margin="8dp"
+            android:background="@color/pureWhite"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/genericInfoCard">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:text="Medical info"
+                    android:textColor="@color/primaryBlack"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/heightImage"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/height"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/heightTextInput"
+                    style="@style/SignUpTextInputLayout"
+                    android:layout_width="72dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/heightImage"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.19">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/heightEditText"
+                        style="@style/BaseEditText"
+                        android:enabled="true"
+                        android:focusable="false"
+                        android:hint="Height (cm)"
+                        android:inputType="none"
+                        android:nextFocusDown="@id/passwordEditText"
+                        android:text="134" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <ImageSwitcher
+                    android:id="@+id/heightImageSwitcher"
+                    style="@style/EyeImageSwitcher"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/heightTextInput"
+                    app:layout_constraintStart_toEndOf="@+id/heightTextInput"
+                    app:layout_constraintTop_toTopOf="@+id/heightTextInput" />
+
+                <ImageView
+                    android:id="@+id/weightImage"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    app:layout_goneMarginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/libra"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/heightImage" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
