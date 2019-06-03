@@ -50,5 +50,7 @@
     <string name="ok_text_caps">OK</string>
     <string name="cancel_text_caps">CANCEL</string>
     <string name="save">Save</string>
+    <string name="gender">Gender</string>
+    <string name="weight_kg">Weight (kg)</string>
 
 </resources>
