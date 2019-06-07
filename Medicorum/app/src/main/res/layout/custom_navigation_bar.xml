@@ -5,39 +5,38 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/navBar"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:elevation="10dp"
-        android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/navBar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="16dp"
-            android:background="@drawable/back_arrow"
-            android:hapticFeedbackEnabled="true" />
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/back_arrow"
+                android:hapticFeedbackEnabled="true" />
 
-        <TextView
-            android:id="@+id/titleTextView"
-            style="@style/TitleTextView"
-            android:textAlignment="center"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="@string/create_account" />
+            <TextView
+                android:id="@+id/titleTextView"
+                style="@style/TitleTextView"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="@string/create_account" />
 
-        <ImageButton
-            android:id="@+id/rightImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/back_arrow"
-            android:hapticFeedbackEnabled="true" />
+            <ImageButton
+                android:id="@+id/rightImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/back_arrow"
+                android:hapticFeedbackEnabled="true" />
 
-    </LinearLayout>
+        </LinearLayout>
 
 </merge>

@@ -9,20 +9,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+        <com.medicarium.Presentation.CustomControls.CustomNavigationBar
+            android:id="@+id/navBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="5dp"
+            android:background="@color/pureWhite"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </com.medicarium.Presentation.CustomControls.CustomNavigationBar>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/genericInfoCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:background="@color/pureWhite"
             app:cardCornerRadius="6dp"
             app:cardElevation="3dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/navBar">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -62,14 +72,14 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <ImageSwitcher
+                <ImageView
                     android:id="@+id/firstNameImageSwitcher"
                     style="@style/EyeImageSwitcher"
                     app:layout_constraintBottom_toBottomOf="@+id/nameTextInput"
                     app:layout_constraintStart_toEndOf="@+id/nameTextInput"
                     app:layout_constraintTop_toTopOf="@+id/nameTextInput">
 
-                </ImageSwitcher>
+                </ImageView>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/lastNameTextInput"
@@ -91,8 +101,7 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-
-                <ImageSwitcher
+                <ImageView
                     android:id="@+id/lastNameImageSwitcher"
                     style="@style/EyeImageSwitcher"
                     android:layout_marginStart="8dp"
@@ -101,7 +110,7 @@
                     app:layout_constraintStart_toEndOf="@+id/lastNameTextInput"
                     app:layout_constraintTop_toTopOf="@+id/lastNameTextInput">
 
-                </ImageSwitcher>
+                </ImageView>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/phoneTextInput"
@@ -125,8 +134,7 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-
-                <ImageSwitcher
+                <ImageView
                     android:id="@+id/phoneNumberImageSwitcher"
                     style="@style/EyeImageSwitcher"
                     android:layout_marginStart="8dp"
@@ -137,7 +145,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
-
 
         <androidx.cardview.widget.CardView
             android:id="@+id/medicalInfoCard"
@@ -167,7 +174,6 @@
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
 
                 <ImageView
                     android:id="@+id/genderImageView"
@@ -201,7 +207,7 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <ImageSwitcher
+                <ImageView
                     android:id="@+id/genderImageSwitcher"
                     style="@style/EyeImageSwitcher"
                     android:layout_marginStart="8dp"
@@ -210,7 +216,6 @@
                     app:layout_constraintBottom_toTopOf="@+id/weightTextInput"
                     app:layout_constraintStart_toEndOf="@+id/genderTextInput"
                     app:layout_constraintTop_toTopOf="@+id/genderTextInput" />
-
 
                 <ImageView
                     android:id="@+id/weightImage"
@@ -244,7 +249,7 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <ImageSwitcher
+                <ImageView
                     android:id="@+id/weightImageSwitcher"
                     style="@style/EyeImageSwitcher"
                     android:layout_marginStart="8dp"
@@ -286,7 +291,7 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <ImageSwitcher
+                <ImageView
                     android:id="@+id/heightImageSwitcher"
                     style="@style/EyeImageSwitcher"
                     app:layout_constraintBottom_toBottomOf="@+id/heightTextInput"
@@ -324,7 +329,7 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <ImageSwitcher
+                <ImageView
                     android:id="@+id/birthDAteImageSwitcher"
                     style="@style/EyeImageSwitcher"
                     android:layout_marginStart="8dp"
@@ -342,7 +347,6 @@
                     android:background="@drawable/blooddrop"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/birthDateTextInput" />
-
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/bloodTypeTextInput"
@@ -365,7 +369,7 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <ImageSwitcher
+                <ImageView
                     android:id="@+id/bloodTypeImageSwitcher"
                     style="@style/EyeImageSwitcher"
                     android:layout_marginStart="8dp"
@@ -375,7 +379,7 @@
                     app:layout_constraintStart_toEndOf="@+id/bloodTypeTextInput"
                     app:layout_constraintTop_toBottomOf="@+id/birthDateTextInput">
 
-                </ImageSwitcher>
+                </ImageView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -391,9 +395,9 @@
             android:background="@color/pureWhite"
             app:cardCornerRadius="6dp"
             app:cardElevation="3dp"
-            app:layout_constraintTop_toBottomOf="@id/medicalInfoCard"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/medicalInfoCard">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -428,8 +432,8 @@
                     style="@style/SignUpTextInputLayout"
                     android:layout_width="240dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/emergencyInfoTitle">
 
@@ -445,8 +449,7 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-
-                <ImageSwitcher
+                <ImageView
                     android:id="@+id/emergencyContactImageSwitcher"
                     style="@style/EyeImageSwitcher"
                     android:layout_marginStart="8dp"
@@ -456,16 +459,16 @@
                     app:layout_constraintStart_toEndOf="@+id/emergencyContactTextInput"
                     app:layout_constraintTop_toTopOf="@+id/emergencyContactTextInput">
 
-                </ImageSwitcher>
+                </ImageView>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/emergencyNumberTextInput"
                     style="@style/SignUpTextInputLayout"
                     android:layout_width="240dp"
                     android:layout_height="wrap_content"
-                    tools:layout_editor_absoluteY="8dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/emergencyContactTextInput">
+                    app:layout_constraintTop_toBottomOf="@+id/emergencyContactTextInput"
+                    tools:layout_editor_absoluteY="8dp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/emergencyNumberEditText"
@@ -479,7 +482,7 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <ImageSwitcher
+                <ImageView
                     android:id="@+id/emergencyNumberImageSwitcher"
                     style="@style/EyeImageSwitcher"
                     android:layout_marginStart="8dp"
@@ -488,7 +491,7 @@
                     app:layout_constraintStart_toEndOf="@+id/emergencyNumberTextInput"
                     app:layout_constraintTop_toTopOf="@+id/emergencyNumberTextInput">
 
-                </ImageSwitcher>
+                </ImageView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
