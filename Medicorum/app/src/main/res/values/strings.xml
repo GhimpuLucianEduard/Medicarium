@@ -52,5 +52,9 @@
     <string name="save">Save</string>
     <string name="gender">Gender</string>
     <string name="weight_kg">Weight (kg)</string>
+    <string name="type_first_name">Type your first name</string>
+    <string name="type_last_name">Type the last name</string>
+    <string name="type_weight">Type your weight</string>
+    <string name="type_height">Type the height</string>
 
 </resources>

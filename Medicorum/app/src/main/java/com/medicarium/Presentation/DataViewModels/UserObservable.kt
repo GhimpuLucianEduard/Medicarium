@@ -3,6 +3,9 @@ package com.medicarium.Presentation.DataViewModels
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.medicarium.BR
+import com.medicarium.Data.Enums.BloodType
+import com.medicarium.Data.Enums.Gender
+import com.medicarium.Utilities.DateTimeUtility
 import empty
 
 class UserObservable(
@@ -11,7 +14,14 @@ class UserObservable(
     confirmPassword: String = String.empty(),
     firstName: String = String.empty(),
     lastName: String = String.empty(),
-    phoneNumber: String = String.empty()
+    phoneNumber: String = String.empty(),
+    weight: String = String.empty(),
+    height: String = String.empty(),
+    emergencyContact: String = String.empty(),
+    emergencyNumber: String = String.empty(),
+    birthDate: Long = DateTimeUtility.getCurrentDateInMs(),
+    gendre: Gender = Gender.UNSPECIFIED,
+    bloodType: BloodType = BloodType.UNSPECIFIED
 ): BaseObservable() {
 
     @Bindable
@@ -54,5 +64,54 @@ class UserObservable(
         set(value) {
             field = value
             notifyPropertyChanged(BR.lastName)
+        }
+
+    @Bindable
+    var weight: String = weight
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.weight)
+        }
+
+    @Bindable
+    var height: String = height
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.height)
+        }
+
+    @Bindable
+    var emergencyContact: String = emergencyContact
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.emergencyContact)
+        }
+
+    @Bindable
+    var emergencyNumber: String = emergencyNumber
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.emergencyNumber)
+        }
+
+    @Bindable
+    var birthDate: Long = birthDate
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.birthDate)
+        }
+
+    @Bindable
+    var gendre: Gender = gendre
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.gendre)
+        }
+
+    @Bindable
+    var bloodType: BloodType = bloodType
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.bloodType)
         }
 }

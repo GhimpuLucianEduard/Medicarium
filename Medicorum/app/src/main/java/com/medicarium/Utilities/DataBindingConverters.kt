@@ -2,6 +2,8 @@ package com.medicarium.Utilities
 
 import androidx.databinding.InverseMethod
 import com.google.android.material.textfield.TextInputEditText
+import com.medicarium.Data.Enums.BloodType
+import com.medicarium.Data.Enums.Gender
 import com.medicarium.Data.Enums.MedicalCategory
 import empty
 import timestampToString
@@ -47,3 +49,46 @@ object MedicalCategoryStringConverter {
     }
 }
 
+object BloodTypeStringConverter {
+
+    @InverseMethod("stringToBloodType")
+    @JvmStatic fun bloodTypeToString(
+        bloodType: BloodType?
+    ): String {
+
+        if (bloodType == null) {
+            return String.empty()
+        }
+
+        return bloodType.toString()
+    }
+
+    @JvmStatic fun stringToBloodType(
+        text: String
+    ): BloodType? {
+        // TODO
+        return BloodType.valueOf(text)
+    }
+}
+
+object GendreStringConverter {
+
+    @InverseMethod("stringToGendre")
+    @JvmStatic fun gendreToString(
+        gendre: Gender?
+    ): String {
+
+        if (gendre == null) {
+            return String.empty()
+        }
+
+        return gendre.toString()
+    }
+
+    @JvmStatic fun stringToGendre(
+        text: String
+    ): Gender? {
+        // TODO
+        return Gender.valueOf(text)
+    }
+}

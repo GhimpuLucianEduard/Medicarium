@@ -17,4 +17,5 @@ abstract class BaseFragment : Fragment() {
     protected fun setProgressBarVisibility(visibility: Int) {
         (activity as? MainActivity)!!.progressBar.visibility = visibility
     }
+
 }

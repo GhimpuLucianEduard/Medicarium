@@ -1,502 +1,519 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+        <import type="com.medicarium.Utilities.TimestampStringConverter" />
+        <import type="com.medicarium.Utilities.MedicalCategoryStringConverter" />
+        <import type="com.medicarium.Utilities.BloodTypeStringConverter" />
+        <import type="com.medicarium.Utilities.GendreStringConverter" />
+
+        <variable
+            name="GenericInfoViewModel"
+            type="com.medicarium.Presentation.General.GenericInfoViewModel"/>
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-        <com.medicarium.Presentation.CustomControls.CustomNavigationBar
-            android:id="@+id/navBar"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="5dp"
-            android:background="@color/pureWhite"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp">
 
-        </com.medicarium.Presentation.CustomControls.CustomNavigationBar>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/genericInfoCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@color/pureWhite"
-            app:cardCornerRadius="6dp"
-            app:cardElevation="3dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/navBar">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <com.medicarium.Presentation.CustomControls.CustomNavigationBar
+                android:id="@+id/navBar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:elevation="5dp"
+                android:background="@color/pureWhite"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/generalInfoTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/nunito_semibold"
-                    android:text="Generic Information"
-                    android:textColor="@color/primaryBlack"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            </com.medicarium.Presentation.CustomControls.CustomNavigationBar>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/nameTextInput"
-                    style="@style/SignUpTextInputLayout"
-                    android:layout_width="240dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/generalInfoTitle">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/nameEditText"
-                        style="@style/BaseEditText"
-                        android:enabled="true"
-                        android:focusable="false"
-                        android:hint="@string/first_name_hint"
-                        android:inputType="none"
-                        android:nextFocusDown="@id/passwordEditText"
-                        android:text="Name ger" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <ImageView
-                    android:id="@+id/firstNameImageSwitcher"
-                    style="@style/EyeImageSwitcher"
-                    app:layout_constraintBottom_toBottomOf="@+id/nameTextInput"
-                    app:layout_constraintStart_toEndOf="@+id/nameTextInput"
-                    app:layout_constraintTop_toTopOf="@+id/nameTextInput">
-
-                </ImageView>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/lastNameTextInput"
-                    style="@style/SignUpTextInputLayout"
-                    android:layout_width="240dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/nameTextInput">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/lastNameEditText"
-                        style="@style/BaseEditText"
-                        android:enabled="true"
-                        android:focusable="false"
-                        android:hint="@string/last_name_hint"
-                        android:inputType="none"
-                        android:nextFocusDown="@id/passwordEditText"
-                        android:text="Last" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <ImageView
-                    android:id="@+id/lastNameImageSwitcher"
-                    style="@style/EyeImageSwitcher"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/lastNameTextInput"
-                    app:layout_constraintStart_toEndOf="@+id/lastNameTextInput"
-                    app:layout_constraintTop_toTopOf="@+id/lastNameTextInput">
-
-                </ImageView>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/phoneTextInput"
-                    style="@style/SignUpTextInputLayout"
-                    android:layout_width="240dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/lastNameTextInput">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/phoneEditText"
-                        style="@style/BaseEditText"
-                        android:enabled="true"
-                        android:focusable="false"
-                        android:hint="@string/phone_number_hint"
-                        android:inputType="none"
-                        android:nextFocusDown="@id/passwordEditText"
-                        android:text="0983989248" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <ImageView
-                    android:id="@+id/phoneNumberImageSwitcher"
-                    style="@style/EyeImageSwitcher"
-                    android:layout_marginStart="8dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/phoneTextInput"
-                    app:layout_constraintStart_toEndOf="@+id/lastNameTextInput"
-                    app:layout_constraintTop_toTopOf="@+id/phoneTextInput" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/medicalInfoCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@color/pureWhite"
-            app:cardCornerRadius="6dp"
-            app:cardElevation="3dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/genericInfoCard">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/genericInfoCard"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/pureWhite"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="3dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/navBar">
 
-                <TextView
-                    android:id="@+id/medicalInfoTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/nunito_semibold"
-                    android:text="Medical Information"
-                    android:textColor="@color/primaryBlack"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/genderImageView"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="36dp"
-                    android:background="@drawable/gender"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/medicalInfoTitle" />
+                    <TextView
+                        android:id="@+id/generalInfoTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="Generic Information"
+                        android:textColor="@color/primaryBlack"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/genderTextInput"
-                    style="@style/SignUpTextInputLayout"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/genderImageView"
-                    app:layout_constraintStart_toEndOf="@+id/genderImageView"
-                    app:layout_constraintTop_toTopOf="@+id/genderImageView">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/nameTextInput"
+                        style="@style/SignUpTextInputLayout"
+                        android:layout_width="240dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/generalInfoTitle">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/genderEditText"
-                        style="@style/BaseEditText"
-                        android:enabled="true"
-                        android:focusable="false"
-                        android:hint="@string/gender"
-                        android:inputType="none"
-                        android:nextFocusDown="@id/passwordEditText"
-                        android:text="MALE" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/nameEditText"
+                            style="@style/BaseEditText"
+                            android:enabled="true"
+                            android:focusable="false"
+                            android:hint="@string/first_name_hint"
+                            android:inputType="none"
+                            android:nextFocusDown="@id/passwordEditText"
+                            android:text="@={GenericInfoViewModel.user.firstName}" />
 
-                </com.google.android.material.textfield.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <ImageView
-                    android:id="@+id/genderImageSwitcher"
-                    style="@style/EyeImageSwitcher"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toTopOf="@+id/weightTextInput"
-                    app:layout_constraintStart_toEndOf="@+id/genderTextInput"
-                    app:layout_constraintTop_toTopOf="@+id/genderTextInput" />
+                    <ImageView
+                        android:id="@+id/firstNameImageSwitcher"
+                        style="@style/EyeImageSwitcher"
+                        app:layout_constraintBottom_toBottomOf="@+id/nameTextInput"
+                        app:layout_constraintStart_toEndOf="@+id/nameTextInput"
+                        app:layout_constraintTop_toTopOf="@+id/nameTextInput">
 
-                <ImageView
-                    android:id="@+id/weightImage"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/libra"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/genderTextInput" />
+                    </ImageView>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/weightTextInput"
-                    style="@style/SignUpTextInputLayout"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/weightImage"
-                    app:layout_constraintStart_toEndOf="@+id/weightImage"
-                    app:layout_constraintTop_toTopOf="@+id/weightImage">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/lastNameTextInput"
+                        style="@style/SignUpTextInputLayout"
+                        android:layout_width="240dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/nameTextInput">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/weightEditText"
-                        style="@style/BaseEditText"
-                        android:enabled="true"
-                        android:focusable="false"
-                        android:hint="@string/weight_kg"
-                        android:inputType="none"
-                        android:nextFocusDown="@id/passwordEditText"
-                        android:text="120" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/lastNameEditText"
+                            style="@style/BaseEditText"
+                            android:enabled="true"
+                            android:focusable="false"
+                            android:hint="@string/last_name_hint"
+                            android:inputType="none"
+                            android:nextFocusDown="@id/passwordEditText"
+                            android:text="@={GenericInfoViewModel.user.lastName}" />
 
-                </com.google.android.material.textfield.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <ImageView
-                    android:id="@+id/weightImageSwitcher"
-                    style="@style/EyeImageSwitcher"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/weightTextInput"
-                    app:layout_constraintStart_toEndOf="@+id/weightTextInput"
-                    app:layout_constraintTop_toBottomOf="@+id/genderTextInput" />
+                    <ImageView
+                        android:id="@+id/lastNameImageSwitcher"
+                        style="@style/EyeImageSwitcher"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/lastNameTextInput"
+                        app:layout_constraintStart_toEndOf="@+id/lastNameTextInput"
+                        app:layout_constraintTop_toTopOf="@+id/lastNameTextInput">
 
-                <ImageView
-                    android:id="@+id/heightImageView"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/height"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/weightTextInput" />
+                    </ImageView>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/heightTextInput"
-                    style="@style/SignUpTextInputLayout"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="3.6dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/heightImageView"
-                    app:layout_constraintStart_toEndOf="@+id/heightImageView"
-                    app:layout_constraintTop_toTopOf="@+id/heightImageView"
-                    app:layout_constraintVertical_bias="0.439">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/phoneTextInput"
+                        style="@style/SignUpTextInputLayout"
+                        android:layout_width="240dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/lastNameTextInput">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/heightEditText"
-                        style="@style/BaseEditText"
-                        android:enabled="true"
-                        android:focusable="false"
-                        android:hint="Height (cm)"
-                        android:inputType="none"
-                        android:nextFocusDown="@id/passwordEditText"
-                        android:text="178" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/phoneEditText"
+                            style="@style/BaseEditText"
+                            android:enabled="true"
+                            android:focusable="false"
+                            android:hint="@string/phone_number_hint"
+                            android:inputType="none"
+                            android:nextFocusDown="@id/passwordEditText"
+                            android:text="@={GenericInfoViewModel.user.phoneNumber}" />
 
-                </com.google.android.material.textfield.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <ImageView
-                    android:id="@+id/heightImageSwitcher"
-                    style="@style/EyeImageSwitcher"
-                    app:layout_constraintBottom_toBottomOf="@+id/heightTextInput"
-                    app:layout_constraintStart_toEndOf="@+id/heightTextInput"
-                    app:layout_constraintTop_toBottomOf="@+id/weightTextInput" />
+                    <ImageView
+                        android:id="@+id/phoneNumberImageSwitcher"
+                        style="@style/EyeImageSwitcher"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/phoneTextInput"
+                        app:layout_constraintStart_toEndOf="@+id/lastNameTextInput"
+                        app:layout_constraintTop_toTopOf="@+id/phoneTextInput" />
 
-                <ImageView
-                    android:id="@+id/birthDateImage"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/bcake"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/heightTextInput" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/birthDateTextInput"
-                    style="@style/SignUpTextInputLayout"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/birthDateImage"
-                    app:layout_constraintStart_toEndOf="@+id/birthDateImage"
-                    app:layout_constraintTop_toTopOf="@+id/birthDateImage">
+            </androidx.cardview.widget.CardView>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/birthDateEditText"
-                        style="@style/BaseEditText"
-                        android:enabled="true"
-                        android:focusable="false"
-                        android:hint="Birthdate"
-                        android:inputType="none"
-                        android:text="12/12/1912" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <ImageView
-                    android:id="@+id/birthDAteImageSwitcher"
-                    style="@style/EyeImageSwitcher"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/birthDateTextInput"
-                    app:layout_constraintStart_toEndOf="@+id/birthDateTextInput"
-                    app:layout_constraintTop_toBottomOf="@+id/heightTextInput" />
-
-                <ImageView
-                    android:id="@+id/bloodTypeImage"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/blooddrop"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/birthDateTextInput" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/bloodTypeTextInput"
-                    style="@style/SignUpTextInputLayout"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="11dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/bloodTypeImage"
-                    app:layout_constraintStart_toEndOf="@+id/bloodTypeImage"
-                    app:layout_constraintTop_toTopOf="@+id/bloodTypeImage">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/bloodTypeEditText"
-                        style="@style/BaseEditText"
-                        android:enabled="true"
-                        android:focusable="false"
-                        android:hint="Blood Type"
-                        android:inputType="none"
-                        android:text="A+" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <ImageView
-                    android:id="@+id/bloodTypeImageSwitcher"
-                    style="@style/EyeImageSwitcher"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/bloodTypeTextInput"
-                    app:layout_constraintStart_toEndOf="@+id/bloodTypeTextInput"
-                    app:layout_constraintTop_toBottomOf="@+id/birthDateTextInput">
-
-                </ImageView>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/emergencyInfoCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@color/pureWhite"
-            app:cardCornerRadius="6dp"
-            app:cardElevation="3dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/medicalInfoCard">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/medicalInfoCard"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:background="@color/pureWhite"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="3dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/genericInfoCard">
 
-                <TextView
-                    android:id="@+id/emergencyInfoTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/nunito_semibold"
-                    android:text="Emergency Contact"
-                    android:textColor="@color/primaryBlack"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/alert"
-                    app:layout_constraintBottom_toBottomOf="@+id/emergencyInfoTitle"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/medicalInfoTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="Medical Information"
+                        android:textColor="@color/primaryBlack"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/emergencyContactTextInput"
-                    style="@style/SignUpTextInputLayout"
-                    android:layout_width="240dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/emergencyInfoTitle">
+                    <ImageView
+                        android:id="@+id/genderImageView"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="36dp"
+                        android:background="@drawable/gender"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/medicalInfoTitle" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/emergencyContactEditText"
-                        style="@style/BaseEditText"
-                        android:enabled="true"
-                        android:focusable="false"
-                        android:hint="Emergency Contact"
-                        android:inputType="none"
-                        android:nextFocusDown="@id/passwordEditText"
-                        android:text="Ion Vadim" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/genderTextInput"
+                        style="@style/SignUpTextInputLayout"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/genderImageView"
+                        app:layout_constraintStart_toEndOf="@+id/genderImageView"
+                        app:layout_constraintTop_toTopOf="@+id/genderImageView">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/genderEditText"
+                            style="@style/BaseEditText"
+                            android:enabled="true"
+                            android:focusable="false"
+                            android:hint="@string/gender"
+                            android:inputType="none"
+                            android:nextFocusDown="@id/passwordEditText"
+                            android:text="@{GendreStringConverter.gendreToString(GenericInfoViewModel.user.gendre)}" />
 
-                <ImageView
-                    android:id="@+id/emergencyContactImageSwitcher"
-                    style="@style/EyeImageSwitcher"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toTopOf="@+id/emergencyNumberTextInput"
-                    app:layout_constraintStart_toEndOf="@+id/emergencyContactTextInput"
-                    app:layout_constraintTop_toTopOf="@+id/emergencyContactTextInput">
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                </ImageView>
+                    <ImageView
+                        android:id="@+id/genderImageSwitcher"
+                        style="@style/EyeImageSwitcher"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/weightTextInput"
+                        app:layout_constraintStart_toEndOf="@+id/genderTextInput"
+                        app:layout_constraintTop_toTopOf="@+id/genderTextInput" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/emergencyNumberTextInput"
-                    style="@style/SignUpTextInputLayout"
-                    android:layout_width="240dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/emergencyContactTextInput"
-                    tools:layout_editor_absoluteY="8dp">
+                    <ImageView
+                        android:id="@+id/weightImage"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/libra"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/genderTextInput" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/emergencyNumberEditText"
-                        style="@style/BaseEditText"
-                        android:enabled="true"
-                        android:focusable="false"
-                        android:hint="Emergency Contact Phone Number"
-                        android:inputType="none"
-                        android:nextFocusDown="@id/passwordEditText"
-                        android:text="072831234" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/weightTextInput"
+                        style="@style/SignUpTextInputLayout"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/weightImage"
+                        app:layout_constraintStart_toEndOf="@+id/weightImage"
+                        app:layout_constraintTop_toTopOf="@+id/weightImage">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/weightEditText"
+                            style="@style/BaseEditText"
+                            android:enabled="true"
+                            android:focusable="false"
+                            android:hint="@string/weight_kg"
+                            android:inputType="none"
+                            android:nextFocusDown="@id/passwordEditText"
+                            android:text="@={GenericInfoViewModel.user.weight}" />
 
-                <ImageView
-                    android:id="@+id/emergencyNumberImageSwitcher"
-                    style="@style/EyeImageSwitcher"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/emergencyNumberTextInput"
-                    app:layout_constraintStart_toEndOf="@+id/emergencyNumberTextInput"
-                    app:layout_constraintTop_toTopOf="@+id/emergencyNumberTextInput">
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                </ImageView>
+                    <ImageView
+                        android:id="@+id/weightImageSwitcher"
+                        style="@style/EyeImageSwitcher"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/weightTextInput"
+                        app:layout_constraintStart_toEndOf="@+id/weightTextInput"
+                        app:layout_constraintTop_toBottomOf="@+id/genderTextInput" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageView
+                        android:id="@+id/heightImageView"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/height"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/weightTextInput" />
 
-        </androidx.cardview.widget.CardView>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/heightTextInput"
+                        style="@style/SignUpTextInputLayout"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="3.6dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/heightImageView"
+                        app:layout_constraintStart_toEndOf="@+id/heightImageView"
+                        app:layout_constraintTop_toTopOf="@+id/heightImageView"
+                        app:layout_constraintVertical_bias="0.439">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/heightEditText"
+                            style="@style/BaseEditText"
+                            android:enabled="true"
+                            android:focusable="false"
+                            android:hint="Height (cm)"
+                            android:inputType="none"
+                            android:nextFocusDown="@id/passwordEditText"
+                            android:text="@={GenericInfoViewModel.user.height}" />
 
-</ScrollView>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageView
+                        android:id="@+id/heightImageSwitcher"
+                        style="@style/EyeImageSwitcher"
+                        app:layout_constraintBottom_toBottomOf="@+id/heightTextInput"
+                        app:layout_constraintStart_toEndOf="@+id/heightTextInput"
+                        app:layout_constraintTop_toBottomOf="@+id/weightTextInput" />
+
+                    <ImageView
+                        android:id="@+id/birthDateImage"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/bcake"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/heightTextInput" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/birthDateTextInput"
+                        style="@style/SignUpTextInputLayout"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/birthDateImage"
+                        app:layout_constraintStart_toEndOf="@+id/birthDateImage"
+                        app:layout_constraintTop_toTopOf="@+id/birthDateImage">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/birthDateEditText"
+                            style="@style/BaseEditText"
+                            android:enabled="true"
+                            android:focusable="false"
+                            android:hint="Birthdate"
+                            android:inputType="none"
+                            android:text="@{TimestampStringConverter.timestampToString(GenericInfoViewModel.user.birthDate)}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageView
+                        android:id="@+id/birthDAteImageSwitcher"
+                        style="@style/EyeImageSwitcher"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/birthDateTextInput"
+                        app:layout_constraintStart_toEndOf="@+id/birthDateTextInput"
+                        app:layout_constraintTop_toBottomOf="@+id/heightTextInput" />
+
+                    <ImageView
+                        android:id="@+id/bloodTypeImage"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/blooddrop"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/birthDateTextInput" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/bloodTypeTextInput"
+                        style="@style/SignUpTextInputLayout"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="11dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/bloodTypeImage"
+                        app:layout_constraintStart_toEndOf="@+id/bloodTypeImage"
+                        app:layout_constraintTop_toTopOf="@+id/bloodTypeImage">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/bloodTypeEditText"
+                            style="@style/BaseEditText"
+                            android:enabled="true"
+                            android:focusable="false"
+                            android:hint="Blood Type"
+                            android:inputType="none"
+                            android:text="@{BloodTypeStringConverter.bloodTypeToString(GenericInfoViewModel.user.bloodType)}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageView
+                        android:id="@+id/bloodTypeImageSwitcher"
+                        style="@style/EyeImageSwitcher"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/bloodTypeTextInput"
+                        app:layout_constraintStart_toEndOf="@+id/bloodTypeTextInput"
+                        app:layout_constraintTop_toBottomOf="@+id/birthDateTextInput">
+
+                    </ImageView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/emergencyInfoCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/pureWhite"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="3dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/medicalInfoCard">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/emergencyInfoTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="Emergency Contact"
+                        android:textColor="@color/primaryBlack"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/alert"
+                        app:layout_constraintBottom_toBottomOf="@+id/emergencyInfoTitle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/emergencyContactTextInput"
+                        style="@style/SignUpTextInputLayout"
+                        android:layout_width="240dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/emergencyInfoTitle">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/emergencyContactEditText"
+                            style="@style/BaseEditText"
+                            android:enabled="true"
+                            android:focusable="false"
+                            android:hint="Emergency Contact"
+                            android:inputType="none"
+                            android:nextFocusDown="@id/passwordEditText"
+                            android:text="@={GenericInfoViewModel.user.emergencyContact}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageView
+                        android:id="@+id/emergencyContactImageSwitcher"
+                        style="@style/EyeImageSwitcher"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/emergencyNumberTextInput"
+                        app:layout_constraintStart_toEndOf="@+id/emergencyContactTextInput"
+                        app:layout_constraintTop_toTopOf="@+id/emergencyContactTextInput">
+
+                    </ImageView>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/emergencyNumberTextInput"
+                        style="@style/SignUpTextInputLayout"
+                        android:layout_width="240dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/emergencyContactTextInput"
+                        tools:layout_editor_absoluteY="8dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/emergencyNumberEditText"
+                            style="@style/BaseEditText"
+                            android:enabled="true"
+                            android:focusable="false"
+                            android:hint="Emergency Contact Phone Number"
+                            android:inputType="none"
+                            android:nextFocusDown="@id/passwordEditText"
+                            android:text="@={GenericInfoViewModel.user.emergencyNumber}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageView
+                        android:id="@+id/emergencyNumberImageSwitcher"
+                        style="@style/EyeImageSwitcher"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/emergencyNumberTextInput"
+                        app:layout_constraintStart_toEndOf="@+id/emergencyNumberTextInput"
+                        app:layout_constraintTop_toTopOf="@+id/emergencyNumberTextInput">
+
+                    </ImageView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>
