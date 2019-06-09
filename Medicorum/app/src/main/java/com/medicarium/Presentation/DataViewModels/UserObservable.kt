@@ -21,7 +21,18 @@ class UserObservable(
     emergencyNumber: String = String.empty(),
     birthDate: Long = DateTimeUtility.getCurrentDateInMs(),
     gendre: Gender = Gender.UNSPECIFIED,
-    bloodType: BloodType = BloodType.UNSPECIFIED
+    bloodType: BloodType = BloodType.UNSPECIFIED,
+    var id: String = String.empty(),
+    var isFirstNameVisible: Boolean = true,
+    var isLastNameVisible: Boolean = true,
+    var isPhoneNumberVisible: Boolean = true,
+    var isGenderVisible: Boolean = true,
+    var isBirthDateVisible: Boolean = false,
+    var isBloodTypeVisible: Boolean = true,
+    var isHeightVisible: Boolean = true,
+    var isWeightVisible: Boolean = false,
+    var isEmergencyContactNameVisible: Boolean = true,
+    var isEmergencyContactPhoneNumberVisible: Boolean = false
 ): BaseObservable() {
 
     @Bindable

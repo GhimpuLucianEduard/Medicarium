@@ -4,7 +4,6 @@ package com.medicarium.Presentation.General
 import android.app.DatePickerDialog
 import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
-import android.text.Editable
 import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +14,6 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.input
 import com.medicarium.Data.Enums.BloodType
 import com.medicarium.Data.Enums.Gender
-import com.medicarium.Data.Enums.MedicalCategory
 import com.medicarium.Presentation.BaseFragment
 import com.medicarium.Presentation.History.AddMedicalRecordFragment
 import com.medicarium.Presentation.Services.ToastService
@@ -77,8 +75,12 @@ class GenericInfoFragment : BaseFragment(), KodeinAware, DatePickerDialog.OnDate
 
     private fun setupImageSwitchers() {
 
+        if (!viewModel.user.value!!.isFirstNameVisible) {
+            (firstNameImageSwitcher.background as TransitionDrawable).reverseTransition(0)
+        }
         firstNameImageSwitcher.setOnClickListener {
             (it.background as TransitionDrawable).reverseTransition(0)
+            viewModel.user.value!!.isFirstNameVisible = viewModel.user.value!!.isFirstNameVisible.not()
         }
 
         nameEditText.setOnClickListener {
@@ -92,8 +94,12 @@ class GenericInfoFragment : BaseFragment(), KodeinAware, DatePickerDialog.OnDate
             }
         }
 
+        if (!viewModel.user.value!!.isLastNameVisible) {
+            (lastNameImageSwitcher.background as TransitionDrawable).reverseTransition(0)
+        }
         lastNameImageSwitcher.setOnClickListener {
             (it.background as TransitionDrawable).reverseTransition(0)
+            viewModel.user.value!!.isLastNameVisible = viewModel.user.value!!.isLastNameVisible.not()
         }
 
         lastNameEditText.setOnClickListener {
@@ -107,8 +113,12 @@ class GenericInfoFragment : BaseFragment(), KodeinAware, DatePickerDialog.OnDate
             }
         }
 
+        if (!viewModel.user.value!!.isPhoneNumberVisible) {
+            (phoneNumberImageSwitcher.background as TransitionDrawable).reverseTransition(0)
+        }
         phoneNumberImageSwitcher.setOnClickListener {
             (it.background as TransitionDrawable).reverseTransition(0)
+            viewModel.user.value!!.isPhoneNumberVisible = viewModel.user.value!!.isPhoneNumberVisible.not()
         }
 
         phoneEditText.setOnClickListener {
@@ -122,8 +132,12 @@ class GenericInfoFragment : BaseFragment(), KodeinAware, DatePickerDialog.OnDate
             }
         }
 
+        if (!viewModel.user.value!!.isBirthDateVisible) {
+            (birthDAteImageSwitcher.background as TransitionDrawable).reverseTransition(0)
+        }
         birthDAteImageSwitcher.setOnClickListener {
             (it.background as TransitionDrawable).reverseTransition(0)
+            viewModel.user.value!!.isBirthDateVisible = viewModel.user.value!!.isBirthDateVisible.not()
         }
 
         birthDateEditText.setOnClickListener {
@@ -135,8 +149,13 @@ class GenericInfoFragment : BaseFragment(), KodeinAware, DatePickerDialog.OnDate
                 .show()
         }
 
+
+        if (!viewModel.user.value!!.isWeightVisible) {
+            (weightImageSwitcher.background as TransitionDrawable).reverseTransition(0)
+        }
         weightImageSwitcher.setOnClickListener {
             (it.background as TransitionDrawable).reverseTransition(0)
+            viewModel.user.value!!.isWeightVisible = viewModel.user.value!!.isWeightVisible.not()
         }
 
         weightEditText.setOnClickListener {
@@ -150,8 +169,12 @@ class GenericInfoFragment : BaseFragment(), KodeinAware, DatePickerDialog.OnDate
             }
         }
 
+        if (!viewModel.user.value!!.isHeightVisible) {
+            (heightImageSwitcher.background as TransitionDrawable).reverseTransition(0)
+        }
         heightImageSwitcher.setOnClickListener {
             (it.background as TransitionDrawable).reverseTransition(0)
+            viewModel.user.value!!.isHeightVisible = viewModel.user.value!!.isHeightVisible.not()
         }
 
         heightEditText.setOnClickListener {
@@ -165,8 +188,13 @@ class GenericInfoFragment : BaseFragment(), KodeinAware, DatePickerDialog.OnDate
             }
         }
 
+
+        if (!viewModel.user.value!!.isBloodTypeVisible) {
+            (bloodTypeImageSwitcher.background as TransitionDrawable).reverseTransition(0)
+        }
         bloodTypeImageSwitcher.setOnClickListener {
             (it.background as TransitionDrawable).reverseTransition(0)
+            viewModel.user.value!!.isBloodTypeVisible = viewModel.user.value!!.isBloodTypeVisible.not()
         }
 
         bloodTypeEditText.setOnClickListener {
@@ -181,8 +209,12 @@ class GenericInfoFragment : BaseFragment(), KodeinAware, DatePickerDialog.OnDate
                 }).show()
         }
 
+        if (!viewModel.user.value!!.isEmergencyContactNameVisible) {
+            (emergencyContactImageSwitcher.background as TransitionDrawable).reverseTransition(0)
+        }
         emergencyContactImageSwitcher.setOnClickListener {
             (it.background as TransitionDrawable).reverseTransition(0)
+            viewModel.user.value!!.isEmergencyContactNameVisible = viewModel.user.value!!.isEmergencyContactNameVisible.not()
         }
 
         emergencyContactEditText.setOnClickListener {
@@ -196,8 +228,13 @@ class GenericInfoFragment : BaseFragment(), KodeinAware, DatePickerDialog.OnDate
             }
         }
 
+
+        if (!viewModel.user.value!!.isEmergencyContactPhoneNumberVisible) {
+            (emergencyNumberImageSwitcher.background as TransitionDrawable).reverseTransition(0)
+        }
         emergencyNumberImageSwitcher.setOnClickListener {
             (it.background as TransitionDrawable).reverseTransition(0)
+            viewModel.user.value!!.isEmergencyContactPhoneNumberVisible = viewModel.user.value!!.isEmergencyContactPhoneNumberVisible.not()
         }
 
         emergencyNumberEditText.setOnClickListener {
@@ -211,8 +248,12 @@ class GenericInfoFragment : BaseFragment(), KodeinAware, DatePickerDialog.OnDate
             }
         }
 
+        if (!viewModel.user.value!!.isGenderVisible) {
+            (genderImageSwitcher.background as TransitionDrawable).reverseTransition(0)
+        }
         genderImageSwitcher.setOnClickListener {
             (it.background as TransitionDrawable).reverseTransition(0)
+            viewModel.user.value!!.isGenderVisible = viewModel.user.value!!.isGenderVisible.not()
         }
 
         genderEditText.setOnClickListener {

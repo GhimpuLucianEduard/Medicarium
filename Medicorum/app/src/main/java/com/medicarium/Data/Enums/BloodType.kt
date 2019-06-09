@@ -1,5 +1,7 @@
 package com.medicarium.Data.Enums
 
+import androidx.room.TypeConverter
+
 enum class BloodType {
     A_PLUS,
     A_MINUS,

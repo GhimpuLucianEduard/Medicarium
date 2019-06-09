@@ -19,9 +19,6 @@ fun User.toUserDataModel() = UserDataModel(
     bloodType = bloodType,
     height = height,
     weight = weight,
-    healthIssues = healthIssues,
-    onGoingTreatments = onGoingTreatments,
-    allergies = allergies,
     emergencyContactName = emergencyContactName,
     emergencyContactPhoneNumber = emergencyContactPhoneNumber
 )
@@ -39,9 +36,6 @@ fun UserDataModel.toUserDomainModel() = User(
     bloodType = bloodType,
     height = height,
     weight = weight,
-    healthIssues = healthIssues,
-    onGoingTreatments = onGoingTreatments,
-    allergies = allergies,
     emergencyContactName = emergencyContactName,
     emergencyContactPhoneNumber = emergencyContactPhoneNumber
 )

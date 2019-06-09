@@ -11,6 +11,7 @@ import com.medicarium.Data.ApiServices.MedicalRecordServiceImpl
 import com.medicarium.Data.ApiServices.RefitServices.ApiServiceFactory
 import com.medicarium.Data.ApiServices.RefitServices.ConnectivityInterceptor
 import com.medicarium.Data.ApiServices.RefitServices.ConnectivityInterceptorImpl
+import com.medicarium.Data.LocalDb.AppDatabase
 import com.medicarium.Presentation.General.GenericInfoViewModelFactory
 import com.medicarium.Presentation.History.MedicalRecordDetailsViewModelFactory
 import com.medicarium.Presentation.History.MedicalRecordsViewModelFactory
@@ -45,6 +46,10 @@ class MedicorumApp : Application(), KodeinAware {
         // api services
         bind<AuthService>() with singleton { AuthServiceImpl(instance()) }
         bind<MedicalRecordService>() with singleton { MedicalRecordServiceImpl(instance()) }
+
+        // db
+        bind() from singleton { AppDatabase(instance()) }
+        bind() from singleton { instance<AppDatabase>().userDao() }
 
         // view models
         bind() from provider { LoginViewModelFactory(instance(), instance()) }

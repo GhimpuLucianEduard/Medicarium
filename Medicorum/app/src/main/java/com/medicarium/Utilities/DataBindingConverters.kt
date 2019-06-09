@@ -1,6 +1,7 @@
 package com.medicarium.Utilities
 
 import androidx.databinding.InverseMethod
+import androidx.room.TypeConverter
 import com.google.android.material.textfield.TextInputEditText
 import com.medicarium.Data.Enums.BloodType
 import com.medicarium.Data.Enums.Gender
@@ -51,6 +52,7 @@ object MedicalCategoryStringConverter {
 
 object BloodTypeStringConverter {
 
+    @TypeConverter
     @InverseMethod("stringToBloodType")
     @JvmStatic fun bloodTypeToString(
         bloodType: BloodType?
@@ -63,6 +65,7 @@ object BloodTypeStringConverter {
         return bloodType.toString()
     }
 
+    @TypeConverter
     @JvmStatic fun stringToBloodType(
         text: String
     ): BloodType? {

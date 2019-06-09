@@ -1,10 +1,16 @@
 package com.medicarium.Data.Models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverter
+import androidx.room.TypeConverters
 import com.medicarium.Data.Enums.BloodType
 import com.medicarium.Data.Enums.Gender
+import com.medicarium.Utilities.BloodTypeStringConverter
 import com.medicarium.Utilities.DateTimeUtility
 import empty
 
+@Entity(tableName = "user")
 data class User(
     var id: String = String.empty(),
     var email: String = String.empty(),
@@ -26,9 +32,11 @@ data class User(
     var isHeightVisible: Boolean = true,
     var weight: String = String.empty(),
     var isWeightVisible: Boolean = true,
-    var healthIssues: List<String> = ArrayList(),
-    var onGoingTreatments: List<String> = ArrayList(),
-    var allergies: List<String> = ArrayList(),
     var emergencyContactName: String = String.empty(),
-    var emergencyContactPhoneNumber: String = String.empty()
-)
+    var emergencyContactPhoneNumber: String = String.empty(),
+    var isEmergencyContactNameVisible: Boolean = true,
+    var isEmergencyContactPhoneNumberVisible: Boolean = true
+) {
+    @PrimaryKey(autoGenerate = true)
+    var dbId: Int? = null
+}
