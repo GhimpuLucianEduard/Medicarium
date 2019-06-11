@@ -1,16 +1,21 @@
 package com.medicarium.Data.LocalDb
 
-import androidx.room.Dao
-import androidx.room.Query
-import androidx.room.Update
+import androidx.lifecycle.LiveData
+import androidx.room.*
 import com.medicarium.Data.Models.User
 
 @Dao
 interface UserDao {
 
-    @Query("SELECT * FROM user WHERE id = (:givenId)")
-    fun getUser(givenId: String) : User
+    @Query("SELECT * FROM user LIMIT(1)")
+    fun getUser() : LiveData<User>
 
     @Update
     fun updateUserData(user: User)
+
+    @Query("DELETE FROM user")
+    fun deleteUserData()
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addUser(user: User)
 }

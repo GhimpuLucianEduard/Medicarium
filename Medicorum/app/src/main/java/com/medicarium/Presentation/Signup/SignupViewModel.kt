@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.andreacioccarelli.cryptoprefs.CryptoPrefs
 import com.medicarium.Data.ApiServices.AuthService
+import com.medicarium.Data.LocalDb.UserRepository
 import com.medicarium.Data.Mappers.toUserDomainModel
 import com.medicarium.Presentation.BaseAndroidViewModel
 import com.medicarium.Presentation.DataViewModels.PropertyAwareMutableLiveData
@@ -31,7 +32,8 @@ import isPhoneNumberValid
 class SignupViewModel(
     application: Application,
     private val authService: AuthService,
-    private val toastService: ToastService
+    private val toastService: ToastService,
+    private val userRepository: UserRepository
 ) : BaseAndroidViewModel(application) {
 
     val isBusy = MutableLiveData<Boolean>()
@@ -109,6 +111,7 @@ class SignupViewModel(
                     preferences.put(USER_VERIFIED, true)
                     preferences.put(TOKEN, it.token)
                     preferences.apply()
+                    userRepository.addUserData(it.user)
                     Log.i("REQ_API", preferences.get(TOKEN, "afSDFSD"))
                     navigateToPinSetup.value = Event(true)
                 }, {

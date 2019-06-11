@@ -12,6 +12,8 @@ import com.medicarium.Data.ApiServices.RefitServices.ApiServiceFactory
 import com.medicarium.Data.ApiServices.RefitServices.ConnectivityInterceptor
 import com.medicarium.Data.ApiServices.RefitServices.ConnectivityInterceptorImpl
 import com.medicarium.Data.LocalDb.AppDatabase
+import com.medicarium.Data.LocalDb.UserRepository
+import com.medicarium.Data.LocalDb.UserRepositoryImpl
 import com.medicarium.Presentation.General.GenericInfoViewModelFactory
 import com.medicarium.Presentation.History.MedicalRecordDetailsViewModelFactory
 import com.medicarium.Presentation.History.MedicalRecordsViewModelFactory
@@ -51,9 +53,12 @@ class MedicorumApp : Application(), KodeinAware {
         bind() from singleton { AppDatabase(instance()) }
         bind() from singleton { instance<AppDatabase>().userDao() }
 
+        // repo
+        bind<UserRepository>() with singleton { UserRepositoryImpl(instance()) }
+
         // view models
         bind() from provider { LoginViewModelFactory(instance(), instance()) }
-        bind() from provider { SignupViewModelFactory(instance(), instance(), instance()) }
+        bind() from provider { SignupViewModelFactory(instance(), instance(), instance(), instance()) }
         bind() from provider { SetupPinViewModelFactory(instance()) }
         bind() from provider { PinAuthViewModelFactory(instance()) }
         bind() from singleton { MedicalRecordsViewModelFactory(instance(), instance()) }
