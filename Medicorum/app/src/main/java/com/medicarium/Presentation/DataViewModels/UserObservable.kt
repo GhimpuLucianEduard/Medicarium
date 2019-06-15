@@ -32,7 +32,8 @@ class UserObservable(
     var isHeightVisible: Boolean = true,
     var isWeightVisible: Boolean = false,
     var isEmergencyContactNameVisible: Boolean = true,
-    var isEmergencyContactPhoneNumberVisible: Boolean = false
+    var isEmergencyContactPhoneNumberVisible: Boolean = false,
+    var dbId: Int? = 0
 ): BaseObservable() {
 
     @Bindable

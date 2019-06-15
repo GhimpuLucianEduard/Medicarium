@@ -20,7 +20,8 @@ fun User.toUserDataModel() = UserDataModel(
     height = height,
     weight = weight,
     emergencyContactName = emergencyContactName,
-    emergencyContactPhoneNumber = emergencyContactPhoneNumber
+    emergencyContactPhoneNumber = emergencyContactPhoneNumber,
+    status = status
 )
 
 fun UserDataModel.toUserDomainModel() = User(
@@ -37,7 +38,8 @@ fun UserDataModel.toUserDomainModel() = User(
     height = height,
     weight = weight,
     emergencyContactName = emergencyContactName,
-    emergencyContactPhoneNumber = emergencyContactPhoneNumber
+    emergencyContactPhoneNumber = emergencyContactPhoneNumber,
+    status = status
 )
 
 fun UserObservable.toUserDomainModel() = User(
@@ -46,7 +48,46 @@ fun UserObservable.toUserDomainModel() = User(
     confirmPassword = confirmPassword,
     firstName = firstName,
     lastName = lastName,
-    phoneNumber = phoneNumber
+    phoneNumber = phoneNumber,
+    emergencyContactPhoneNumber = emergencyNumber,
+    isEmergencyContactNameVisible = isEmergencyContactNameVisible,
+    emergencyContactName = emergencyContact,
+    isEmergencyContactPhoneNumberVisible = isEmergencyContactPhoneNumberVisible,
+    bloodType = bloodType,
+    isBloodTypeVisible = isBloodTypeVisible,
+    gender = gendre,
+    isGenderVisible = isGenderVisible,
+    weight = weight,
+    isWeightVisible = isWeightVisible,
+    height = height,
+    isHeightVisible = isHeightVisible,
+    birthDate = birthDate,
+    isBirthDateVisible = isBirthDateVisible,
+    id = id
+).also { it.dbId = dbId }
+
+fun User.toUserObservable() = UserObservable(
+    email = email,
+    password = password,
+    confirmPassword = confirmPassword,
+    firstName = firstName,
+    lastName = lastName,
+    phoneNumber = phoneNumber,
+    emergencyNumber = emergencyContactPhoneNumber,
+    isEmergencyContactNameVisible = isEmergencyContactNameVisible,
+    emergencyContact = emergencyContactName,
+    isEmergencyContactPhoneNumberVisible = isEmergencyContactPhoneNumberVisible,
+    bloodType = bloodType,
+    isBloodTypeVisible = isBloodTypeVisible,
+    gendre = gender,
+    isGenderVisible = isGenderVisible,
+    weight = weight,
+    isWeightVisible = isWeightVisible,
+    height = height,
+    isHeightVisible = isHeightVisible,
+    birthDate = birthDate,
+    isBirthDateVisible = isBirthDateVisible,
+    dbId = dbId
 )
 
 fun UserWithToken.toUserWithTokenDataModel() = UserWithTokenDataModel(

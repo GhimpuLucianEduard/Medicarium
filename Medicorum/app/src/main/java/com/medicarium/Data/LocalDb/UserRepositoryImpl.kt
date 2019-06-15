@@ -7,10 +7,8 @@ class UserRepositoryImpl(
     private val userDao: UserDao
 ) : UserRepository {
 
-    val data: LiveData<User> = userDao.getUser()
-
-    override fun getUserData(): LiveData<User> {
-        return data
+    override fun getUserData(): User {
+        return userDao.getUser()
     }
 
     override fun updateUser(user: User) {
@@ -22,7 +20,6 @@ class UserRepositoryImpl(
     }
 
     override fun addUserData(user: User) {
-        deleteUserData()
         userDao.addUser(user)
     }
 }

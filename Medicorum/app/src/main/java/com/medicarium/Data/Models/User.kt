@@ -35,8 +35,10 @@ data class User(
     var emergencyContactName: String = String.empty(),
     var emergencyContactPhoneNumber: String = String.empty(),
     var isEmergencyContactNameVisible: Boolean = true,
-    var isEmergencyContactPhoneNumberVisible: Boolean = true
+    var isEmergencyContactPhoneNumberVisible: Boolean = true,
+    var status: Boolean = false
 ) {
     @PrimaryKey(autoGenerate = true)
     var dbId: Int? = null
+
 }

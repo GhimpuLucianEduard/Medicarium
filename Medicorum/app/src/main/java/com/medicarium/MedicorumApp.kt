@@ -57,13 +57,13 @@ class MedicorumApp : Application(), KodeinAware {
         bind<UserRepository>() with singleton { UserRepositoryImpl(instance()) }
 
         // view models
-        bind() from provider { LoginViewModelFactory(instance(), instance()) }
+        bind() from provider { LoginViewModelFactory(instance(), instance(), instance()) }
         bind() from provider { SignupViewModelFactory(instance(), instance(), instance(), instance()) }
         bind() from provider { SetupPinViewModelFactory(instance()) }
         bind() from provider { PinAuthViewModelFactory(instance()) }
         bind() from singleton { MedicalRecordsViewModelFactory(instance(), instance()) }
         bind() from singleton { MedicalRecordDetailsViewModelFactory(instance(), instance(), instance()) }
-        bind() from singleton { GenericInfoViewModelFactory(instance()) }
+        bind() from singleton { GenericInfoViewModelFactory(instance(), instance()) }
     }
 
     init {

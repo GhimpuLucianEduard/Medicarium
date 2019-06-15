@@ -22,12 +22,15 @@ import com.medicarium.Utilities.SharedPreferences.Companion.TOKEN
 import com.medicarium.Utilities.SharedPreferences.Companion.USER_ID
 import com.medicarium.Utilities.SharedPreferences.Companion.USER_VERIFIED
 import empty
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import isEmailValid
 import isPasswordValid
 import isPhoneNumberValid
+import org.jetbrains.anko.doAsync
+import java.util.*
 
 class SignupViewModel(
     application: Application,
@@ -112,6 +115,7 @@ class SignupViewModel(
                     preferences.put(TOKEN, it.token)
                     preferences.apply()
                     userRepository.addUserData(it.user)
+
                     Log.i("REQ_API", preferences.get(TOKEN, "afSDFSD"))
                     navigateToPinSetup.value = Event(true)
                 }, {

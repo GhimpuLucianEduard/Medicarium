@@ -70,7 +70,7 @@ class LoginFragment : BaseFragment(), KodeinAware {
 
         viewModel.navigateToSmsCheck.observe(this@LoginFragment, EventObserver {
             Navigation.findNavController(activity!!, R.id.nav_host_fragment)
-                .navigate(LoginFragmentDirections.actionLoginFragmentToSetupPinFragment())
+                .navigate(LoginFragmentDirections.actionLoginFragmentToCheckSMSCodeFragment())
         })
 
         loginButton.setOnClickListener {

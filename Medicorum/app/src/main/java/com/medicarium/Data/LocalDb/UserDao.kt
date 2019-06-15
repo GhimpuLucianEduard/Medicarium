@@ -8,7 +8,7 @@ import com.medicarium.Data.Models.User
 interface UserDao {
 
     @Query("SELECT * FROM user LIMIT(1)")
-    fun getUser() : LiveData<User>
+    fun getUser() : User
 
     @Update
     fun updateUserData(user: User)

@@ -2,20 +2,25 @@ package com.medicarium.Presentation.General
 
 
 import android.app.DatePickerDialog
+import android.content.DialogInterface
 import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.input
+import com.github.zawadz88.materialpopupmenu.popupMenu
 import com.medicarium.Data.Enums.BloodType
 import com.medicarium.Data.Enums.Gender
 import com.medicarium.Presentation.BaseFragment
 import com.medicarium.Presentation.History.AddMedicalRecordFragment
+import com.medicarium.Presentation.Services.DialogService
 import com.medicarium.Presentation.Services.ToastService
 import com.medicarium.R
 import com.medicarium.databinding.FragmentGenericInfoBinding
@@ -23,6 +28,7 @@ import empty
 import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat
 import ir.mirrajabi.searchdialog.core.SearchResultListener
 import kotlinx.android.synthetic.main.fragment_generic_info.*
+import org.jetbrains.anko.support.v4.act
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
@@ -39,6 +45,7 @@ class GenericInfoFragment : BaseFragment(), KodeinAware, DatePickerDialog.OnDate
     private lateinit var gendres: ArrayList<AddMedicalRecordFragment.PickerValue>
 
     private val toastService: ToastService by instance()
+    private val dialogService: DialogService by instance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,9 +64,25 @@ class GenericInfoFragment : BaseFragment(), KodeinAware, DatePickerDialog.OnDate
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        navBar.setLeftImageDrawnable(resources.getDrawable(R.drawable.empty_drawable))
-        navBar.setRightImageDrawnable(resources.getDrawable(R.drawable.more_verti))
-        navBar.setTitletext(String.empty())
+
+        saveLabel.setOnClickListener {
+            dialogService.showConfirmationAlertWithIcon(
+                context = activity!!,
+                title = "Are you sure you want to save these changes?",
+                message = "Please be adviced, these changes will override your current medical information.",
+                icon = R.drawable.error_dialog,
+                positiveButtonText = "Save Changes",
+                negativeButtonText = "Reset Changes",
+                positiveClickListener = DialogInterface.OnClickListener { _, _->
+                    viewModel.updateUserData()
+                    toastService.showToast(activity!!, "Changes saved!")
+                },
+                negativeClickListener = DialogInterface.OnClickListener { _, _->
+                    viewModel.resetUser()
+                }
+            )
+        }
+
         setupImageSwitchers()
 
         bloodTypes = ArrayList(

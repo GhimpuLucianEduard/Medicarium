@@ -6,10 +6,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.medicarium.Data.ApiServices.AuthService
+import com.medicarium.Data.LocalDb.UserRepository
 import com.medicarium.Presentation.BaseAndroidViewModel
 import com.medicarium.Utilities.Event
 import com.medicarium.Utilities.LiveDataDoubleTrigger
 import com.medicarium.Utilities.LoggerConstants
+import com.medicarium.Utilities.SharedPreferences
 import empty
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
@@ -20,7 +22,8 @@ import retrofit2.HttpException
 
 class LoginViewModel(
     application: Application,
-    private val authService: AuthService
+    private val authService: AuthService,
+    private val userRepository: UserRepository
 ) : BaseAndroidViewModel(application) {
 
     private val _showDialog = MutableLiveData<String>()
@@ -54,6 +57,17 @@ class LoginViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 Log.i(LoggerConstants.API_REQ, "login request succeeded, got response: $it")
+                if (it.user.status) {
+
+                    preferences.put(SharedPreferences.USER_VERIFIED, true)
+                    preferences.put(SharedPreferences.TOKEN, it.token)
+                    preferences.apply()
+                    userRepository.addUserData(it.user)
+
+                    val doi = userRepository.getUserData()
+
+                    navigateToPinSetup.value = Event(true)
+                }
             }, {
                 Log.e(LoggerConstants.API_REQ, "Auth request failed: ${it.message}")
 

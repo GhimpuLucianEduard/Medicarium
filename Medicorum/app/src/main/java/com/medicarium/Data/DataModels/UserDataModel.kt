@@ -24,5 +24,6 @@ data class UserDataModel(
     var onGoingTreatments: List<String> = ArrayList(),
     var allergies: List<String> = ArrayList(),
     var emergencyContactName: String = String.empty(),
-    var emergencyContactPhoneNumber: String = String.empty()
+    var emergencyContactPhoneNumber: String = String.empty(),
+    var status: Boolean = false
 )

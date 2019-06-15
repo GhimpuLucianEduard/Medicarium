@@ -26,7 +26,7 @@ abstract class AppDatabase : RoomDatabase() {
         }
 
         private fun buildDatabase(context: Context) = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "medicarium.db")
-                .openHelperFactory(SafeHelperFactory(charArrayOf('m','e','d','i','c','a','r','i','u','m'))).build()
+                .openHelperFactory(SafeHelperFactory(charArrayOf('m','e','d','i','c','a','r','i','u','m'))).allowMainThreadQueries().build()
 
     }
 }
