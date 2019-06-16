@@ -2,11 +2,8 @@ package com.medicarium.Data.Models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverter
-import androidx.room.TypeConverters
 import com.medicarium.Data.Enums.BloodType
 import com.medicarium.Data.Enums.Gender
-import com.medicarium.Utilities.BloodTypeStringConverter
 import com.medicarium.Utilities.DateTimeUtility
 import empty
 
@@ -40,5 +37,4 @@ data class User(
 ) {
     @PrimaryKey(autoGenerate = true)
     var dbId: Int? = null
-
 }

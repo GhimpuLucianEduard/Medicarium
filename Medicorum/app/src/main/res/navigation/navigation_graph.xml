@@ -189,4 +189,8 @@
         android:name="com.medicarium.Presentation.History.EditMedicalRecordFragment"
         android:label="edit_medical_record_fragment"
         tools:layout="@layout/edit_medical_record_fragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.medicarium.Presentation.Settings.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>

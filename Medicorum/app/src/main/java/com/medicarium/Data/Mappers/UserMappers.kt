@@ -21,7 +21,17 @@ fun User.toUserDataModel() = UserDataModel(
     weight = weight,
     emergencyContactName = emergencyContactName,
     emergencyContactPhoneNumber = emergencyContactPhoneNumber,
-    status = status
+    status = status,
+    isFirstNameVisible = isFirstNameVisible,
+    isLastNameVisible = isLastNameVisible,
+    isBirthDateVisible = isBirthDateVisible,
+    isPhoneNumberVisible = isPhoneNumberVisible,
+    isBloodTypeVisible = isBloodTypeVisible,
+    isHeightVisible = isHeightVisible,
+    isWeightVisible = isWeightVisible,
+    isGenderVisible = isGenderVisible,
+    isEmergencyContactPhoneNumberVisible = isEmergencyContactPhoneNumberVisible,
+    isEmergencyContactNameVisible = isEmergencyContactNameVisible
 )
 
 fun UserDataModel.toUserDomainModel() = User(
@@ -39,7 +49,17 @@ fun UserDataModel.toUserDomainModel() = User(
     weight = weight,
     emergencyContactName = emergencyContactName,
     emergencyContactPhoneNumber = emergencyContactPhoneNumber,
-    status = status
+    status = status,
+    isFirstNameVisible = isFirstNameVisible,
+    isLastNameVisible = isLastNameVisible,
+    isBirthDateVisible = isBirthDateVisible,
+    isPhoneNumberVisible = isPhoneNumberVisible,
+    isBloodTypeVisible = isBloodTypeVisible,
+    isHeightVisible = isHeightVisible,
+    isWeightVisible = isWeightVisible,
+    isGenderVisible = isGenderVisible,
+    isEmergencyContactPhoneNumberVisible = isEmergencyContactPhoneNumberVisible,
+    isEmergencyContactNameVisible = isEmergencyContactNameVisible
 )
 
 fun UserObservable.toUserDomainModel() = User(
@@ -87,7 +107,8 @@ fun User.toUserObservable() = UserObservable(
     isHeightVisible = isHeightVisible,
     birthDate = birthDate,
     isBirthDateVisible = isBirthDateVisible,
-    dbId = dbId
+    dbId = dbId,
+    id = id
 )
 
 fun UserWithToken.toUserWithTokenDataModel() = UserWithTokenDataModel(

@@ -4,10 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.cloudinary.android.MediaManager
 import com.jakewharton.threetenabp.AndroidThreeTen
-import com.medicarium.Data.ApiServices.AuthService
-import com.medicarium.Data.ApiServices.AuthServiceImpl
-import com.medicarium.Data.ApiServices.MedicalRecordService
-import com.medicarium.Data.ApiServices.MedicalRecordServiceImpl
+import com.medicarium.Data.ApiServices.*
 import com.medicarium.Data.ApiServices.RefitServices.ApiServiceFactory
 import com.medicarium.Data.ApiServices.RefitServices.ConnectivityInterceptor
 import com.medicarium.Data.ApiServices.RefitServices.ConnectivityInterceptorImpl
@@ -48,6 +45,7 @@ class MedicorumApp : Application(), KodeinAware {
         // api services
         bind<AuthService>() with singleton { AuthServiceImpl(instance()) }
         bind<MedicalRecordService>() with singleton { MedicalRecordServiceImpl(instance()) }
+        bind<UserPreferencesService>() with singleton { UserPreferencesServiceImpl(instance()) }
 
         // db
         bind() from singleton { AppDatabase(instance()) }
@@ -63,7 +61,7 @@ class MedicorumApp : Application(), KodeinAware {
         bind() from provider { PinAuthViewModelFactory(instance()) }
         bind() from singleton { MedicalRecordsViewModelFactory(instance(), instance()) }
         bind() from singleton { MedicalRecordDetailsViewModelFactory(instance(), instance(), instance()) }
-        bind() from singleton { GenericInfoViewModelFactory(instance(), instance()) }
+        bind() from singleton { GenericInfoViewModelFactory(instance(), instance(), instance(), instance()) }
     }
 
     init {

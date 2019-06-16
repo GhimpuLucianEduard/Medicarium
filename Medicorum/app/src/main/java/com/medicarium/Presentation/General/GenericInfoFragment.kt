@@ -6,16 +6,14 @@ import android.content.DialogInterface
 import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
-import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.input
-import com.github.zawadz88.materialpopupmenu.popupMenu
 import com.medicarium.Data.Enums.BloodType
 import com.medicarium.Data.Enums.Gender
 import com.medicarium.Presentation.BaseFragment
@@ -24,11 +22,9 @@ import com.medicarium.Presentation.Services.DialogService
 import com.medicarium.Presentation.Services.ToastService
 import com.medicarium.R
 import com.medicarium.databinding.FragmentGenericInfoBinding
-import empty
 import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat
 import ir.mirrajabi.searchdialog.core.SearchResultListener
 import kotlinx.android.synthetic.main.fragment_generic_info.*
-import org.jetbrains.anko.support.v4.act
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
@@ -75,13 +71,19 @@ class GenericInfoFragment : BaseFragment(), KodeinAware, DatePickerDialog.OnDate
                 negativeButtonText = "Reset Changes",
                 positiveClickListener = DialogInterface.OnClickListener { _, _->
                     viewModel.updateUserData()
-                    toastService.showToast(activity!!, "Changes saved!")
                 },
                 negativeClickListener = DialogInterface.OnClickListener { _, _->
                     viewModel.resetUser()
                 }
             )
         }
+
+        viewModel.isBusy.observe(this@GenericInfoFragment, Observer {
+            if (it)
+                setProgressBarVisibility(View.VISIBLE)
+            else
+                setProgressBarVisibility(View.GONE)
+        })
 
         setupImageSwitchers()
 

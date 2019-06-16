@@ -25,5 +25,15 @@ data class UserDataModel(
     var allergies: List<String> = ArrayList(),
     var emergencyContactName: String = String.empty(),
     var emergencyContactPhoneNumber: String = String.empty(),
-    var status: Boolean = false
+    var status: Boolean = false,
+    var isFirstNameVisible: Boolean = false,
+    var isLastNameVisible: Boolean = false,
+    var isPhoneNumberVisible: Boolean = false,
+    var isGenderVisible: Boolean = false,
+    var isBirthDateVisible: Boolean = false,
+    var isBloodTypeVisible: Boolean = false,
+    var isHeightVisible: Boolean = true,
+    var isWeightVisible: Boolean = false,
+    var isEmergencyContactNameVisible: Boolean = false,
+    var isEmergencyContactPhoneNumberVisible: Boolean = false
 )
