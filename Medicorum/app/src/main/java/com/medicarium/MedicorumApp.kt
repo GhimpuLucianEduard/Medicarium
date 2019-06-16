@@ -18,6 +18,7 @@ import com.medicarium.Presentation.Login.LoginViewModelFactory
 import com.medicarium.Presentation.Login.PinAuthViewModelFactory
 import com.medicarium.Presentation.Pin.SetupPinViewModelFactory
 import com.medicarium.Presentation.Services.*
+import com.medicarium.Presentation.Settings.SettingsViewModelFactory
 import com.medicarium.Presentation.Signup.SignupViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -62,6 +63,7 @@ class MedicorumApp : Application(), KodeinAware {
         bind() from singleton { MedicalRecordsViewModelFactory(instance(), instance()) }
         bind() from singleton { MedicalRecordDetailsViewModelFactory(instance(), instance(), instance()) }
         bind() from singleton { GenericInfoViewModelFactory(instance(), instance(), instance(), instance()) }
+        bind() from singleton { SettingsViewModelFactory(instance(), instance()) }
     }
 
     init {

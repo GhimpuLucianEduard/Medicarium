@@ -1,7 +1,22 @@
 package com.medicarium.Presentation.Settings
 
-import androidx.lifecycle.ViewModel;
+import android.app.Application
+import androidx.lifecycle.MutableLiveData
+import com.medicarium.Data.LocalDb.UserRepository
+import com.medicarium.Presentation.BaseAndroidViewModel
+import com.medicarium.Utilities.Event
 
-class SettingsViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class SettingsViewModel(
+    application: Application,
+    private val userRepository: UserRepository
+) : BaseAndroidViewModel(application) {
+
+    val navigateToLogin = MutableLiveData<Event<Boolean>>()
+
+    fun signout() {
+        preferences.erase()
+        preferences.apply()
+        userRepository.deleteUserData()
+        navigateToLogin.value = Event(true)
+    }
 }

@@ -7,36 +7,39 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
+import com.medicarium.Presentation.BaseFragment
 import com.medicarium.Presentation.Services.DialogService
 import com.medicarium.R
+import com.medicarium.Utilities.EventObserver
 import kotlinx.android.synthetic.main.settings_fragment.*
-import org.jetbrains.anko.support.v4.act
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 
 
-class SettingsFragment : Fragment(), KodeinAware {
+class SettingsFragment : BaseFragment(), KodeinAware {
 
     override val kodein by closestKodein()
     private lateinit var viewModel: SettingsViewModel
     private val dialogService: DialogService by instance()
+    private val viewModelFactory: SettingsViewModelFactory by instance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(SettingsViewModel::class.java)
         return inflater.inflate(R.layout.settings_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SettingsViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.navigateToLogin.observe(this@SettingsFragment, EventObserver {
+            Navigation.findNavController(activity!!, R.id.nav_host_fragment)
+                .navigate(SettingsFragmentDirections.actionSettingsFragmentToLoginFragment())
+        })
 
         termTextView.setOnClickListener {
             dialogService.showNeutralDialog(
@@ -46,6 +49,10 @@ class SettingsFragment : Fragment(), KodeinAware {
                 buttonText = getString(R.string.ok_text_caps),
                 clickListener = DialogInterface.OnClickListener { _, _ -> }
             )
+        }
+
+        logoutTextView.setOnClickListener {
+            viewModel.signout()
         }
     }
 }
