@@ -9,10 +9,13 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
+import com.andreacioccarelli.cryptoprefs.CryptoPrefs
 import com.medicarium.Presentation.BaseFragment
 import com.medicarium.Presentation.Services.VibrationService
 import com.medicarium.R
 import com.medicarium.Utilities.Fingerprint.FingerprintUtility
+import com.medicarium.Utilities.SharedPreferences
+import com.medicarium.Utilities.SharedPreferences.Companion.EMERGENCY_MODE_ACTIVE
 import com.medicarium.databinding.FragmentPinAuthBinding
 import empty
 import kotlinx.android.synthetic.main.fragment_pin_auth.*
@@ -26,6 +29,7 @@ class PinAuthFragment : BaseFragment(), KodeinAware, View.OnClickListener {
     private val viewModelFactory: PinAuthViewModelFactory by instance()
     private lateinit var viewModel: PinAuthViewModel
     private lateinit var binding : FragmentPinAuthBinding
+    private lateinit var preferences: CryptoPrefs
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,7 +68,16 @@ class PinAuthFragment : BaseFragment(), KodeinAware, View.OnClickListener {
         } else {
             btnFingerprint.visibility = View.GONE
         }
+        preferences = CryptoPrefs(activity!!, SharedPreferences.FILE_NAME, SharedPreferences.SECRET_KEY)
 
+        if (preferences.get(EMERGENCY_MODE_ACTIVE, false)) {
+            emergencyModeTextView.setOnClickListener {
+                Navigation.findNavController(activity!!, R.id.nav_host_fragment)
+                    .navigate(PinAuthFragmentDirections.actionPinAuthFragmentToEmergencyMode())
+            }
+        } else {
+            emergencyModeTextView.visibility = View.GONE
+        }
     }
 
     override fun onClick(view: View?) {

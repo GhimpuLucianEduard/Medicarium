@@ -83,6 +83,9 @@ fun UserObservable.toUserDomainModel() = User(
     isHeightVisible = isHeightVisible,
     birthDate = birthDate,
     isBirthDateVisible = isBirthDateVisible,
+    isFirstNameVisible = isFirstNameVisible,
+    isLastNameVisible = isLastNameVisible,
+    isPhoneNumberVisible = isPhoneNumberVisible,
     id = id
 ).also { it.dbId = dbId }
 
@@ -108,6 +111,9 @@ fun User.toUserObservable() = UserObservable(
     birthDate = birthDate,
     isBirthDateVisible = isBirthDateVisible,
     dbId = dbId,
+    isLastNameVisible = isLastNameVisible,
+    isPhoneNumberVisible = isPhoneNumberVisible,
+    isFirstNameVisible = isFirstNameVisible,
     id = id
 )
 

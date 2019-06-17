@@ -24,6 +24,7 @@ class SharedPreferences {
         const val TOKEN = "token"
         const val USER_VERIFIED = "isUserSmsVerified"
         const val PIN = "pin"
+        const val EMERGENCY_MODE_ACTIVE = "isEmergencyModeActive"
 
     }
 }

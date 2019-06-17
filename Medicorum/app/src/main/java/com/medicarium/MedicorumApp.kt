@@ -63,7 +63,7 @@ class MedicorumApp : Application(), KodeinAware {
         bind() from singleton { MedicalRecordsViewModelFactory(instance(), instance()) }
         bind() from singleton { MedicalRecordDetailsViewModelFactory(instance(), instance(), instance()) }
         bind() from singleton { GenericInfoViewModelFactory(instance(), instance(), instance(), instance()) }
-        bind() from singleton { SettingsViewModelFactory(instance(), instance()) }
+        bind() from singleton { SettingsViewModelFactory(instance(), instance(), instance()) }
     }
 
     init {

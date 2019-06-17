@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.medicarium.Presentation.BaseFragment
@@ -41,6 +41,8 @@ class SettingsFragment : BaseFragment(), KodeinAware {
                 .navigate(SettingsFragmentDirections.actionSettingsFragmentToLoginFragment())
         })
 
+        emailTextView.text = viewModel.user.email
+
         termTextView.setOnClickListener {
             dialogService.showNeutralDialog(
                 context = activity!!,
@@ -53,6 +55,14 @@ class SettingsFragment : BaseFragment(), KodeinAware {
 
         logoutTextView.setOnClickListener {
             viewModel.signout()
+        }
+
+        viewModel.isEmergencyModeOn.observe(this@SettingsFragment, Observer {
+            emergencyModeSwitch.isChecked = it
+        })
+
+        emergencyModeSwitch.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.setPreferences(isChecked)
         }
     }
 }
