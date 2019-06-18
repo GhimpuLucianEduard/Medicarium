@@ -48,8 +48,14 @@ class MedicalRecordsAdapter(
         viewHolder.categoryImageView.setBackgroundResource(context.resources.getIdentifier(item.medicalCategory.toString().toLowerCase(),
             "drawable", context.packageName))
 
+        var preview = "https://reactnativecode.com/wp-content/uploads/2018/02/Default_Image_Thumbnail.png"
+
+        if (item.entries.size > 0) {
+            preview = item.entries[0].imageUrl
+        }
+
         Glide.with(context)
-            .load("https://picsum.photos/200/300/?random")
+            .load(preview)
             .centerCrop()
             .placeholder(R.drawable.picture)
             .into(viewHolder.previewImageView)
