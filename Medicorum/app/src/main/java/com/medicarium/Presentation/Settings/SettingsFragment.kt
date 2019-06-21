@@ -36,6 +36,8 @@ class SettingsFragment : BaseFragment(), KodeinAware {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.getUserPreferences()
+
         viewModel.navigateToLogin.observe(this@SettingsFragment, EventObserver {
             Navigation.findNavController(activity!!, R.id.nav_host_fragment)
                 .navigate(SettingsFragmentDirections.actionSettingsFragmentToLoginFragment())

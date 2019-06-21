@@ -61,6 +61,8 @@ class GenericInfoFragment : BaseFragment(), KodeinAware, DatePickerDialog.OnDate
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.getUserData()
+
         saveLabel.setOnClickListener {
             dialogService.showConfirmationAlertWithIcon(
                 context = activity!!,

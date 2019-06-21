@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isGone
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
@@ -52,6 +53,7 @@ class MedicalRecordsFragment : BaseFragment(), KodeinAware, MedicalRecordsAdapte
             lifecycleOwner = this@MedicalRecordsFragment
         }
 
+        shouldUseConnectivityOverlay(true)
         return binding.root
     }
 
@@ -82,6 +84,11 @@ class MedicalRecordsFragment : BaseFragment(), KodeinAware, MedicalRecordsAdapte
 
         viewModel.medicalRecords.observe(this@MedicalRecordsFragment, Observer {
             adapter.setItems(it)
+            if (it.isNotEmpty()) {
+                emptyState.visibility = View.GONE
+            } else {
+                emptyState.visibility = View.VISIBLE
+            }
         })
 
         recyclerView.orientation = DragDropSwipeRecyclerView.ListOrientation.VERTICAL_LIST_WITH_VERTICAL_DRAGGING
@@ -93,7 +100,6 @@ class MedicalRecordsFragment : BaseFragment(), KodeinAware, MedicalRecordsAdapte
         recyclerView.orientation?.removeDragDirectionFlag(DragDropSwipeRecyclerView.ListOrientation.DirectionFlag.DOWN)
 
         recyclerView.reduceItemAlphaOnSwiping = true
-
         recyclerView.scrollListener = object : OnListScrollListener {
 
             override fun onListScrollStateChanged(scrollState: OnListScrollListener.ScrollState) {

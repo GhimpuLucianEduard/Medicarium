@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1560865954 "/Users/luciangh/Repos/Medicarium/Docs/abstract.tex" "/Users/luciangh/Repos/Medicarium/Docs/abstract.pdf" "abstract" 1560867087
-  "/Users/luciangh/Repos/Medicarium/Docs/abstract.aux" 1560865954 8 a94a2480d3289e625eea47cd1b285758 ""
-  "/Users/luciangh/Repos/Medicarium/Docs/abstract.tex" 1560867087 2427 25e71e1ce4e5f8ab79ed046933e2fe20 ""
+["pdflatex"] 1560930184 "/Users/luciangh/Repos/Medicarium/Docs/abstract.tex" "/Users/luciangh/Repos/Medicarium/Docs/abstract.pdf" "abstract" 1560937762
+  "/Users/luciangh/Repos/Medicarium/Docs/abstract.aux" 1560930184 8 a94a2480d3289e625eea47cd1b285758 ""
+  "/Users/luciangh/Repos/Medicarium/Docs/abstract.tex" 1560937762 2428 c1f1b5e10486f85878b215bd670e3db3 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1480098698 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -66,11 +66,11 @@
   "/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1523934492 2717033 f61a5287d9c22a39a74f1979fe3f905c ""
   "/usr/local/texlive/2018/texmf-var/web2c/pdftex/pdflatex.fmt" 1553345263 4220280 e9ab1f3901a8435cbd960ad548ec28db ""
   "/usr/local/texlive/2018/texmf.cnf" 1523934483 577 0b39adfd7c93507ff20c9c14c2f1a33f ""
-  "abstract.aux" 1560865954 8 a94a2480d3289e625eea47cd1b285758 ""
-  "abstract.tex" 1560867087 2427 25e71e1ce4e5f8ab79ed046933e2fe20 ""
+  "abstract.aux" 1560930184 8 a94a2480d3289e625eea47cd1b285758 ""
+  "abstract.tex" 1560937762 2428 c1f1b5e10486f85878b215bd670e3db3 ""
   (generated)
-  "abstract.aux"
-  "abstract.pdf"
-  "/Users/luciangh/Repos/Medicarium/Docs/abstract.log"
-  "/Users/luciangh/Repos/Medicarium/Docs/abstract.pdf"
   "abstract.log"
+  "abstract.pdf"
+  "/Users/luciangh/Repos/Medicarium/Docs/abstract.pdf"
+  "abstract.aux"
+  "/Users/luciangh/Repos/Medicarium/Docs/abstract.log"

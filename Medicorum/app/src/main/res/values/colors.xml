@@ -12,5 +12,6 @@
     <color name="primaryDarkGrey">#999999</color>
     <color name="primaryLightGrey">#D3D1D3</color>
     <color name="pureWhite">#FFFFFF</color>
+    <color name="primaryDarkGreyTransparent">#D9999999</color>
 
 </resources>

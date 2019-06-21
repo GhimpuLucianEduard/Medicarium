@@ -29,11 +29,10 @@ class GenericInfoViewModel(
     var user = PropertyAwareMutableLiveData<UserObservable>()
     lateinit var userClone: User
 
-    init {
+    fun getUserData() {
         userClone = userRepository.getUserData()
         user.value = userClone.toUserObservable()
     }
-
     fun updateUserData() {
         isBusy.value = true
         var data = user.value!!.toUserDomainModel().toUserDataModel()

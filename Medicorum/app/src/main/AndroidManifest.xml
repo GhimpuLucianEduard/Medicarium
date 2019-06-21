@@ -58,6 +58,10 @@
             </meta-data>
         </provider>
 
+        <service
+            android:exported="false"
+            android:name="com.novoda.merlin.MerlinService" />
+
         <meta-data
             android:name="CLOUDINARY_URL"
             android:value="cloudinary://213679344294961:g_YrJhH349FWBDhbAjAmtD1549M@dkcw58wif"/>

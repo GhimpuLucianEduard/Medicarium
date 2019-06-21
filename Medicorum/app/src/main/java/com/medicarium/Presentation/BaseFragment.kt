@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 abstract class BaseFragment : Fragment() {
 
     protected var compositeDisposable: CompositeDisposable = CompositeDisposable()
+    protected var shouldUseConnectivityOverlay: Boolean = false;
 
     protected fun setBottomBarVisibility(bool: Boolean) {
         (activity as? MainActivity)!!.setBottomBarVisibility(bool)
@@ -18,4 +19,13 @@ abstract class BaseFragment : Fragment() {
         (activity as? MainActivity)!!.progressBar.visibility = visibility
     }
 
+    protected fun shouldUseConnectivityOverlay(bool: Boolean) {
+        (activity as? MainActivity)!!.shouldDisplayNoConnectionOverlay = bool
+        shouldUseConnectivityOverlay = bool
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as? MainActivity)!!.refreshConnectivity(shouldUseConnectivityOverlay)
+    }
 }

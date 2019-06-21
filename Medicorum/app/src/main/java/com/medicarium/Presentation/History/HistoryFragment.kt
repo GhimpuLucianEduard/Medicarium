@@ -29,9 +29,9 @@ class HistoryFragment : BaseFragment() {
         medicalTestsImageButton.addScaleAnimation()
         drugsImageButton.addScaleAnimation()
 
-        medicalTestsImageButton.setOnClickListener {
-            Navigation.findNavController(activity!!, R.id.nav_host_fragment)
-                .navigate(HistoryFragmentDirections.actionHistoryFragmentToMedicalTestsFragment())
-        }
+//        medicalTestsImageButton.setOnClickListener {
+//            Navigation.findNavController(activity!!, R.id.nav_host_fragment)
+//                .navigate(HistoryFragmentDirections.actionHistoryFragmentToMedicalTestsFragment())
+//        }
     }
 }

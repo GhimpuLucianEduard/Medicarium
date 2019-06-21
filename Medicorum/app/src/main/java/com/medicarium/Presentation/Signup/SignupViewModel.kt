@@ -63,14 +63,7 @@ class SignupViewModel(
         }
 
     init {
-        user.value = UserObservable(
-            password = "123123123",
-            confirmPassword = "123123123",
-            email = "dlaffsd@gmail.com",
-            lastName = "f",
-            firstName = "df",
-            phoneNumber = "0728189341"
-        )
+        user.value = UserObservable()
 
         isBusy.value = false
         smsCode.value = String.empty()

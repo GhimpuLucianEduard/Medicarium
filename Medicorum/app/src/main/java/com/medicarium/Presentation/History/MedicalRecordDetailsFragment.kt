@@ -57,6 +57,7 @@ import com.stfalcon.imageviewer.StfalconImageViewer
 import com.tbruyelle.rxpermissions2.RxPermissions
 import deepClone
 import empty
+import io.reactivex.rxkotlin.addTo
 import kotlinx.android.synthetic.main.custom_navigation_bar.view.*
 import kotlinx.android.synthetic.main.medical_record_details_fragment.*
 import org.kodein.di.KodeinAware
@@ -117,6 +118,13 @@ class MedicalRecordDetailsFragment : BaseFragment(), MedicalRecordEntriesAdapter
                 "drawable", activity!!.packageName))
 
             adapter.dataSet = it.entries
+
+            if (it.entries.isEmpty()) {
+                emptyState.visibility = View.VISIBLE
+            } else {
+                emptyState.visibility = View.GONE
+            }
+
         })
 
         navigationBar.setRightButtonClickListener {

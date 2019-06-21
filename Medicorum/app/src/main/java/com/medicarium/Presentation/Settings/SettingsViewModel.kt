@@ -20,8 +20,8 @@ class SettingsViewModel(
 
     var isEmergencyModeOn = MutableLiveData<Boolean>()
 
-
-    init {
+    fun getUserPreferences() {
+        user = userRepository.getUserData()
         isEmergencyModeOn.value = preferences.get(EMERGENCY_MODE_ACTIVE, false)
     }
 

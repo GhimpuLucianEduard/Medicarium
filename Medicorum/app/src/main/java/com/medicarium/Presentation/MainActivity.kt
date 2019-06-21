@@ -11,20 +11,26 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.andreacioccarelli.cryptoprefs.CryptoPrefs
 import com.cloudinary.android.MediaManager
+import com.medicarium.Presentation.Services.ConnectivityService
 import com.medicarium.R
 import com.medicarium.Utilities.Fingerprint.FingerprintUtility
 import com.medicarium.Utilities.SharedPreferences
 import com.medicarium.Utilities.SharedPreferences.Companion.PIN
 import com.medicarium.Utilities.SharedPreferences.Companion.TOKEN
+import com.novoda.merlin.Merlin
 import empty
 import kotlinx.android.synthetic.main.activity_main.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
+import org.kodein.di.generic.instance
 
 class MainActivity : AppCompatActivity(), KodeinAware {
 
     override val kodein by closestKodein()
     private lateinit var navController: NavController
+    private lateinit var merlin: Merlin
+    var shouldDisplayNoConnectionOverlay: Boolean = false
+    val connectivityService: ConnectivityService by instance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +72,33 @@ class MainActivity : AppCompatActivity(), KodeinAware {
         //graph.startDestination = R.id.medicalRecordDetailsFragment
 
         navController.graph = graph
+
+        merlin = Merlin.Builder()
+            .withConnectableCallbacks()
+            .withDisconnectableCallbacks()
+            .build(this)
+
+        merlin.registerConnectable {
+            runOnUiThread {
+                noConnectionOverlay.visibility = View.GONE
+            }
+        }
+
+        merlin.registerDisconnectable {
+            runOnUiThread {
+                if (shouldDisplayNoConnectionOverlay) {
+                    noConnectionOverlay.visibility = View.VISIBLE
+                }
+            }
+        }
+    }
+
+    fun refreshConnectivity(shoudlUseOverlay: Boolean) {
+        if (shoudlUseOverlay && !connectivityService.hasConnection(this)) {
+                noConnectionOverlay.visibility = View.VISIBLE
+        } else {
+            noConnectionOverlay.visibility = View.GONE
+        }
     }
 
     fun setBottomBarVisibility(bool: Boolean) {
@@ -79,5 +112,15 @@ class MainActivity : AppCompatActivity(), KodeinAware {
 
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, null)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        merlin.bind()
+    }
+
+    override fun onPause() {
+        merlin.unbind()
+        super.onPause()
     }
 }

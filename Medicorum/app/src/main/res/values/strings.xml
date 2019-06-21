@@ -92,4 +92,5 @@
     This document was last updated on June 16, 2019</string>
     <string name="emergency_mode">Emergency Mode</string>
     <string name="close">Close</string>
+    <string name="please_check_your_connection">Please check your connection</string>
 </resources>
