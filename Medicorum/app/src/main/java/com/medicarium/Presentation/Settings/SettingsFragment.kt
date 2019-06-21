@@ -66,5 +66,10 @@ class SettingsFragment : BaseFragment(), KodeinAware {
         emergencyModeSwitch.setOnCheckedChangeListener { _, isChecked ->
             viewModel.setPreferences(isChecked)
         }
+
+        changePinTextView.setOnClickListener {
+            Navigation.findNavController(activity!!, R.id.nav_host_fragment)
+                .navigate(SettingsFragmentDirections.actionSettingsFragmentToChangePinFragment())
+        }
     }
 }

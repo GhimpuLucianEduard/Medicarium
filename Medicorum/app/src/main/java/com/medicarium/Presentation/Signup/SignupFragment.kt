@@ -29,10 +29,6 @@ class SignupFragment : BaseFragment(), KodeinAware {
     private lateinit var viewModel: SignupViewModel
     private lateinit var binding : SignupFragmentBinding
 
-    companion object {
-        fun newInstance() = SignupFragment()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -196,10 +196,22 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/navigation_graph"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_settingsFragment_to_changePinFragment"
+            app:destination="@id/changePinFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
         android:id="@+id/emergencyMode"
         android:name="com.medicarium.Presentation.EmergencyMode.EmergencyMode"
         android:label="emergency_mode_fragment"
         tools:layout="@layout/emergency_mode_fragment" />
+    <fragment
+        android:id="@+id/changePinFragment"
+        android:name="com.medicarium.Presentation.Settings.ChangePinFragment"
+        android:label="change_pin_fragment"
+        tools:layout="@layout/change_pin_fragment" />
 </navigation>
