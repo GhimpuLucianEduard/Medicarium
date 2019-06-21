@@ -1,10 +1,13 @@
 package com.medicarium.Presentation.General
 
 
+import android.Manifest
 import android.app.DatePickerDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +25,8 @@ import com.medicarium.Presentation.Services.DialogService
 import com.medicarium.Presentation.Services.ToastService
 import com.medicarium.R
 import com.medicarium.databinding.FragmentGenericInfoBinding
+import com.tbruyelle.rxpermissions2.RxPermissions
+import empty
 import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat
 import ir.mirrajabi.searchdialog.core.SearchResultListener
 import kotlinx.android.synthetic.main.fragment_generic_info.*
@@ -42,6 +47,8 @@ class GenericInfoFragment : BaseFragment(), KodeinAware, DatePickerDialog.OnDate
 
     private val toastService: ToastService by instance()
     private val dialogService: DialogService by instance()
+    private val PICK_CONTACT = 1
+    private lateinit var rxPermissions: RxPermissions
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,6 +68,8 @@ class GenericInfoFragment : BaseFragment(), KodeinAware, DatePickerDialog.OnDate
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        rxPermissions = RxPermissions(this)
         viewModel.getUserData()
 
         saveLabel.setOnClickListener {
@@ -98,6 +107,18 @@ class GenericInfoFragment : BaseFragment(), KodeinAware, DatePickerDialog.OnDate
             Gender
             .values()
             .map { e -> AddMedicalRecordFragment.PickerValue(e.name) })
+
+        pickFromContactsTextView.setOnClickListener {
+            rxPermissions
+                .request(Manifest.permission.READ_CONTACTS)
+                .subscribe {
+                    if (it) {
+                        Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI).also {
+                            startActivityForResult(it, PICK_CONTACT)
+                        }
+                    }
+                }
+        }
     }
 
     private fun setupImageSwitchers() {
@@ -305,5 +326,37 @@ class GenericInfoFragment : BaseFragment(), KodeinAware, DatePickerDialog.OnDate
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
         viewModel.user.value!!.birthDate = calendar.timeInMillis
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == PICK_CONTACT) {
+            val data = data!!.data
+            val cursor = context!!.contentResolver.query(data, null, null, null, null)
+            if (cursor.moveToFirst()) {
+                val id = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts._ID))
+                val hasPhone = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))
+
+                var number = String.empty()
+                if (hasPhone.equals("1")) {
+                    val phones = context!!.contentResolver.query(
+                        ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                        null,
+                        ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ id,
+                        null,
+                        null
+                    )
+
+                    phones.moveToFirst()
+                    number = phones.getString(phones.getColumnIndex("data1"))
+                }
+
+                val name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))
+
+                viewModel.user.value!!.emergencyContact = name
+                viewModel.user.value!!.emergencyNumber = number
+            }
+        }
     }
 }

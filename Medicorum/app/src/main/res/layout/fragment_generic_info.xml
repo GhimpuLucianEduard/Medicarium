@@ -18,7 +18,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/pureWhite">
+        android:background="@color/pureWhite"
+        contentPaddingBottom="16dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -185,6 +186,7 @@
                 android:background="@color/pureWhite"
                 app:cardCornerRadius="6dp"
                 app:cardElevation="3dp"
+                android:paddingBottom="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/genericInfoCard">
@@ -524,6 +526,16 @@
                         app:layout_constraintTop_toTopOf="@+id/emergencyNumberTextInput">
 
                     </ImageView>
+
+                    <TextView
+                        android:id="@+id/pickFromContactsTextView"
+                        style="@style/ClickableTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="Pick from Contacts"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/emergencyNumberTextInput" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
