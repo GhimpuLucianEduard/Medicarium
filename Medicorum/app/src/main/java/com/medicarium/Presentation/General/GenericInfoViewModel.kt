@@ -35,8 +35,9 @@ class GenericInfoViewModel(
     }
     fun updateUserData() {
         isBusy.value = true
-        var data = user.value!!.toUserDomainModel().toUserDataModel()
-        userPreferencesService.updateUserPreferences(user.value!!.toUserDomainModel())
+        var data = user.value!!.toUserDomainModel()
+        data.status = true
+        userPreferencesService.updateUserPreferences(data)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({

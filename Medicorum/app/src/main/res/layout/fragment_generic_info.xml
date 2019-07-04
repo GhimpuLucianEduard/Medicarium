@@ -221,7 +221,7 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/genderTextInput"
                         style="@style/SignUpTextInputLayout"
-                        android:layout_width="120dp"
+                        android:layout_width="140dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         app:layout_constraintBottom_toBottomOf="@+id/genderImageView"
@@ -263,7 +263,7 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/weightTextInput"
                         style="@style/SignUpTextInputLayout"
-                        android:layout_width="120dp"
+                        android:layout_width="140dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         app:layout_constraintBottom_toBottomOf="@+id/weightImage"
@@ -304,7 +304,7 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/heightTextInput"
                         style="@style/SignUpTextInputLayout"
-                        android:layout_width="120dp"
+                        android:layout_width="140dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="3.6dp"
                         app:layout_constraintBottom_toBottomOf="@+id/heightImageView"
@@ -344,7 +344,7 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/birthDateTextInput"
                         style="@style/SignUpTextInputLayout"
-                        android:layout_width="120dp"
+                        android:layout_width="140dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         app:layout_constraintBottom_toBottomOf="@+id/birthDateImage"
@@ -384,7 +384,7 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/bloodTypeTextInput"
                         style="@style/SignUpTextInputLayout"
-                        android:layout_width="120dp"
+                        android:layout_width="140dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="11dp"
                         app:layout_constraintBottom_toBottomOf="@+id/bloodTypeImage"
