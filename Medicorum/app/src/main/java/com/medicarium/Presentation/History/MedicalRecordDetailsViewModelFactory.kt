@@ -17,13 +17,13 @@ class MedicalRecordDetailsViewModelFactory(
     var instance: MedicalRecordDetailsViewModel? = null
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (instance == null) {
+
             // instance = MedicalRecordDetailsViewModel(application, medicalRecordsViewModelFactory.instance!!.lastSelectedMedicalRecord)
             instance = MedicalRecordDetailsViewModel(application,
                 medicalRecordsViewModelFactory.instance!!.lastSelectedMedicalRecord,
                 medicalRecordService,
                 medicalRecordsViewModelFactory.instance!!)
-        }
+
         return instance as T
     }
 }

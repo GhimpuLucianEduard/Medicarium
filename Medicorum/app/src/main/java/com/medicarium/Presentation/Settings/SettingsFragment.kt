@@ -36,6 +36,8 @@ class SettingsFragment : BaseFragment(), KodeinAware {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        super.setBottomBarVisibility(true)
+
         viewModel.getUserPreferences()
 
         viewModel.navigateToLogin.observe(this@SettingsFragment, EventObserver {

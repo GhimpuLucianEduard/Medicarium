@@ -14,7 +14,7 @@ import deepClone
 
 class MedicalRecordDetailsViewModel(
     application: Application,
-    medicalRecord: MedicalRecord,
+    private val medicalRecord: MedicalRecord,
     medicalRecordService: MedicalRecordService,
     private val medicalRecordsViewModel: MedicalRecordsViewModel
 ) : ViewModel() {
@@ -28,9 +28,9 @@ class MedicalRecordDetailsViewModel(
             it.name.isNotEmpty()
         }
 
-    init {
-        cloneMedicalRecord.value = originalMedicalRecord.deepClone()
-    }
+//    fun loadData() {
+//        cloneMedicalRecord.value = originalMedicalRecord.deepClone()
+//    }
 
     fun removeEntry(currentPosition: Int) {
         val updatedItems = cloneMedicalRecord.value!!.entries as ArrayList
@@ -55,6 +55,7 @@ class MedicalRecordDetailsViewModel(
     }
 
     fun onViewCreated() {
-        //cloneMedicalRecord.value = originalMedicalRecord.deepClone()
+        originalMedicalRecord = medicalRecord.deepClone()
+        cloneMedicalRecord.value = medicalRecord.deepClone()
     }
 }
